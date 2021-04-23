@@ -1,0 +1,4 @@
+Loaded: /home/cs553/spring21/spim-stats/share/exceptions.s
+12
+Stats -- #instructions : 213
+         #reads : 54  #writes 56  #branches 6  #other 97

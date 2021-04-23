@@ -1,0 +1,24 @@
+==22424== Memcheck, a memory error detector
+==22424== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==22424== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==22424== Command: ./compile -DDEBUG -Olocal -Oglobal
+==22424== Parent PID: 22314
+==22424== 
+--22424-- 
+--22424-- Valgrind options:
+--22424--    --leak-check=full
+--22424--    --show-leak-kinds=all
+--22424--    --track-origins=yes
+--22424--    --verbose
+--22424--    --log-file=tests/out_valgrind/val_21.txt
+--22424-- Contents of /proc/version:
+--22424--   Linux version 3.13.0-170-generic (buildd@lcy01-amd64-001) (gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.4) ) #220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019
+--22424-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3
+--22424-- Page sizes: currently 4096, max supported 4096
+--22424-- Valgrind library directory: /usr/lib/valgrind
+--22424-- Reading syms from /p4/hb/berickson/private/csc553/A2/compile
+--22424-- Reading syms from /lib/x86_64-linux-gnu/ld-2.19.so
+--22424--   Considering /lib/x86_64-linux-gnu/ld-2.19.so ..
+--22424--   .. CRC mismatch (computed aedc220e wanted 13895c11)
+--22424--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.19.so ..
+--22424--   .. CRC is valid

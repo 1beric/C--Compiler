@@ -1,0 +1,125 @@
+==23165== Memcheck, a memory error detector
+==23165== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==23165== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==23165== Command: ./compile -DDEBUG -Olocal -Oglobal -Oregalloc
+==23165== Parent PID: 23130
+==23165== 
+--23165-- 
+--23165-- Valgrind options:
+--23165--    --leak-check=full
+--23165--    --show-leak-kinds=all
+--23165--    --track-origins=yes
+--23165--    --verbose
+--23165--    --log-file=tests/out_valgrind/val_2.txt
+--23165-- Contents of /proc/version:
+--23165--   Linux version 3.13.0-170-generic (buildd@lcy01-amd64-001) (gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.4) ) #220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019
+--23165-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3
+--23165-- Page sizes: currently 4096, max supported 4096
+--23165-- Valgrind library directory: /usr/lib/valgrind
+--23165-- Reading syms from /p4/hb/berickson/private/csc553/csc553A3/compile
+--23165-- Reading syms from /lib/x86_64-linux-gnu/ld-2.19.so
+--23165--   Considering /lib/x86_64-linux-gnu/ld-2.19.so ..
+--23165--   .. CRC mismatch (computed aedc220e wanted 13895c11)
+--23165--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.19.so ..
+--23165--   .. CRC is valid
+--23165-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--23165--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--23165--   .. CRC mismatch (computed fed8e6c5 wanted e6be554a)
+--23165--    object doesn't have a symbol table
+--23165--    object doesn't have a dynamic symbol table
+--23165-- Scheduler: using generic scheduler lock implementation.
+--23165-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==23165== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-23165-by-berickson-on-???
+==23165== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-23165-by-berickson-on-???
+==23165== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-23165-by-berickson-on-???
+==23165== 
+==23165== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==23165== don't want to do, unless you know exactly what you're doing,
+==23165== or are doing some strange experiment):
+==23165==   /usr/lib/valgrind/../../bin/vgdb --pid=23165 ...command...
+==23165== 
+==23165== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==23165==   /path/to/gdb ./compile
+==23165== and then give GDB the following command
+==23165==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=23165
+==23165== --pid is optional if only one valgrind process is running
+==23165== 
+--23165-- REDIR: 0x4019d70 (ld-linux-x86-64.so.2:strlen) redirected to 0x380764b1 (???)
+--23165-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--23165--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--23165--   .. CRC mismatch (computed 4bcdfe99 wanted 3143e841)
+--23165--    object doesn't have a symbol table
+--23165-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--23165--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--23165--   .. CRC mismatch (computed 3df18bf1 wanted 14fefe1c)
+--23165--    object doesn't have a symbol table
+==23165== WARNING: new redirection conflicts with existing -- ignoring it
+--23165--     old: 0x04019d70 (strlen              ) R-> (0000.0) 0x380764b1 ???
+--23165--     new: 0x04019d70 (strlen              ) R-> (2007.0) 0x04c2e1a0 strlen
+--23165-- REDIR: 0x4019b20 (ld-linux-x86-64.so.2:index) redirected to 0x4c2dd50 (index)
+--23165-- REDIR: 0x4019d40 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c2f2f0 (strcmp)
+--23165-- REDIR: 0x401aa90 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c31da0 (mempcpy)
+--23165-- Reading syms from /lib/x86_64-linux-gnu/libc-2.19.so
+--23165--   Considering /lib/x86_64-linux-gnu/libc-2.19.so ..
+--23165--   .. CRC mismatch (computed 8932cdd8 wanted 3aceb420)
+--23165--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.19.so ..
+--23165--   .. CRC is valid
+--23165-- REDIR: 0x4ec4070 (libc.so.6:strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--23165-- REDIR: 0x4ec6360 (libc.so.6:strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--23165-- REDIR: 0x4ec3840 (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--23165-- REDIR: 0x4ec1ad0 (libc.so.6:rindex) redirected to 0x4c2da30 (rindex)
+--23165-- REDIR: 0x4ebe380 (libc.so.6:strcmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--23165-- REDIR: 0x4ed1780 (libc.so.6:__strcmp_sse2_unaligned) redirected to 0x4c2f1b0 (strcmp)
+--23165-- REDIR: 0x4eb9a80 (libc.so.6:malloc) redirected to 0x4c2ab10 (malloc)
+--23165-- REDIR: 0x4ec38d0 (libc.so.6:memset) redirected to 0x4c31350 (memset)
+==23165== 
+==23165== Process terminating with default action of signal 2 (SIGINT)
+==23165==    at 0x4F2B607: tcgetattr (tcgetattr.c:40)
+==23165==    by 0x4F27AAB: isatty (isatty.c:28)
+==23165==    by 0x4028E9: yy_init_buffer (lex.yy.c:1562)
+==23165==    by 0x4027BB: yy_create_buffer (lex.yy.c:1511)
+==23165==    by 0x401462: yylex (lex.yy.c:728)
+==23165==    by 0x40A819: yyparse (y.tab.c:1349)
+==23165==    by 0x40325B: main (main.c:33)
+--23165-- REDIR: 0x4eba120 (libc.so.6:free) redirected to 0x4c2bd80 (free)
+==23165== 
+==23165== HEAP SUMMARY:
+==23165==     in use at exit: 16,458 bytes in 3 blocks
+==23165==   total heap usage: 3 allocs, 0 frees, 16,458 bytes allocated
+==23165== 
+==23165== Searching for pointers to 3 not-freed blocks
+==23165== Checked 77,792 bytes
+==23165== 
+==23165== 8 bytes in 1 blocks are still reachable in loss record 1 of 3
+==23165==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23165==    by 0x403097: yyalloc (lex.yy.c:1961)
+==23165==    by 0x402BAE: yyensure_buffer_stack (lex.yy.c:1661)
+==23165==    by 0x401438: yylex (lex.yy.c:726)
+==23165==    by 0x40A819: yyparse (y.tab.c:1349)
+==23165==    by 0x40325B: main (main.c:33)
+==23165== 
+==23165== 64 bytes in 1 blocks are still reachable in loss record 2 of 3
+==23165==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23165==    by 0x403097: yyalloc (lex.yy.c:1961)
+==23165==    by 0x402747: yy_create_buffer (lex.yy.c:1496)
+==23165==    by 0x401462: yylex (lex.yy.c:728)
+==23165==    by 0x40A819: yyparse (y.tab.c:1349)
+==23165==    by 0x40325B: main (main.c:33)
+==23165== 
+==23165== 16,386 bytes in 1 blocks are still reachable in loss record 3 of 3
+==23165==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23165==    by 0x403097: yyalloc (lex.yy.c:1961)
+==23165==    by 0x40277E: yy_create_buffer (lex.yy.c:1505)
+==23165==    by 0x401462: yylex (lex.yy.c:728)
+==23165==    by 0x40A819: yyparse (y.tab.c:1349)
+==23165==    by 0x40325B: main (main.c:33)
+==23165== 
+==23165== LEAK SUMMARY:
+==23165==    definitely lost: 0 bytes in 0 blocks
+==23165==    indirectly lost: 0 bytes in 0 blocks
+==23165==      possibly lost: 0 bytes in 0 blocks
+==23165==    still reachable: 16,458 bytes in 3 blocks
+==23165==         suppressed: 0 bytes in 0 blocks
+==23165== 
+==23165== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23165== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
