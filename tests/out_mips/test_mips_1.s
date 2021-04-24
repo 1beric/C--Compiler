@@ -1,8 +1,8 @@
 .text
 # function main
 # formals: 
-# locals: tmp$0 (loc: -4); 
-# space for locals: 4 bytes
+# locals: 
+# space for locals: 0 bytes
 #
 _main:
 # block 0 
@@ -17,20 +17,7 @@ _main:
     sw $fp, 4($sp)     # save old $fp
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
-    la $sp, -4($sp)   # allocate stack frame
-
-    # block (0)
-    # livenow=
-    # param 12345
-    li $t0, 12345
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
+    la $sp, -0($sp)   # allocate stack frame
 
     # block (0)
     # livenow=

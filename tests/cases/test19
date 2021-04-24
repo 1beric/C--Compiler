@@ -1,22 +1,21 @@
-/* argument passing chain: local int variable to argument of type int */
+/* more complex expressions: mixed arrays and scalars */
 
-extern void println(int x);
+char y[5];
 
-void h(int w) {
-    println(w);
-}
+extern void println (int n);
 
-void g(int u) {
-    h(u);
-}
+void main(void)
+{
+  int x[5];
 
-void f(int v) {
-    g(v);
-}
+  int u;
 
-void main(void) {
-    int x;
+  x[0] = 0;  y[0] = 1;
+  x[1] = 1;  y[1] = 2;
+  x[2] = 2;  y[2] = 3;
+  x[3] = 3;  y[3] = 4;
+  x[4] = 4;  y[4] = 55;
 
-    x = 12345;
-    f(x);
+  u = x[2*x[1]-1]+y[4]/(y[x[2]+y[0]]+x[1]);
+  println(u);
 }

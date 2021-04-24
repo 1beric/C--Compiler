@@ -1,13 +1,15 @@
-/* assigning to a global char variable */
+/* assignment: char --> int conversion: global var -> local var */
 
-extern void println(int x);
+char y;
 
-char x;
+extern void println (int n);
 
-void main(void) {
-    x = 1;
-    println(x);
+void main(void)
+{
+  int x;
 
-    x = 255;
-    println(x);    /* << this should print -1 */
+  y = 'Q';
+  x = y;
+  println(x);
+  println(y);
 }

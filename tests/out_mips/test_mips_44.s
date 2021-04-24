@@ -27,7 +27,7 @@ _acc:
     # livenow=010
     # mul y, x, tmp$0
     lw $t0, _y
-    move $t1, $s0	# x
+    lw $t1, 8($fp)	# x
     mul $t2, $t0, $t1
     move $s0, $t2	# tmp$0
 

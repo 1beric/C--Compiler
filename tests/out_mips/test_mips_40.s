@@ -58,7 +58,7 @@ Lbl0:
     # block (1)
     # livenow=111000
     # if_le i, 0, label 2
-    move $t0, $s1	# i
+    lw $t0, 8($fp)	# i
     li $t1, 0
     ble $t0, $t1, Lbl2
 
@@ -76,7 +76,7 @@ Lbl1:
     # livenow=111000
     # mul x, i, tmp$2
     lw $t0, _x
-    move $t1, $s1	# i
+    lw $t1, 8($fp)	# i
     mul $t2, $t0, $t1
     move $s1, $t2	# tmp$2
 
@@ -103,7 +103,7 @@ Lbl1:
     # block (2)
     # livenow=111000
     # sub i, 1, tmp$5
-    move $t0, $s1	# i
+    lw $t0, 8($fp)	# i
     li $t1, 1
     sub $t2, $t0, $t1
     move $s1, $t2	# tmp$5
@@ -112,7 +112,7 @@ Lbl1:
     # livenow=101001
     # move tmp$5, i
     move $t0, $s1	# tmp$5
-    move $s1, $t0 	# i
+    sw $t0, 8($fp)	# i
 
     # block (2)
     # livenow=111000

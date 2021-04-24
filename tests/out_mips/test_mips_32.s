@@ -1,171 +1,176 @@
-#	LIVERANGE: EDGE x(4) -> v(3)
-#	LIVERANGE: EDGE x(4) -> w(6)
-#	LIVERANGE: EDGE tmp$3(7) -> v(3)
-#	LIVERANGE: EDGE tmp$3(7) -> w(6)
-#	LIVERANGE: EDGE w(6) -> u(1)
-#	LIVERANGE: EDGE w(6) -> v(3)
-#	LIVERANGE: EDGE tmp$2(5) -> u(1)
-#	LIVERANGE: EDGE tmp$2(5) -> v(3)
-#	LIVERANGE: EDGE v(3) -> u(1)
-#	LIVERANGE: EDGE tmp$1(2) -> u(1)
-#	LIVERANGE: EDGE tmp$1(2) -> x(4)
-#	LIVERANGE: EDGE u(1) -> x(4)
-#	LIVERANGE: EDGE tmp$0(0) -> x(4)
-#	NODE tmp$0(0) COST - 1.000000, DEGREES - 0
-#	NODE u(1) COST - 2.000000, DEGREES - 5
-#	NODE tmp$1(2) COST - 1.000000, DEGREES - 2
-#	NODE v(3) COST - 2.000000, DEGREES - 5
-#	NODE x(4) COST - 3.000000, DEGREES - 4
-#	NODE tmp$2(5) COST - 1.000000, DEGREES - 2
-#	NODE w(6) COST - 2.000000, DEGREES - 4
-#	NODE tmp$3(7) COST - 1.000000, DEGREES - 2
-#	NODE tmp$3(7) IN REG $s0
-#	NODE w(6) IN REG $s2
-#	NODE tmp$2(5) IN REG $s2
-#	NODE v(3) IN REG $s1
-#	NODE tmp$1(2) IN REG $s1
-#	NODE u(1) IN REG $s0
-#	NODE tmp$0(0) IN REG $s0
+#	LIVERANGE: EDGE tmp$1(2) -> tmp$4(3)
+#	LIVERANGE: EDGE tmp$1(2) -> tmp$8(4)
+#	LIVERANGE: EDGE tmp$3(1) -> n(0)
+#	LIVERANGE: EDGE tmp$3(1) -> tmp$4(3)
+#	LIVERANGE: EDGE tmp$3(1) -> tmp$8(4)
+#	NODE n(0) COST - 6.000000, DEGREES - 1
+#	NODE tmp$3(1) COST - 1.000000, DEGREES - 2
+#	NODE tmp$1(2) COST - 0.500000, DEGREES - 2
+#	NODE tmp$4(3) COST - 2.000000, DEGREES - 2
+#	NODE tmp$8(4) COST - 2.000000, DEGREES - 1
+#	NODE tmp$2(5) COST - 1.000000, DEGREES - 0
+#	NODE tmp$2(5) IN REG $s0
+#	NODE tmp$8(4) IN REG $s1
+#	NODE tmp$4(3) IN REG $s1
+#	NODE tmp$1(2) IN REG $s0
+#	NODE tmp$3(1) IN REG $s0
 .text
 # function f
-# formals: x (loc: 8); 
-# locals: u (loc: -1); v (loc: -2); w (loc: -3); tmp$0 (loc: -8); tmp$1 (loc: -12); tmp$2 (loc: -16); tmp$3 (loc: -20); 
-# space for locals: 20 bytes
+# formals: n (loc: 8); 
+# locals: tmp$0 (loc: -4); tmp$1 (loc: -8); tmp$2 (loc: -12); tmp$3 (loc: -16); tmp$4 (loc: -20); tmp$5 (loc: -24); tmp$6 (loc: -28); tmp$7 (loc: -32); tmp$8 (loc: -36); 
+# space for locals: 36 bytes
 #
 _f:
 # block 0 
-# def = 11110111;
-# use = 00001000;
-# in  = 00001000;
-# out = 00000000;
+# def = 000000;
+# use = 100000;
+# in  = 100110;
+# out = 100110;
     # -LEADER- block (0)
-    # livenow=00001000
+    # livenow=100110
     # enter f
     la $sp, -8($sp)    # allocate space for old $fp and $ra
     sw $fp, 4($sp)     # save old $fp
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
-    la $sp, -20($sp)   # allocate stack frame
+    la $sp, -36($sp)   # allocate stack frame
 
     # block (0)
-    # livenow=00001000
-    # move 23, tmp$0
-    li $t0, 23
-    move $s0, $t0 	# tmp$0
+    # livenow=100110
+    # if_gt n, 1, label 1
+    lw $t0, 8($fp)	# n
+    li $t1, 1
+    bgt $t0, $t1, Lbl1
 
-    # block (0)
-    # livenow=10001000
-    # move tmp$0, u
-    move $t0, $s0	# tmp$0
-    move $s0, $t0 	# u
+# block 1 
+# def = 000000;
+# use = 000000;
+# in  = 000000;
+# out = 000000;
+    # -LEADER- block (1)
+    # livenow=000000
+    # label 0
+Lbl0:
 
-    # block (0)
-    # livenow=01001000
-    # move 34, tmp$1
-    li $t0, 34
-    move $s1, $t0 	# tmp$1
-
-    # block (0)
-    # livenow=01101000
-    # move tmp$1, v
-    move $t0, $s1	# tmp$1
-    move $s1, $t0 	# v
-
-    # block (0)
-    # livenow=01011000
-    # param x
-    move $t0, $s2	# x
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=01010000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=01010000
-    # move 45, tmp$2
-    li $t0, 45
-    move $s2, $t0 	# tmp$2
-
-    # block (0)
-    # livenow=01010100
-    # move tmp$2, w
-    move $t0, $s2	# tmp$2
-    move $s2, $t0 	# w
-
-    # block (0)
-    # livenow=01010010
-    # param u
-    move $t0, $s0	# u
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=00010010
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=00010010
-    # move 67, tmp$3
-    li $t0, 67
-    move $s0, $t0 	# tmp$3
-
-    # block (0)
-    # livenow=00010011
-    # move tmp$3, x
-    move $t0, $s0	# tmp$3
-    move $s2, $t0 	# x
-
-    # block (0)
-    # livenow=00011010
-    # param v
-    move $t0, $s1	# v
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=00001010
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=00001010
-    # param w
-    move $t0, $s2	# w
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=00001000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=00001000
-    # param x
-    move $t0, $s2	# x
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=00000000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=00000000
+    # block (1)
+    # livenow=000000
     # leave f
 
-    # block (0)
-    # livenow=00000000
+    # block (1)
+    # livenow=000000
+    # ret 1
+    li $v0, 1
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+    # block (1)
+    # livenow=000000
+    # goto label 2
+    j Lbl2
+
+# block 2 
+# def = 011001;
+# use = 100110;
+# in  = 100110;
+# out = 000000;
+    # -LEADER- block (2)
+    # livenow=100110
+    # label 1
+Lbl1:
+
+    # block (2)
+    # livenow=100110
+    # sub n, 1, tmp$3
+    lw $t0, 8($fp)	# n
+    li $t1, 1
+    sub $t2, $t0, $t1
+    move $s0, $t2	# tmp$3
+
+    # block (2)
+    # livenow=110110
+    # param tmp$3
+    move $t0, $s0	# tmp$3
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (2)
+    # livenow=100110
+    # call g, 1
+    jal _g
+    la $sp, 4($sp)
+
+    # block (2)
+    # livenow=100110
+    # retrieve tmp$5
+    sw $v0, -24($fp)	# tmp$5, -1
+
+    # block (2)
+    # livenow=100110
+    # sub n, 2, tmp$6
+    lw $t0, 8($fp)	# n
+    li $t1, 2
+    sub $t2, $t0, $t1
+    sw $t2, -28($fp)	# tmp$6, -1
+
+    # block (2)
+    # livenow=001110
+    # param tmp$6
+    lw $t0, -28($fp)	# tmp$6
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (2)
+    # livenow=000110
+    # call f, 1
+    jal _f
+    la $sp, 4($sp)
+
+    # block (2)
+    # livenow=000110
+    # retrieve tmp$8
+    move $s1, $v0	# tmp$8
+
+    # block (2)
+    # livenow=000110
+    # add tmp$5, tmp$8, tmp$2
+    lw $t0, -24($fp)	# tmp$5
+    move $t1, $s1	# tmp$8
+    add $t2, $t0, $t1
+    move $s0, $t2	# tmp$2
+
+    # block (2)
+    # livenow=000001
+    # leave f
+
+    # block (2)
+    # livenow=000001
+    # ret tmp$2
+    move $v0, $s0	# tmp$2
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+# block 3 
+# def = 000000;
+# use = 000000;
+# in  = 000000;
+# out = 000000;
+    # -LEADER- block (3)
+    # livenow=000000
+    # label 2
+Lbl2:
+
+    # block (3)
+    # livenow=000000
+    # leave f
+
+    # block (3)
+    # livenow=000000
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -173,12 +178,12 @@ _f:
     la $sp, 8($sp)     # restore stack pointer
     jr $ra
 
-    # block (0)
-    # livenow=00000000
+    # block (3)
+    # livenow=000000
     # leave f
 
-    # block (0)
-    # livenow=00000000
+    # block (3)
+    # livenow=000000
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -188,52 +193,184 @@ _f:
 
 # end function f
 
-#	LIVERANGE -- ERR VAL(7) WAS NULL a
-#	LIVERANGE -- ERR VAL(6) WAS NULL b
-#	LIVERANGE -- ERR VAL(5) WAS NULL a
-#	LIVERANGE -- ERR VAL(3) WAS NULL b
-#	NODE tmp$4(0) IN REG $s0
-#	NODE tmp$4(0) IN REG $s0
+#	LIVERANGE: EDGE tmp$10(2) -> tmp$13(3)
+#	LIVERANGE: EDGE tmp$10(2) -> tmp$17(4)
+#	LIVERANGE: EDGE tmp$12(1) -> n(0)
+#	LIVERANGE: EDGE tmp$12(1) -> tmp$13(3)
+#	LIVERANGE: EDGE tmp$12(1) -> tmp$17(4)
+#	NODE n(0) COST - 6.000000, DEGREES - 1
+#	NODE tmp$12(1) COST - 1.000000, DEGREES - 2
+#	NODE tmp$10(2) COST - 0.500000, DEGREES - 2
+#	NODE tmp$13(3) COST - 2.000000, DEGREES - 2
+#	NODE tmp$17(4) COST - 2.000000, DEGREES - 1
+#	NODE tmp$11(5) COST - 1.000000, DEGREES - 0
+#	NODE tmp$11(5) IN REG $s0
+#	NODE tmp$17(4) IN REG $s1
+#	NODE tmp$13(3) IN REG $s1
+#	NODE tmp$10(2) IN REG $s0
+#	NODE tmp$12(1) IN REG $s0
+#	NODE tmp$11(5) IN REG $s0
+#	NODE tmp$17(4) IN REG $s1
+#	NODE tmp$13(3) IN REG $s1
+#	NODE tmp$10(2) IN REG $s0
+#	NODE tmp$12(1) IN REG $s0
 .text
-# function main
-# formals: 
-# locals: tmp$4 (loc: -4); 
-# space for locals: 4 bytes
+# function g
+# formals: n (loc: 8); 
+# locals: tmp$9 (loc: -4); tmp$10 (loc: -8); tmp$11 (loc: -12); tmp$12 (loc: -16); tmp$13 (loc: -20); tmp$14 (loc: -24); tmp$15 (loc: -28); tmp$16 (loc: -32); tmp$17 (loc: -36); 
+# space for locals: 36 bytes
 #
-_main:
-# block 1 
-# def = ;
-# use = ;
-# in  = ;
-# out = ;
-    # -LEADER- block (1)
-    # livenow=
-    # enter main
+_g:
+# block 4 
+# def = 000000;
+# use = 100000;
+# in  = 100110;
+# out = 100110;
+    # -LEADER- block (4)
+    # livenow=100110
+    # enter g
     la $sp, -8($sp)    # allocate space for old $fp and $ra
     sw $fp, 4($sp)     # save old $fp
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
-    la $sp, -4($sp)   # allocate stack frame
+    la $sp, -36($sp)   # allocate stack frame
 
-    # block (1)
-    # livenow=
-    # param 12
-    li $t0, 12
+    # block (4)
+    # livenow=100110
+    # if_gt n, 1, label 4
+    lw $t0, 8($fp)	# n
+    li $t1, 1
+    bgt $t0, $t1, Lbl4
+
+# block 5 
+# def = 000000;
+# use = 000000;
+# in  = 000000;
+# out = 000000;
+    # -LEADER- block (5)
+    # livenow=000000
+    # label 3
+Lbl3:
+
+    # block (5)
+    # livenow=000000
+    # leave g
+
+    # block (5)
+    # livenow=000000
+    # ret 1
+    li $v0, 1
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+    # block (5)
+    # livenow=000000
+    # goto label 5
+    j Lbl5
+
+# block 6 
+# def = 011001;
+# use = 100110;
+# in  = 100110;
+# out = 000000;
+    # -LEADER- block (6)
+    # livenow=100110
+    # label 4
+Lbl4:
+
+    # block (6)
+    # livenow=100110
+    # sub n, 1, tmp$12
+    lw $t0, 8($fp)	# n
+    li $t1, 1
+    sub $t2, $t0, $t1
+    move $s0, $t2	# tmp$12
+
+    # block (6)
+    # livenow=110110
+    # param tmp$12
+    move $t0, $s0	# tmp$12
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
-    # block (1)
-    # livenow=
+    # block (6)
+    # livenow=100110
     # call f, 1
     jal _f
     la $sp, 4($sp)
 
-    # block (1)
-    # livenow=
-    # leave main
+    # block (6)
+    # livenow=100110
+    # retrieve tmp$14
+    sw $v0, -24($fp)	# tmp$14, -1
 
-    # block (1)
-    # livenow=
+    # block (6)
+    # livenow=100110
+    # sub n, 2, tmp$15
+    lw $t0, 8($fp)	# n
+    li $t1, 2
+    sub $t2, $t0, $t1
+    sw $t2, -28($fp)	# tmp$15, -1
+
+    # block (6)
+    # livenow=001110
+    # param tmp$15
+    lw $t0, -28($fp)	# tmp$15
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (6)
+    # livenow=000110
+    # call g, 1
+    jal _g
+    la $sp, 4($sp)
+
+    # block (6)
+    # livenow=000110
+    # retrieve tmp$17
+    move $s1, $v0	# tmp$17
+
+    # block (6)
+    # livenow=000110
+    # add tmp$14, tmp$17, tmp$11
+    lw $t0, -24($fp)	# tmp$14
+    move $t1, $s1	# tmp$17
+    add $t2, $t0, $t1
+    move $s0, $t2	# tmp$11
+
+    # block (6)
+    # livenow=000001
+    # leave g
+
+    # block (6)
+    # livenow=000001
+    # ret tmp$11
+    move $v0, $s0	# tmp$11
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+# block 7 
+# def = 000000;
+# use = 000000;
+# in  = 000000;
+# out = 000000;
+    # -LEADER- block (7)
+    # livenow=000000
+    # label 5
+Lbl5:
+
+    # block (7)
+    # livenow=000000
+    # leave g
+
+    # block (7)
+    # livenow=000000
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -241,12 +378,99 @@ _main:
     la $sp, 8($sp)     # restore stack pointer
     jr $ra
 
-    # block (1)
-    # livenow=
+    # block (7)
+    # livenow=000000
+    # leave g
+
+    # block (7)
+    # livenow=000000
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+# end function g
+
+#	NODE tmp$18(0) COST - 1.000000, DEGREES - 0
+#	NODE x(2) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
+#	NODE x(2) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
+#	NODE x(2) IN REG $s0
+.text
+# function main
+# formals: 
+# locals: x (loc: -4); tmp$18 (loc: -8); tmp$19 (loc: -12); 
+# space for locals: 12 bytes
+#
+_main:
+# block 8 
+# def = 0;
+# use = 1;
+# in  = 1;
+# out = 0;
+    # -LEADER- block (8)
+    # livenow=1
+    # enter main
+    la $sp, -8($sp)    # allocate space for old $fp and $ra
+    sw $fp, 4($sp)     # save old $fp
+    sw $ra, 0($sp)     # save old $ra
+    la $fp, 0($sp)     # $fp := $sp
+    la $sp, -12($sp)   # allocate stack frame
+
+    # block (8)
+    # livenow=1
+    # param 5
+    li $t0, 5
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (8)
+    # livenow=1
+    # call f, 1
+    jal _f
+    la $sp, 4($sp)
+
+    # block (8)
+    # livenow=1
+    # retrieve tmp$19
+    sw $v0, -12($fp)	# tmp$19, -1
+
+    # block (8)
+    # livenow=1
+    # param tmp$19
+    lw $t0, -12($fp)	# tmp$19
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (8)
+    # livenow=0
+    # call println, 1
+    jal _println
+    la $sp, 4($sp)
+
+    # block (8)
+    # livenow=0
     # leave main
 
-    # block (1)
-    # livenow=
+    # block (8)
+    # livenow=0
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+    # block (8)
+    # livenow=0
+    # leave main
+
+    # block (8)
+    # livenow=0
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address

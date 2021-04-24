@@ -56,7 +56,7 @@ Lbl0:
     # livenow=110100
     # if_ge i, n, label 2
     move $t0, $s0	# i
-    move $t1, $s1	# n
+    lw $t1, 12($fp)	# n
     bge $t0, $t1, Lbl2
 
 # block 2 
@@ -80,16 +80,16 @@ Lbl1:
     # block (2)
     # livenow=111100
     # add x, tmp$4, tmp$3
-    move $t0, $s2	# x
+    lw $t0, 8($fp)	# x
     move $t1, $s1	# tmp$4
     add $t2, $t0, $t1
-    move $s0, $t2	# tmp$3
+    sw $t2, -20($fp)	# tmp$3, -1
 
     # block (2)
     # livenow=110100
     # move i, deref(tmp$3)
     move $t0, $s0	# i
-    move $t1, $s0	# tmp$3
+    lw $t1, -20($fp)	# tmp$3
     sw $t0, 0($t1)	# deref(tmp$3)
 
     # block (2)
@@ -128,7 +128,7 @@ Lbl2:
     # block (3)
     # livenow=010000
     # ret n
-    move $v0, $s1	# n
+    lw $v0, 12($fp)	# n
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer
@@ -211,7 +211,7 @@ _count:
     # block (4)
     # livenow=11001000
     # sub n, 1, tmp$6
-    move $t0, $s3	# n
+    lw $t0, 12($fp)	# n
     li $t1, 1
     sub $t2, $t0, $t1
     move $s1, $t2	# tmp$6
@@ -220,7 +220,7 @@ _count:
     # livenow=10101000
     # move tmp$6, n
     move $t0, $s1	# tmp$6
-    move $s3, $t0 	# n
+    sw $t0, 12($fp)	# n
 
 # block 5 
 # def = 00000000;
@@ -235,7 +235,7 @@ Lbl3:
     # block (5)
     # livenow=11001000
     # if_lt n, 0, label 5
-    move $t0, $s3	# n
+    lw $t0, 12($fp)	# n
     li $t1, 0
     blt $t0, $t1, Lbl5
 
@@ -252,7 +252,7 @@ Lbl4:
     # block (6)
     # livenow=11001000
     # mul n, 4, tmp$11
-    move $t0, $s3	# n
+    lw $t0, 12($fp)	# n
     li $t1, 4
     mul $t2, $t0, $t1
     move $s2, $t2	# tmp$11
@@ -260,7 +260,7 @@ Lbl4:
     # block (6)
     # livenow=11011000
     # add x, tmp$11, tmp$10
-    move $t0, $s3	# x
+    lw $t0, 8($fp)	# x
     move $t1, $s2	# tmp$11
     add $t2, $t0, $t1
     sw $t2, -28($fp)	# tmp$10, -1
@@ -283,7 +283,7 @@ Lbl4:
     # block (6)
     # livenow=11001000
     # sub n, 1, tmp$13
-    move $t0, $s3	# n
+    lw $t0, 12($fp)	# n
     li $t1, 1
     sub $t2, $t0, $t1
     move $s1, $t2	# tmp$13
@@ -292,7 +292,7 @@ Lbl4:
     # livenow=10001001
     # move tmp$13, n
     move $t0, $s1	# tmp$13
-    move $s3, $t0 	# n
+    sw $t0, 12($fp)	# n
 
     # block (6)
     # livenow=11001000

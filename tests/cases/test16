@@ -1,14 +1,21 @@
-/* argument passing: global int variable to argument of type int */
+/* nested array assignments: mixed global/local, int/char arrays */
 
-extern void println(int x);
+char y[5];
 
-int x;
+extern void println (int n);
 
-void f(int x) {
-    println(x);
-}
+void main(void)
+{
+  int x[5];
 
-void main(void) {
-    x = 12345;
-    f(x);
+  int u;
+
+  x[0] = 0;  y[0] = 1;
+  x[1] = 1;  y[1] = 2;
+  x[2] = 2;  y[2] = 3;
+  x[3] = 3;  y[3] = 4;
+  x[4] = 4;  y[4] = 55;
+
+  u = y[x[y[x[y[x[y[x[y[x[0]]]]]]]]]];
+  println(u);
 }

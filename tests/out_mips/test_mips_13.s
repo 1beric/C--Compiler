@@ -1,114 +1,130 @@
-#	NODE tmp$0(0) COST - 1.000000, DEGREES - 0
-#	NODE x(1) COST - 4.000000, DEGREES - 0
-#	NODE u(2) COST - 4.000000, DEGREES - 0
-#	NODE y(3) COST - 4.000000, DEGREES - 0
-#	NODE v(4) COST - 4.000000, DEGREES - 0
-#	NODE v(4) IN REG $s0
-#	NODE y(3) IN REG $s0
-#	NODE u(2) IN REG $s0
-#	NODE x(1) IN REG $s0
-#	NODE tmp$0(0) IN REG $s0
+#	NODE tmp$1(0) COST - 1.000000, DEGREES - 0
+#	NODE y(1) COST - 0.000000, DEGREES - 0
+#	NODE tmp$0(2) COST - 1.000000, DEGREES - 0
+#	NODE tmp$5(3) COST - 1.000000, DEGREES - 0
+#	NODE x(4) COST - 0.000000, DEGREES - 0
+#	NODE tmp$4(5) COST - 1.000000, DEGREES - 0
+#	NODE tmp$8(6) COST - 1.000000, DEGREES - 0
+#	NODE tmp$7(7) COST - 1.000000, DEGREES - 0
+#	NODE tmp$11(8) COST - 1.000000, DEGREES - 0
+#	NODE tmp$9(9) COST - 1.000000, DEGREES - 0
+#	NODE tmp$9(9) IN REG $s0
+#	NODE tmp$11(8) IN REG $s0
+#	NODE tmp$8(6) IN REG $s0
+#	NODE tmp$5(3) IN REG $s0
+#	NODE tmp$1(0) IN REG $s0
 .text
 # function main
 # formals: 
-# locals: u (loc: -4); v (loc: -8); x (loc: -9); y (loc: -10); tmp$0 (loc: -16); tmp$1 (loc: -20); 
-# space for locals: 20 bytes
+# locals: u (loc: -4); x (loc: -44); y (loc: -84); tmp$0 (loc: -88); tmp$1 (loc: -92); tmp$2 (loc: -96); tmp$3 (loc: -100); tmp$4 (loc: -104); tmp$5 (loc: -108); tmp$6 (loc: -112); tmp$7 (loc: -116); tmp$8 (loc: -120); tmp$9 (loc: -124); tmp$10 (loc: -128); tmp$11 (loc: -132); tmp$12 (loc: -136); 
+# space for locals: 136 bytes
 #
 _main:
 # block 0 
-# def = 11111;
-# use = 00000;
-# in  = 00000;
-# out = 00000;
+# def = 1011011111;
+# use = 0100100000;
+# in  = 0100100000;
+# out = 0000000000;
     # -LEADER- block (0)
-    # livenow=00000
+    # livenow=0000000000
     # enter main
     la $sp, -8($sp)    # allocate space for old $fp and $ra
     sw $fp, 4($sp)     # save old $fp
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
-    la $sp, -20($sp)   # allocate stack frame
+    la $sp, -136($sp)   # allocate stack frame
 
     # block (0)
-    # livenow=00000
-    # move 17, tmp$0
-    li $t0, 17
-    move $s0, $t0 	# tmp$0
+    # livenow=0000000000
+    # move 28, tmp$1
+    li $t0, 28
+    move $s0, $t0 	# tmp$1
 
     # block (0)
-    # livenow=10000
-    # move tmp$0, x
-    move $t0, $s0	# tmp$0
-    move $s0, $t0 	# x
+    # livenow=1000000000
+    # add addr(y), tmp$1, tmp$0
+    la $t0, -84($fp)	# addr(y)
+    move $t1, $s0	# tmp$1
+    add $t2, $t0, $t1
+    sw $t2, -88($fp)	# tmp$0, -1
 
     # block (0)
-    # livenow=01000
-    # move x, u
-    move $t0, $s0	# x
-    move $s0, $t0 	# u
+    # livenow=0000000000
+    # move 1234, deref(tmp$0)
+    li $t0, 1234
+    lw $t1, -88($fp)	# tmp$0
+    sw $t0, 0($t1)	# deref(tmp$0)
 
     # block (0)
-    # livenow=00100
-    # move u, y
-    move $t0, $s0	# u
-    move $s0, $t0 	# y
+    # livenow=0000000000
+    # move 0, tmp$5
+    li $t0, 0
+    move $s0, $t0 	# tmp$5
 
     # block (0)
-    # livenow=00010
-    # param y
-    move $t0, $s0	# y
+    # livenow=0001000000
+    # add addr(x), tmp$5, tmp$4
+    la $t0, -44($fp)	# addr(x)
+    move $t1, $s0	# tmp$5
+    add $t2, $t0, $t1
+    sw $t2, -104($fp)	# tmp$4, -1
+
+    # block (0)
+    # livenow=0000000000
+    # move 28, tmp$8
+    li $t0, 28
+    move $s0, $t0 	# tmp$8
+
+    # block (0)
+    # livenow=0000001000
+    # add addr(y), tmp$8, tmp$7
+    la $t0, -84($fp)	# addr(y)
+    move $t1, $s0	# tmp$8
+    add $t2, $t0, $t1
+    sw $t2, -116($fp)	# tmp$7, -1
+
+    # block (0)
+    # livenow=0000000000
+    # move deref(tmp$7), deref(tmp$4)
+    lw $t0, -116($fp)	# tmp$7
+    lw $t0, 0($t0)	# deref(tmp$7)
+    lw $t1, -104($fp)	# tmp$4
+    sw $t0, 0($t1)	# deref(tmp$4)
+
+    # block (0)
+    # livenow=0000000000
+    # move 0, tmp$11
+    li $t0, 0
+    move $s0, $t0 	# tmp$11
+
+    # block (0)
+    # livenow=0000000010
+    # add addr(x), tmp$11, tmp$10
+    la $t0, -44($fp)	# addr(x)
+    move $t1, $s0	# tmp$11
+    add $t2, $t0, $t1
+    sw $t2, -128($fp)	# tmp$10, -1
+
+    # block (0)
+    # livenow=0000000000
+    # param deref(tmp$10)
+    lw $t0, -128($fp)	# tmp$10
+    lw $t0, 0($t0)	# deref(tmp$10)
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
     # block (0)
-    # livenow=00000
+    # livenow=0000000000
     # call println, 1
     jal _println
     la $sp, 4($sp)
 
     # block (0)
-    # livenow=00000
-    # move 255, u
-    li $t0, 255
-    move $s0, $t0 	# u
-
-    # block (0)
-    # livenow=00100
-    # move u, x
-    move $t0, $s0	# u
-    move $s0, $t0 	# x
-
-    # block (0)
-    # livenow=01000
-    # move x, v
-    move $t0, $s0	# x
-    move $s0, $t0 	# v
-
-    # block (0)
-    # livenow=00001
-    # move v, y
-    move $t0, $s0	# v
-    move $s0, $t0 	# y
-
-    # block (0)
-    # livenow=00010
-    # param y
-    move $t0, $s0	# y
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=00000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=00000
+    # livenow=0000000000
     # leave main
 
     # block (0)
-    # livenow=00000
+    # livenow=0000000000
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -117,11 +133,11 @@ _main:
     jr $ra
 
     # block (0)
-    # livenow=00000
+    # livenow=0000000000
     # leave main
 
     # block (0)
-    # livenow=00000
+    # livenow=0000000000
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address

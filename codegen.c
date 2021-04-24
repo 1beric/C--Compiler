@@ -1720,7 +1720,7 @@ static void register_allocation(Quad *fn_head)
             }
             if (okay)
             {
-                if (var_st != NULL)
+                if (var_st != NULL && var_st->scope == Local && (var_st->type == t_Int || var_st->type == t_Char) && !var_st->formal)
                     var_st->reg_num = i;
                 break;
             }
@@ -2609,8 +2609,12 @@ static void gen_mips_load(Operand *src, char *reg_prefix, int dstreg)
         else
         {
             assert(sptr->scope == Local);
-            printf("    lw $%s%d, %d($fp)\t# %s\n",
-                   reg_prefix, dstreg, sptr->offset, sptr->name);
+            if (sptr->reg_num == -1)
+                printf("    lw $%s%d, %d($fp)\t# %s\n",
+                       reg_prefix, dstreg, sptr->offset, sptr->name);
+            else
+                printf("    move $%s%d, $s%d\t# %s\n",
+                       reg_prefix, dstreg, sptr->reg_num, sptr->name);
             printf("    %s $%s%d, 0($%s%d)\t# deref(%s)\n",
                    LoadIns[sptr->elt_type], reg_prefix, dstreg, reg_prefix, dstreg, sptr->name);
         }

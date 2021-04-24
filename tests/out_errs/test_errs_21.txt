@@ -1,3 +1,0 @@
-ERROR [line 2]: number of arguments in function call does not match function definition [callee: g]
-ERROR [line 2]: number of arguments in function call does not match function definition [callee: g]
-Unrecognized/unhandled AST node type: 0

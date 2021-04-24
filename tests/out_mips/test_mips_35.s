@@ -27,7 +27,7 @@ _f:
     # block (0)
     # livenow=100
     # add x, 1, tmp$0
-    move $t0, $s0	# x
+    lw $t0, 8($fp)	# x
     li $t1, 1
     add $t2, $t0, $t1
     move $s0, $t2	# tmp$0

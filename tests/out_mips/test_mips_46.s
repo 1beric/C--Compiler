@@ -28,7 +28,7 @@ _f:
     # block (0)
     # livenow=101
     # if_ne u, 0, label 1
-    move $t0, $s0	# u
+    lw $t0, 8($fp)	# u
     li $t1, 0
     bne $t0, $t1, Lbl1
 
@@ -74,7 +74,7 @@ Lbl1:
     # block (2)
     # livenow=101
     # param u
-    move $t0, $s0	# u
+    lw $t0, 8($fp)	# u
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
@@ -87,7 +87,7 @@ Lbl1:
     # block (2)
     # livenow=101
     # sub u, 1, tmp$2
-    move $t0, $s0	# u
+    lw $t0, 8($fp)	# u
     li $t1, 1
     sub $t2, $t0, $t1
     move $s0, $t2	# tmp$2
@@ -191,7 +191,7 @@ _incr:
     # block (4)
     # livenow=100
     # add x, u, tmp$5
-    move $t0, $s0	# x
+    lw $t0, 8($fp)	# x
     lw $t1, _u
     add $t2, $t0, $t1
     move $s0, $t2	# tmp$5

@@ -82,10 +82,10 @@ Lbl0:
     # block (1)
     # livenow=1110001000000
     # add a, tmp$3, tmp$2
-    move $t0, $s2	# a
+    lw $t0, 8($fp)	# a
     move $t1, $s1	# tmp$3
     add $t2, $t0, $t1
-    move $s0, $t2	# tmp$2
+    sw $t2, -16($fp)	# tmp$2, -1
 
     # block (1)
     # livenow=1010001000000
@@ -120,7 +120,7 @@ Lbl1:
     # block (2)
     # livenow=1010011000000
     # add b, tmp$9, tmp$8
-    move $t0, $s2	# b
+    lw $t0, 12($fp)	# b
     move $t1, $s1	# tmp$9
     add $t2, $t0, $t1
     sw $t2, -40($fp)	# tmp$8, -1
@@ -134,10 +134,10 @@ Lbl1:
     # block (2)
     # livenow=1010001010000
     # add a, tmp$11, tmp$10
-    move $t0, $s2	# a
+    lw $t0, 8($fp)	# a
     move $t1, $s1	# tmp$11
     add $t2, $t0, $t1
-    move $s0, $t2	# tmp$10
+    sw $t2, -48($fp)	# tmp$10, -1
 
     # block (2)
     # livenow=1010001000000
@@ -185,16 +185,16 @@ Lbl2:
     # block (3)
     # livenow=1000000000010
     # add b, tmp$13, tmp$12
-    move $t0, $s2	# b
+    lw $t0, 12($fp)	# b
     move $t1, $s1	# tmp$13
     add $t2, $t0, $t1
-    move $s0, $t2	# tmp$12
+    sw $t2, -56($fp)	# tmp$12, -1
 
     # block (3)
     # livenow=1000000000000
     # move 0, deref(tmp$12)
     li $t0, 0
-    move $t1, $s0	# tmp$12
+    lw $t1, -56($fp)	# tmp$12
     sb $t0, 0($t1)	# deref(tmp$12)
 
     # block (3)
@@ -327,10 +327,10 @@ Lbl3:
     # block (5)
     # livenow=11110000000
     # add b, tmp$18, tmp$17
-    move $t0, $s4	# b
+    lw $t0, 8($fp)	# b
     lw $t1, -52($fp)	# tmp$18
     add $t2, $t0, $t1
-    move $s1, $t2	# tmp$17
+    sw $t2, -48($fp)	# tmp$17, -1
 
     # block (5)
     # livenow=11010000000
@@ -365,10 +365,10 @@ Lbl4:
     # block (6)
     # livenow=11010010000
     # add b, tmp$23, tmp$22
-    move $t0, $s4	# b
+    lw $t0, 8($fp)	# b
     move $t1, $s2	# tmp$23
     add $t2, $t0, $t1
-    move $s0, $t2	# tmp$22
+    sw $t2, -20($fp)	# tmp$22, -1
 
     # block (6)
     # livenow=11010000000

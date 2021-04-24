@@ -1,22 +1,20 @@
 #	NODE tmp$0(0) COST - 1.000000, DEGREES - 0
-#	NODE x(1) COST - 4.000000, DEGREES - 0
-#	NODE tmp$1(2) COST - 1.000000, DEGREES - 0
-#	NODE tmp$1(2) IN REG $s0
+#	NODE y(1) COST - 3.000000, DEGREES - 0
 #	NODE tmp$0(0) IN REG $s0
 .text
 # function main
 # formals: 
-# locals: tmp$0 (loc: -4); tmp$1 (loc: -8); 
+# locals: x (loc: -4); tmp$0 (loc: -8); 
 # space for locals: 8 bytes
 #
 _main:
 # block 0 
-# def = 111;
-# use = 000;
-# in  = 000;
-# out = 000;
+# def = 11;
+# use = 00;
+# in  = 00;
+# out = 00;
     # -LEADER- block (0)
-    # livenow=000
+    # livenow=00
     # enter main
     la $sp, -8($sp)    # allocate space for old $fp and $ra
     sw $fp, 4($sp)     # save old $fp
@@ -25,61 +23,49 @@ _main:
     la $sp, -8($sp)   # allocate stack frame
 
     # block (0)
-    # livenow=000
-    # move 1, tmp$0
-    li $t0, 1
+    # livenow=00
+    # move 81, tmp$0
+    li $t0, 81
     move $s0, $t0 	# tmp$0
 
     # block (0)
-    # livenow=100
-    # move tmp$0, x
+    # livenow=10
+    # move tmp$0, y
     move $t0, $s0	# tmp$0
-    sb $t0, _x
+    sb $t0, _y
 
     # block (0)
-    # livenow=000
-    # param x
-    lb $t0, _x
+    # livenow=00
+    # param y
+    lb $t0, _y
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
     # block (0)
-    # livenow=000
+    # livenow=00
     # call println, 1
     jal _println
     la $sp, 4($sp)
 
     # block (0)
-    # livenow=000
-    # move 255, tmp$1
-    li $t0, 255
-    move $s0, $t0 	# tmp$1
-
-    # block (0)
-    # livenow=001
-    # move tmp$1, x
-    move $t0, $s0	# tmp$1
-    sb $t0, _x
-
-    # block (0)
-    # livenow=000
-    # param x
-    lb $t0, _x
+    # livenow=00
+    # param y
+    lb $t0, _y
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
     # block (0)
-    # livenow=000
+    # livenow=00
     # call println, 1
     jal _println
     la $sp, 4($sp)
 
     # block (0)
-    # livenow=000
+    # livenow=00
     # leave main
 
     # block (0)
-    # livenow=000
+    # livenow=00
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -88,11 +74,11 @@ _main:
     jr $ra
 
     # block (0)
-    # livenow=000
+    # livenow=00
     # leave main
 
     # block (0)
-    # livenow=000
+    # livenow=00
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -105,7 +91,7 @@ _main:
 
 .data
 .align 2
-_x:  .space 1
+_y:  .space 1
 
 .align 2
 .data

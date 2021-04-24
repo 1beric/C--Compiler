@@ -1,12 +1,19 @@
-/* a chain of assignments to globals + call to println() */
+/* assignments to several local scalar variables */
 
-extern void println(int x);
+extern void println (int n);
 
-int x, y, z;
+void main(void)
+{
+  int x, y, z, u, v;
 
-void main(void) {
-    x = 12345;
-    y = x;
-    z = y;
-    println(z);
+  x = 111;
+  y = 222;
+  z = 333;
+  u = 444;
+  v = 555;
+  println(x);
+  println(y);
+  println(z);
+  println(u);
+  println(v);
 }

@@ -1,28 +1,17 @@
-/* functions with multiple local int+char variables and function calls */
+/* function calls: multiple parameters */
 
-extern void println(int x);
-
-void f(int x) {
-    char u;
-    int v;
-    char w;
-
-    u = '&';
-    v = 345;
-
-    println(x);
-    w = '7';
-
-    println(u);
-    x = 678;
-
-    println(v);
-
-    println(w);
-
-    println(x);
+int f(int a, int b, int c, int d, int e)
+{
+  return a+b*(c+d*e);
 }
 
-void main(void) {
-    f(123);
+extern void println (int n);
+
+void main(void)
+{
+  int x;
+
+  x = f(1,2,3,4,5);
+  x = f(x,x,x,x,x);
+  println(x);
 }

@@ -1,12 +1,16 @@
-/* a chain of assignments to local char variables */
+/* array assignments: global --> local */
 
-extern void println(int x);
+int y[10];
 
-void main(void) {
-    char x, y, z;
+extern void println (int n);
 
-    x = 17;
-    y = x;
-    z = y;
-    println(z);
+void main(void)
+{
+  int x[10];
+  int u;
+
+  y[7] = 1234;
+  x[0] = y[7];
+  u = x[0];
+  println(u);
 }

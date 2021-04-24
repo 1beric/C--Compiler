@@ -44,7 +44,7 @@ _side_effect:
     # block (0)
     # livenow=001
     # ret x
-    move $v0, $s1	# x
+    lw $v0, 8($fp)	# x
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer

@@ -30,8 +30,8 @@ _f:
     # block (0)
     # livenow=11010
     # add x, y, tmp$1
-    move $t0, $s0	# x
-    move $t1, $s0	# y
+    lb $t0, 8($fp)	# x
+    lb $t1, 12($fp)	# y
     add $t2, $t0, $t1
     move $s0, $t2	# tmp$1
 
@@ -39,7 +39,7 @@ _f:
     # livenow=00110
     # add tmp$1, z, tmp$0
     move $t0, $s0	# tmp$1
-    move $t1, $s1	# z
+    lb $t1, 16($fp)	# z
     add $t2, $t0, $t1
     move $s0, $t2	# tmp$0
 

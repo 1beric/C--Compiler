@@ -1,28 +1,19 @@
-/* functions with multiple local int variables and function calls */
+/* simple recursion */
 
-extern void println(int x);
-
-void f(int x) {
-    int u;
-    int v;
-    int w;
-
-    u = 234;
-    v = 345;
-
-    println(x);
-    w = 456;
-
-    println(u);
-    x = 678;
-
-    println(v);
-
-    println(w);
-
-    println(x);
+int fact(int n)
+{
+  if (n == 0)
+    return 1;
+  else
+    return n*fact(n-1);
 }
 
-void main(void) {
-    f(123);
+extern void println (int n);
+
+void main(void)
+{
+  int x;
+
+  x = fact(7);
+  println(x);
 }

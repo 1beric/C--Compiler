@@ -1,22 +1,15 @@
-/* argument passing chain: local char variable to argument of type char */
+/* nested for loops */
 
-extern void println(int x);
+extern void println (int n);
 
-void h(char w) {
-    println(w);
-}
+void main(void)
+{
+  int i, j, k, res;
 
-void g(char u) {
-    h(u);
-}
-
-void f(char v) {
-    g(v);
-}
-
-void main(void) {
-    char x;
-
-    x = 'a';
-    f(x);
+  res = 0;
+  for (i = 0; i < 5; i = i+1)
+    for (j = 0; j < 10; j = j+2)
+      for (k = 0; k < 15; k = k+3)
+	res = res + (i+j+k)/3;
+  println(res);
 }

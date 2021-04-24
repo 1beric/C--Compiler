@@ -1,7 +1,3 @@
-/* a simple call to println() */
+/* the empty function */
 
-extern void println(int x);
-
-void main(void) {
-    println(12345);
-}
+void main(void) {}

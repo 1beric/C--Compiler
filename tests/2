@@ -1,0 +1,24 @@
+remaking -----
+make: `compile' is up to date.
+running test on tests/cases/test1.c
+running test on tests/cases/test2.c
+running test on tests/cases/test3.c
+running test on tests/cases/test4.c
+running test on tests/cases/test5.c
+running test on tests/cases/test6.c
+running test on tests/cases/test7.c
+running test on tests/cases/test8.c
+running test on tests/cases/test9.c
+running test on tests/cases/test10.c
+running test on tests/cases/test11.c
+running test on tests/cases/test12.c
+running test on tests/cases/test13.c
+running test on tests/cases/test14.c
+running test on tests/cases/test15.c
+running test on tests/cases/test16.c
+running test on tests/cases/test17.c
+running test on tests/cases/test18.c
+running test on tests/cases/test19.c
+running test on tests/cases/test20.c
+running test on tests/cases/test21.c
+running test on tests/cases/test22.c

@@ -1,21 +1,20 @@
-/* global and local variables with the same name */
+/* nested function calls */
 
-extern void println(int x);
-
-int x;
-
-void g(int x) {
-    println(x);
-    x = 0;
+int add(int x, int y)
+{
+  return x+y;
 }
 
-void f(int x) {
-    x = 27;
-    g(x);
-}
+extern void println (int n);
 
-void main(void) {
-    x = 93;
-    f(x);
-    g(x);
+void main(void)
+{
+  int a, b, c, d, e;
+  int i, f;
+
+  f = 1;
+  for (i = 7; i > 0; i = i-1) {
+    f = f*add(add(1, add(add(2, add(add(i, 0), 1)), -5)), 1);
+  }
+  println(f);
 }
