@@ -4,6 +4,11 @@
 #	NODE tmp$1(2) COST - 2.000000, DEGREES - 0
 #	NODE z(3) COST - 2.000000, DEGREES - 0
 #	NODE tmp$0(4) COST - 1.000000, DEGREES - 0
+#	NODE tmp$0(4) IN REG $s0
+#	NODE z(3) IN REG $s1
+#	NODE tmp$1(2) IN REG $s0
+#	NODE y(1) IN REG $s0
+#	NODE x(0) IN REG $s0
 .text
 # function f
 # formals: x (loc: 8); y (loc: 12); z (loc: 16); 

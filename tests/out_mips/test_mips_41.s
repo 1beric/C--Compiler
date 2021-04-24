@@ -12,6 +12,12 @@
 #	NODE x(3) COST - 0.000000, DEGREES - 3
 #	NODE tmp$3(4) COST - 10.000000, DEGREES - 0
 #	NODE tmp$1(5) COST - 10.000000, DEGREES - 2
+#	NODE tmp$1(5) IN REG $s0
+#	NODE tmp$3(4) IN REG $s0
+#	NODE x(3) IN REG $s1
+#	NODE tmp$4(2) IN REG $s2
+#	NODE n(1) IN REG $s1
+#	NODE i(0) IN REG $s0
 .text
 # function init
 # formals: x (loc: 8); n (loc: 12); 
@@ -167,6 +173,21 @@ Lbl2:
 #	NODE tmp$8(5) COST - 20.000000, DEGREES - 0
 #	NODE tmp$9(6) COST - 10.000000, DEGREES - 2
 #	NODE tmp$13(7) COST - 10.000000, DEGREES - 2
+#	NODE tmp$8(5) IN REG $s0
+#	NODE x(4) IN REG $s4
+#	NODE tmp$11(3) IN REG $s3
+#	NODE tmp$6(2) IN REG $s2
+#	NODE n(1) IN REG $s1
+#	NODE c(0) IN REG $s0
+#	NODE tmp$13(7) IN REG $s1
+#	NODE tmp$9(6) IN REG $s0
+#	NODE tmp$8(5) IN REG $s0
+#	NODE x(4) IN REG $s4
+#	NODE tmp$11(3) IN REG $s3
+#	NODE tmp$6(2) IN REG $s2
+#	NODE n(1) IN REG $s1
+#	NODE c(0) IN REG $s0
+#	NODE c(0) IN REG $s0
 .text
 # function count
 # formals: x (loc: 8); n (loc: 12); 

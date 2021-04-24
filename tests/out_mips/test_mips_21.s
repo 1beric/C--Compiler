@@ -6,6 +6,14 @@
 #	NODE f(5) COST - 1.187500, DEGREES - 0
 #	NODE g(6) COST - 0.093750, DEGREES - 0
 #	NODE res(7) COST - 2.992188, DEGREES - 0
+#	NODE res(7) IN REG $s0
+#	NODE g(6) IN REG $s0
+#	NODE f(5) IN REG $s0
+#	NODE e(4) IN REG $s0
+#	NODE d(3) IN REG $s0
+#	NODE c(2) IN REG $s0
+#	NODE b(1) IN REG $s0
+#	NODE a(0) IN REG $s0
 .text
 # function main
 # formals: 

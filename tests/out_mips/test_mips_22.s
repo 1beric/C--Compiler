@@ -107,6 +107,43 @@
 #	NODE tmp$57(36) COST - 10.000000, DEGREES - 2
 #	NODE tmp$58(37) COST - 10.000000, DEGREES - 3
 # NEED TO SPILL THIS NODE 2, 0.000000!!!
+#	NODE tmp$58(37) IN REG $s1
+#	NODE tmp$57(36) IN REG $s1
+#	NODE tmp$52(35) IN REG $s0
+#	NODE tmp$31(34) IN REG $s1
+#	NODE tmp$54(33) IN REG $s1
+#	NODE tmp$47(32) IN REG $s0
+#	NODE tmp$48(31) IN REG $s1
+#	NODE tmp$30(30) IN REG $s1
+#	NODE tmp$42(29) IN REG $s0
+#	NODE tmp$43(28) IN REG $s1
+#	NODE tmp$44(27) IN REG $s1
+#	NODE tmp$37(26) IN REG $s0
+#	NODE tmp$25(25) IN REG $s1
+#	NODE tmp$21(24) IN REG $s1
+#	NODE tmp$32(23) IN REG $s0
+#	NODE tmp$33(22) IN REG $s1
+#	NODE tmp$34(21) IN REG $s1
+#	NODE tmp$20(20) IN REG $s0
+#	NODE tmp$16(19) IN REG $s1
+#	NODE tmp$29(18) IN REG $s1
+#	NODE tmp$22(17) IN REG $s0
+#	NODE tmp$23(16) IN REG $s1
+#	NODE tmp$24(15) IN REG $s1
+#	NODE tmp$11(14) IN REG $s0
+#	NODE tmp$18(13) IN REG $s1
+#	NODE tmp$19(12) IN REG $s1
+#	NODE tmp$12(11) IN REG $s0
+#	NODE tmp$10(10) IN REG $s1
+#	NODE tmp$14(9) IN REG $s1
+#	NODE tmp$6(8) IN REG $s0
+#	NODE tmp$8(7) IN REG $s1
+#	NODE tmp$5(6) IN REG $s1
+#	NODE res(5) IN REG $s0
+#	NODE tmp$4(4) IN REG $s1
+#	NODE tmp$2(3) IN REG $s0
+#	NODE tmp$3(1) IN REG $s1
+#	NODE i(0) IN REG $s0
 .text
 # function main
 # formals: 

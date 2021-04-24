@@ -1502,6 +1502,20 @@ static void ign_add_edge(int var_a, int var_b)
     }
 }
 
+static int ign_is_in_saved(int var_a, int var_b)
+{
+    if (igedge_saved_hd == NULL)
+        return 0;
+    IGEdge *edge = igedge_saved_hd;
+    while (edge != NULL)
+    {
+        if (edge->var_a == var_a && edge->var_b == var_b || edge->var_a == var_b && edge->var_b == var_a)
+            return 1;
+        edge = edge->next;
+    }
+    return 0;
+}
+
 static void ign_add_saved_edge(int var_a, int var_b)
 {
     if (var_a == var_b)
@@ -1645,9 +1659,9 @@ static void register_allocation(Quad *fn_head)
         {
             ign_add_processing(i);
             int degree = ign_numedges(i);
-                printf("#\tNODE %s(%d) COST - %f, DEGREES - %d\n",
-                       var->name, var->func_pos,
-                       var->cost, degree);
+            printf("#\tNODE %s(%d) COST - %f, DEGREES - %d\n",
+                   var->name, var->func_pos,
+                   var->cost, degree);
         }
     }
 
@@ -1671,12 +1685,14 @@ static void register_allocation(Quad *fn_head)
                 }
                 curr_link = curr_link->next;
             }
-            if (count++ > 500) break; // just to save infinite loops
+            if (count++ > 500)
+                break; // just to save infinite loops
         }
 
-        if (node_stack_processing == NULL) break;
+        if (node_stack_processing == NULL)
+            break;
         spill_node();
-        if (count++ > 1000) 
+        if (count++ > 1000)
         {
             printf("# had to break loop using count\n");
             break; // just to save infinite loops
@@ -1685,7 +1701,43 @@ static void register_allocation(Quad *fn_head)
 
     // HOORAY! time to color the IG
     IGNLink *curr_link = node_stack_saved;
+    while (curr_link != NULL)
+    {
+        symtabnode *var_st = SymTabLookupFP(curr_link->var);
+        int i;
+        for (i = 0; i < NUM_REGS; i++)
+        {
+            int okay = 1;
+            IGNLink *plink = node_stack_processing;
+            while (plink != NULL)
+            {
+                if (ign_is_in_saved(curr_link->var, plink->var) && SymTabLookupFP(plink->var)->reg_num == i)
+                {
+                    okay = 0;
+                    break;
+                }
+                plink = plink->next;
+            }
+            if (okay)
+            {
+                if (var_st != NULL)
+                    var_st->reg_num = i;
+                break;
+            }
+        }
+        if (var_st != NULL)
+            ign_add_processing(curr_link->var);
 
+        curr_link = curr_link->next;
+    }
+
+    IGNLink *plink = node_stack_processing;
+    while (plink != NULL)
+    {
+        symtabnode *node = SymTabLookupFP(plink->var);
+        printf("#\tNODE %s(%d) IN REG $s%d\n", node->name, plink->var, node->reg_num);
+        plink = plink->next;
+    }
 
     // now alter code to use registers intead of memory reads
 }

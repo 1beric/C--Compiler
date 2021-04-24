@@ -61,6 +61,21 @@
 #	NODE tmp$10(12) COST - 50.000000, DEGREES - 4
 #	NODE tmp$19(13) COST - 100.000000, DEGREES - 2
 #	NODE tmp$3(14) COST - 10.000000, DEGREES - 0
+#	NODE tmp$3(14) IN REG $s0
+#	NODE tmp$19(13) IN REG $s1
+#	NODE tmp$10(12) IN REG $s4
+#	NODE tmp$18(11) IN REG $s2
+#	NODE tmp$17(10) IN REG $s2
+#	NODE b(9) IN REG $s6
+#	NODE tmp$14(8) IN REG $s5
+#	NODE tmp$6(7) IN REG $s5
+#	NODE a(6) IN REG $s4
+#	NODE tmp$2(4) IN REG $s4
+#	NODE tmp$8(3) IN REG $s1
+#	NODE j(2) IN REG $s3
+#	NODE res(0) IN REG $s2
+#	NODE k(5) IN REG $s1
+#	NODE i(1) IN REG $s0
 .text
 # function main
 # formals: 

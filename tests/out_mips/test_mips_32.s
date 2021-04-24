@@ -9,6 +9,12 @@
 #	NODE tmp$4(3) COST - 2.000000, DEGREES - 2
 #	NODE tmp$8(4) COST - 2.000000, DEGREES - 1
 #	NODE tmp$2(5) COST - 1.000000, DEGREES - 0
+#	NODE tmp$2(5) IN REG $s0
+#	NODE tmp$8(4) IN REG $s2
+#	NODE tmp$4(3) IN REG $s2
+#	NODE tmp$1(2) IN REG $s0
+#	NODE tmp$3(1) IN REG $s1
+#	NODE n(0) IN REG $s0
 .text
 # function f
 # formals: n (loc: 8); 
@@ -199,6 +205,19 @@ Lbl2:
 #	NODE tmp$13(3) COST - 2.000000, DEGREES - 2
 #	NODE tmp$17(4) COST - 2.000000, DEGREES - 1
 #	NODE tmp$11(5) COST - 1.000000, DEGREES - 0
+#	NODE tmp$11(5) IN REG $s0
+#	NODE tmp$17(4) IN REG $s2
+#	NODE tmp$13(3) IN REG $s2
+#	NODE tmp$10(2) IN REG $s0
+#	NODE tmp$12(1) IN REG $s1
+#	NODE n(0) IN REG $s0
+#	NODE tmp$11(5) IN REG $s0
+#	NODE tmp$17(4) IN REG $s2
+#	NODE tmp$13(3) IN REG $s2
+#	NODE tmp$10(2) IN REG $s0
+#	NODE tmp$12(1) IN REG $s1
+#	NODE n(0) IN REG $s0
+#	NODE n(0) IN REG $s0
 .text
 # function g
 # formals: n (loc: 8); 
@@ -379,6 +398,14 @@ Lbl5:
 # end function g
 
 #	NODE tmp$18(0) COST - 1.000000, DEGREES - 0
+#	NODE x(2) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
+#	NODE x(2) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
+#	NODE x(2) IN REG $s0
+#	NODE tmp$18(0) IN REG $s0
 .text
 # function main
 # formals: 

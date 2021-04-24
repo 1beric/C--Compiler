@@ -1,6 +1,9 @@
 #	NODE x(0) COST - 15.000000, DEGREES - 0
 #	NODE tmp$6(1) COST - 0.500000, DEGREES - 0
 #	NODE tmp$1(2) COST - 1.000000, DEGREES - 0
+#	NODE tmp$1(2) IN REG $s0
+#	NODE tmp$6(1) IN REG $s0
+#	NODE x(0) IN REG $s0
 .text
 # function main
 # formals: 

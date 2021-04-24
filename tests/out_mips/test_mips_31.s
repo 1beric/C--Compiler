@@ -4,6 +4,10 @@
 #	NODE tmp$3(1) COST - 1.000000, DEGREES - 1
 #	NODE tmp$1(2) COST - 0.500000, DEGREES - 0
 #	NODE tmp$2(3) COST - 1.000000, DEGREES - 0
+#	NODE tmp$2(3) IN REG $s0
+#	NODE tmp$1(2) IN REG $s0
+#	NODE tmp$3(1) IN REG $s1
+#	NODE n(0) IN REG $s0
 .text
 # function fact
 # formals: n (loc: 8); 
@@ -158,6 +162,10 @@ Lbl2:
 # end function fact
 
 #	NODE tmp$6(0) COST - 1.000000, DEGREES - 0
+#	NODE x(2) IN REG $s0
+#	NODE tmp$6(0) IN REG $s0
+#	NODE tmp$6(0) IN REG $s0
+#	NODE x(2) IN REG $s0
 .text
 # function main
 # formals: 

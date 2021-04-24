@@ -28,6 +28,19 @@
 #	NODE tmp$6(10) COST - 10.000000, DEGREES - 2
 #	NODE tmp$13(11) COST - 1.000000, DEGREES - 0
 #	NODE tmp$12(12) COST - 1.000000, DEGREES - 0
+#	NODE tmp$12(12) IN REG $s0
+#	NODE tmp$13(11) IN REG $s1
+#	NODE tmp$6(10) IN REG $s0
+#	NODE tmp$10(9) IN REG $s0
+#	NODE tmp$11(8) IN REG $s1
+#	NODE tmp$5(7) IN REG $s0
+#	NODE b(6) IN REG $s2
+#	NODE tmp$9(5) IN REG $s1
+#	NODE tmp$4(4) IN REG $s1
+#	NODE tmp$2(3) IN REG $s0
+#	NODE a(2) IN REG $s2
+#	NODE tmp$3(1) IN REG $s1
+#	NODE i(0) IN REG $s0
 .text
 # function copy
 # formals: a (loc: 8); b (loc: 12); 
@@ -251,6 +264,28 @@ Lbl2:
 #	NODE tmp$20(8) COST - 20.000000, DEGREES - 3
 #	NODE tmp$21(9) COST - 10.000000, DEGREES - 2
 #	NODE tmp$25(10) COST - 10.000000, DEGREES - 3
+#	NODE tmp$25(10) IN REG $s0
+#	NODE tmp$21(9) IN REG $s1
+#	NODE tmp$20(8) IN REG $s4
+#	NODE tmp$22(7) IN REG $s0
+#	NODE tmp$23(6) IN REG $s2
+#	NODE tmp$19(5) IN REG $s4
+#	NODE tmp$17(4) IN REG $s1
+#	NODE b(3) IN REG $s3
+#	NODE tmp$16(2) IN REG $s2
+#	NODE sum(1) IN REG $s1
+#	NODE i(0) IN REG $s0
+#	NODE tmp$25(10) IN REG $s0
+#	NODE tmp$21(9) IN REG $s1
+#	NODE tmp$20(8) IN REG $s4
+#	NODE tmp$22(7) IN REG $s0
+#	NODE tmp$23(6) IN REG $s2
+#	NODE tmp$19(5) IN REG $s4
+#	NODE tmp$17(4) IN REG $s1
+#	NODE b(3) IN REG $s3
+#	NODE tmp$16(2) IN REG $s2
+#	NODE sum(1) IN REG $s1
+#	NODE i(0) IN REG $s0
 .text
 # function sum
 # formals: b (loc: 8); 

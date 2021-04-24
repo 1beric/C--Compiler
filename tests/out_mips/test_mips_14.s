@@ -39,6 +39,47 @@
 #	NODE tmp$42(38) COST - 1.000000, DEGREES - 0
 #	NODE tmp$41(39) COST - 1.000000, DEGREES - 0
 #	NODE tmp$40(40) COST - 1.000000, DEGREES - 0
+#	NODE tmp$40(40) IN REG $s0
+#	NODE tmp$41(39) IN REG $s0
+#	NODE tmp$42(38) IN REG $s0
+#	NODE tmp$43(37) IN REG $s0
+#	NODE tmp$44(36) IN REG $s0
+#	NODE tmp$45(35) IN REG $s0
+#	NODE tmp$46(34) IN REG $s0
+#	NODE tmp$34(33) IN REG $s0
+#	NODE tmp$31(32) IN REG $s0
+#	NODE tmp$49(31) IN REG $s0
+#	NODE tmp$50(30) IN REG $s0
+#	NODE tmp$30(29) IN REG $s0
+#	NODE tmp$52(28) IN REG $s0
+#	NODE tmp$53(27) IN REG $s0
+#	NODE tmp$54(26) IN REG $s0
+#	NODE tmp$26(25) IN REG $s0
+#	NODE tmp$23(24) IN REG $s0
+#	NODE tmp$57(23) IN REG $s0
+#	NODE tmp$58(22) IN REG $s0
+#	NODE tmp$22(21) IN REG $s0
+#	NODE tmp$36(20) IN REG $s0
+#	NODE tmp$37(19) IN REG $s0
+#	NODE tmp$32(18) IN REG $s0
+#	NODE tmp$33(17) IN REG $s0
+#	NODE tmp$15(16) IN REG $s0
+#	NODE tmp$29(15) IN REG $s0
+#	NODE tmp$24(14) IN REG $s0
+#	NODE tmp$14(13) IN REG $s0
+#	NODE tmp$20(12) IN REG $s0
+#	NODE tmp$21(11) IN REG $s0
+#	NODE tmp$16(10) IN REG $s0
+#	NODE tmp$10(9) IN REG $s0
+#	NODE tmp$7(8) IN REG $s0
+#	NODE tmp$13(7) IN REG $s0
+#	NODE tmp$8(6) IN REG $s0
+#	NODE tmp$6(5) IN REG $s0
+#	NODE tmp$3(4) IN REG $s0
+#	NODE tmp$5(3) IN REG $s0
+#	NODE tmp$0(2) IN REG $s0
+#	NODE x(1) IN REG $s0
+#	NODE tmp$1(0) IN REG $s0
 .text
 # function main
 # formals: 

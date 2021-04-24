@@ -2,6 +2,9 @@
 #	NODE u(0) COST - 5.000000, DEGREES - 0
 #	NODE tmp$2(1) COST - 1.000000, DEGREES - 0
 #	NODE tmp$1(2) COST - 0.500000, DEGREES - 0
+#	NODE tmp$1(2) IN REG $s1
+#	NODE tmp$2(1) IN REG $s0
+#	NODE u(0) IN REG $s0
 .text
 # function f
 # formals: u (loc: 8); 
@@ -163,6 +166,13 @@ Lbl2:
 #	NODE x(0) COST - 2.000000, DEGREES - 0
 #	NODE u(1) COST - 3.000000, DEGREES - 0
 #	NODE tmp$5(2) COST - 1.000000, DEGREES - 0
+#	NODE tmp$5(2) IN REG $s1
+#	NODE u(1) IN REG $s0
+#	NODE x(0) IN REG $s0
+#	NODE tmp$5(2) IN REG $s1
+#	NODE u(1) IN REG $s0
+#	NODE x(0) IN REG $s0
+#	NODE x(0) IN REG $s0
 .text
 # function incr
 # formals: x (loc: 8); 
@@ -231,6 +241,19 @@ _incr:
 #	NODE tmp$7(1) COST - 1.000000, DEGREES - 0
 #	NODE tmp$8(2) COST - 1.000000, DEGREES - 0
 #	NODE x(3) COST - 5.000000, DEGREES - 0
+#	NODE tmp$8(2) IN REG $s1
+#	NODE tmp$7(1) IN REG $s0
+#	NODE u(0) IN REG $s0
+#	NODE tmp$8(2) IN REG $s1
+#	NODE tmp$7(1) IN REG $s0
+#	NODE u(0) IN REG $s0
+#	NODE u(0) IN REG $s0
+#	NODE x(3) IN REG $s0
+#	NODE tmp$8(2) IN REG $s1
+#	NODE tmp$7(1) IN REG $s0
+#	NODE u(0) IN REG $s0
+#	NODE u(0) IN REG $s0
+#	NODE u(0) IN REG $s0
 .text
 # function main
 # formals: 

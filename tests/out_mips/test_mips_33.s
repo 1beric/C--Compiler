@@ -13,6 +13,15 @@
 #	NODE tmp$1(6) COST - 2.000000, DEGREES - 1
 #	NODE a(7) COST - 2.000000, DEGREES - 2
 #	NODE tmp$0(8) COST - 1.000000, DEGREES - 0
+#	NODE tmp$0(8) IN REG $s0
+#	NODE a(7) IN REG $s1
+#	NODE tmp$1(6) IN REG $s0
+#	NODE b(5) IN REG $s1
+#	NODE tmp$2(4) IN REG $s0
+#	NODE c(3) IN REG $s1
+#	NODE tmp$3(2) IN REG $s0
+#	NODE e(1) IN REG $s0
+#	NODE d(0) IN REG $s0
 .text
 # function f
 # formals: a (loc: 8); b (loc: 12); c (loc: 16); d (loc: 20); e (loc: 24); 

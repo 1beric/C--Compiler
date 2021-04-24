@@ -9,6 +9,17 @@
 #	NODE i(8) COST - 5.000000, DEGREES - 0
 #	NODE j(9) COST - 3.000000, DEGREES - 0
 #	NODE res(10) COST - 2.500000, DEGREES - 0
+#	NODE res(10) IN REG $s0
+#	NODE j(9) IN REG $s0
+#	NODE i(8) IN REG $s0
+#	NODE h(7) IN REG $s0
+#	NODE g(6) IN REG $s0
+#	NODE f(5) IN REG $s0
+#	NODE e(4) IN REG $s0
+#	NODE d(3) IN REG $s0
+#	NODE c(2) IN REG $s0
+#	NODE b(1) IN REG $s0
+#	NODE a(0) IN REG $s0
 .text
 # function main
 # formals: 

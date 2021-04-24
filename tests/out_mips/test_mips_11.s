@@ -8,6 +8,16 @@
 #	NODE tmp$7(7) COST - 1.000000, DEGREES - 0
 #	NODE tmp$11(8) COST - 1.000000, DEGREES - 0
 #	NODE tmp$9(9) COST - 1.000000, DEGREES - 0
+#	NODE tmp$9(9) IN REG $s0
+#	NODE tmp$11(8) IN REG $s0
+#	NODE tmp$7(7) IN REG $s0
+#	NODE tmp$8(6) IN REG $s0
+#	NODE tmp$4(5) IN REG $s0
+#	NODE x(4) IN REG $s0
+#	NODE tmp$5(3) IN REG $s0
+#	NODE tmp$0(2) IN REG $s0
+#	NODE y(1) IN REG $s0
+#	NODE tmp$1(0) IN REG $s0
 .text
 # function main
 # formals: 
