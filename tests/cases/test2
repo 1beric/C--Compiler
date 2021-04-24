@@ -1,15 +1,11 @@
-/* assignments to a number of global scalars */
+/* a function call + call to println() */
 
-int x, y, z;
+extern void println(int x);
 
-extern void println (int n); 
+void f(void) {
+    println(12345);
+}
 
-void main(void)
-{
-  x = 13579;
-  y = 24680;
-  z = 21436;
-  println(x);
-  println(y);
-  println(z);
+void main(void) {
+    f();
 }

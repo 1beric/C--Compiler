@@ -1,19 +1,19 @@
-/* mixed for and while loops */
+/* chain of function calls + passing multiple char arguments */
 
-extern void println (int n);
+extern void println(int x);
 
-void main(void)
-{
-  int i, j, k, res;
+void g(char u, char v, char w, char x) {
+    println(v);
+    println(u);
+    println(x);
+    println(w);
+}
 
-  res = 0;
-  for (i = 0; i < 5; i = i+1) {
-    j = 0;
-    while (j < 10) {
-      for (k = 0; k < 15; k = k+3)
-	res = res + (i+j+k)/3;
-      j = j+2;
-    }
-  }
-  println(res);
+void f(char u, char v, char w, char x) {
+    g(u, v, w, x);
+    g(w, x, v, u);
+}
+
+void main(void) {
+    f('a', '3', '>', '@');
 }

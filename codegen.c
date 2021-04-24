@@ -1725,7 +1725,7 @@ static void register_allocation(Quad *fn_head)
                 break;
             }
         }
-        if (var_st != NULL)
+        if (var_st != NULL && var_st->scope == Local && (var_st->type == t_Int || var_st->type == t_Char) && !var_st->formal)
             ign_add_processing(curr_link->var);
 
         curr_link = curr_link->next;

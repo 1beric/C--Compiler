@@ -13,10 +13,7 @@
 #	NODE tmp$3(4) COST - 10.000000, DEGREES - 0
 #	NODE tmp$1(5) COST - 10.000000, DEGREES - 2
 #	NODE tmp$1(5) IN REG $s0
-#	NODE tmp$3(4) IN REG $s0
-#	NODE x(3) IN REG $s1
-#	NODE tmp$4(2) IN REG $s2
-#	NODE n(1) IN REG $s1
+#	NODE tmp$4(2) IN REG $s1
 #	NODE i(0) IN REG $s0
 .text
 # function init
@@ -78,13 +75,13 @@ Lbl1:
     move $t0, $s0	# i
     li $t1, 4
     mul $t2, $t0, $t1
-    move $s2, $t2	# tmp$4
+    move $s1, $t2	# tmp$4
 
     # block (2)
     # livenow=111100
     # add x, tmp$4, tmp$3
-    move $t0, $s1	# x
-    move $t1, $s2	# tmp$4
+    move $t0, $s2	# x
+    move $t1, $s1	# tmp$4
     add $t2, $t0, $t1
     move $s0, $t2	# tmp$3
 
@@ -174,18 +171,14 @@ Lbl2:
 #	NODE tmp$9(6) COST - 10.000000, DEGREES - 2
 #	NODE tmp$13(7) COST - 10.000000, DEGREES - 2
 #	NODE tmp$8(5) IN REG $s0
-#	NODE x(4) IN REG $s4
-#	NODE tmp$11(3) IN REG $s3
-#	NODE tmp$6(2) IN REG $s2
-#	NODE n(1) IN REG $s1
+#	NODE tmp$11(3) IN REG $s2
+#	NODE tmp$6(2) IN REG $s1
 #	NODE c(0) IN REG $s0
 #	NODE tmp$13(7) IN REG $s1
 #	NODE tmp$9(6) IN REG $s0
 #	NODE tmp$8(5) IN REG $s0
-#	NODE x(4) IN REG $s4
-#	NODE tmp$11(3) IN REG $s3
-#	NODE tmp$6(2) IN REG $s2
-#	NODE n(1) IN REG $s1
+#	NODE tmp$11(3) IN REG $s2
+#	NODE tmp$6(2) IN REG $s1
 #	NODE c(0) IN REG $s0
 #	NODE c(0) IN REG $s0
 .text
@@ -218,16 +211,16 @@ _count:
     # block (4)
     # livenow=11001000
     # sub n, 1, tmp$6
-    move $t0, $s1	# n
+    move $t0, $s3	# n
     li $t1, 1
     sub $t2, $t0, $t1
-    move $s2, $t2	# tmp$6
+    move $s1, $t2	# tmp$6
 
     # block (4)
     # livenow=10101000
     # move tmp$6, n
-    move $t0, $s2	# tmp$6
-    move $s1, $t0 	# n
+    move $t0, $s1	# tmp$6
+    move $s3, $t0 	# n
 
 # block 5 
 # def = 00000000;
@@ -242,7 +235,7 @@ Lbl3:
     # block (5)
     # livenow=11001000
     # if_lt n, 0, label 5
-    move $t0, $s1	# n
+    move $t0, $s3	# n
     li $t1, 0
     blt $t0, $t1, Lbl5
 
@@ -259,16 +252,16 @@ Lbl4:
     # block (6)
     # livenow=11001000
     # mul n, 4, tmp$11
-    move $t0, $s1	# n
+    move $t0, $s3	# n
     li $t1, 4
     mul $t2, $t0, $t1
-    move $s3, $t2	# tmp$11
+    move $s2, $t2	# tmp$11
 
     # block (6)
     # livenow=11011000
     # add x, tmp$11, tmp$10
-    move $t0, $s4	# x
-    move $t1, $s3	# tmp$11
+    move $t0, $s3	# x
+    move $t1, $s2	# tmp$11
     add $t2, $t0, $t1
     sw $t2, -28($fp)	# tmp$10, -1
 
@@ -290,7 +283,7 @@ Lbl4:
     # block (6)
     # livenow=11001000
     # sub n, 1, tmp$13
-    move $t0, $s1	# n
+    move $t0, $s3	# n
     li $t1, 1
     sub $t2, $t0, $t1
     move $s1, $t2	# tmp$13
@@ -299,7 +292,7 @@ Lbl4:
     # livenow=10001001
     # move tmp$13, n
     move $t0, $s1	# tmp$13
-    move $s1, $t0 	# n
+    move $s3, $t0 	# n
 
     # block (6)
     # livenow=11001000

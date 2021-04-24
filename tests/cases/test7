@@ -1,28 +1,18 @@
-/* several assignments to several local arrays */
+/* a chain of assignments to locals + call to println() */
 
-extern void println (int n);
+extern void println(int x);
 
-void main(void)
-{
-  int x[10], y[10];
-  int u;
+void main(void) {
+    int x, y, z, u;
 
-  x[4] = 1111;
-  x[5] = 2222;
-  x[6] = 3333;
-  y[7] = 4444;
-  y[8] = 5555;
-  y[9] = 6666;
-  u = x[4];
-  println(u);
-  u = x[5];
-  println(u);
-  u = x[6];
-  println(u);
-  u = y[7];
-  println(u);
-  u = y[8];
-  println(u);
-  u = y[9];
-  println(u);
+    x = 12345;
+    u = 98765;
+
+    y = x;
+    z = y;
+    println(z);
+
+    z = u;
+    y = z;
+    println(y);
 }

@@ -1,5 +1,4 @@
 #	NODE x(0) COST - 1.000000, DEGREES - 0
-#	NODE x(0) IN REG $s0
 .text
 # function id
 # formals: x (loc: 8); 
@@ -132,7 +131,6 @@ _id:
 #	NODE tmp$6(3) IN REG $s1
 #	NODE tmp$1(2) IN REG $s1
 #	NODE tmp$2(1) IN REG $s1
-#	NODE x(0) IN REG $s0
 #	NODE x(0) IN REG $s0
 .text
 # function main

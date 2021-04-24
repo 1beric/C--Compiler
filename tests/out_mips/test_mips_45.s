@@ -2,8 +2,6 @@
 #	NODE y(1) COST - 3.000000, DEGREES - 0
 #	NODE tmp$0(2) COST - 1.000000, DEGREES - 0
 #	NODE tmp$0(2) IN REG $s0
-#	NODE y(1) IN REG $s0
-#	NODE x(0) IN REG $s0
 .text
 # function add
 # formals: x (loc: 8); 
@@ -79,15 +77,12 @@ _add:
 #	NODE tmp$9(3) COST - 10.000000, DEGREES - 1
 #	NODE tmp$3(4) COST - 20.000000, DEGREES - 1
 #	NODE tmp$4(5) COST - 10.000000, DEGREES - 1
-#	NODE y(2) IN REG $s0
 #	NODE i(1) IN REG $s1
 #	NODE f(0) IN REG $s0
 #	NODE tmp$4(5) IN REG $s1
 #	NODE tmp$3(4) IN REG $s0
 #	NODE tmp$9(3) IN REG $s2
-#	NODE y(2) IN REG $s0
 #	NODE i(1) IN REG $s1
-#	NODE f(0) IN REG $s0
 #	NODE f(0) IN REG $s0
 .text
 # function main

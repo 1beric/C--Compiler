@@ -16,9 +16,7 @@
 #	NODE tmp$5(5) COST - 10.000000, DEGREES - 2
 #	NODE tmp$5(5) IN REG $s1
 #	NODE tmp$3(4) IN REG $s0
-#	NODE tmp$2(3) IN REG $s3
-#	NODE x(2) IN REG $s2
-#	NODE i(1) IN REG $s1
+#	NODE tmp$2(3) IN REG $s1
 #	NODE y(0) IN REG $s0
 .text
 # function f
@@ -80,12 +78,12 @@ Lbl1:
     lw $t0, _x
     move $t1, $s1	# i
     mul $t2, $t0, $t1
-    move $s3, $t2	# tmp$2
+    move $s1, $t2	# tmp$2
 
     # block (2)
     # livenow=111100
     # move tmp$2, x
-    move $t0, $s3	# tmp$2
+    move $t0, $s1	# tmp$2
     sw $t0, _x
 
     # block (2)
@@ -166,12 +164,10 @@ Lbl2:
 #	NODE tmp$8(1) COST - 1.000000, DEGREES - 1
 #	NODE tmp$10(2) COST - 1.000000, DEGREES - 1
 #	NODE a(3) IN REG $s0
-#	NODE tmp$10(2) IN REG $s3
-#	NODE tmp$8(1) IN REG $s2
-#	NODE x(0) IN REG $s1
-#	NODE tmp$10(2) IN REG $s3
-#	NODE tmp$8(1) IN REG $s2
-#	NODE x(0) IN REG $s1
+#	NODE tmp$10(2) IN REG $s2
+#	NODE tmp$8(1) IN REG $s1
+#	NODE tmp$10(2) IN REG $s2
+#	NODE tmp$8(1) IN REG $s1
 #	NODE a(3) IN REG $s0
 .text
 # function main
@@ -224,18 +220,18 @@ _main:
     lw $t0, -16($fp)	# tmp$9
     lw $t1, _x
     add $t2, $t0, $t1
-    move $s3, $t2	# tmp$10
+    move $s2, $t2	# tmp$10
 
     # block (4)
     # livenow=001
     # move tmp$10, x
-    move $t0, $s3	# tmp$10
+    move $t0, $s2	# tmp$10
     sw $t0, _x
 
     # block (4)
     # livenow=001
     # param tmp$10
-    move $t0, $s3	# tmp$10
+    move $t0, $s2	# tmp$10
     la $sp, -4($sp)
     sw $t0, 0($sp)
 

@@ -1,22 +1,14 @@
-/* more complex while loops */
+/* argument passing: global char variable to argument of type char */
 
-int i, x[5];
-int res;
+extern void println(int x);
 
-extern void println (int n);
+char x;
 
-void main(void)
-{
-  i = 0;
-  while (i < 5) {
-    x[i] = i;
-    i = i+1;
-  }
-  res = 123;
-  while (!(x[i/5] <= x[i/4] && x[i/4] <= x[i/3] && 
-      !!!(x[i/2] > x[i/3] || x[i/3] > x[i/4] || x[i/4] > x[i/5]))) {
-    res = res * i;
-    i = i - 1;
-  }
-  println(res);
+void f(char x) {
+    println(x);
+}
+
+void main(void) {
+    x = 17;
+    f(x);
 }

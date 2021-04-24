@@ -28,17 +28,12 @@
 #	NODE tmp$6(10) COST - 10.000000, DEGREES - 2
 #	NODE tmp$13(11) COST - 1.000000, DEGREES - 0
 #	NODE tmp$12(12) COST - 1.000000, DEGREES - 0
-#	NODE tmp$12(12) IN REG $s0
 #	NODE tmp$13(11) IN REG $s1
 #	NODE tmp$6(10) IN REG $s0
-#	NODE tmp$10(9) IN REG $s0
 #	NODE tmp$11(8) IN REG $s1
 #	NODE tmp$5(7) IN REG $s0
-#	NODE b(6) IN REG $s2
 #	NODE tmp$9(5) IN REG $s1
 #	NODE tmp$4(4) IN REG $s1
-#	NODE tmp$2(3) IN REG $s0
-#	NODE a(2) IN REG $s2
 #	NODE tmp$3(1) IN REG $s1
 #	NODE i(0) IN REG $s0
 .text
@@ -266,23 +261,17 @@ Lbl2:
 #	NODE tmp$25(10) COST - 10.000000, DEGREES - 3
 #	NODE tmp$25(10) IN REG $s0
 #	NODE tmp$21(9) IN REG $s1
-#	NODE tmp$20(8) IN REG $s4
-#	NODE tmp$22(7) IN REG $s0
+#	NODE tmp$20(8) IN REG $s3
 #	NODE tmp$23(6) IN REG $s2
-#	NODE tmp$19(5) IN REG $s4
-#	NODE tmp$17(4) IN REG $s1
-#	NODE b(3) IN REG $s3
+#	NODE tmp$19(5) IN REG $s3
 #	NODE tmp$16(2) IN REG $s2
 #	NODE sum(1) IN REG $s1
 #	NODE i(0) IN REG $s0
 #	NODE tmp$25(10) IN REG $s0
 #	NODE tmp$21(9) IN REG $s1
-#	NODE tmp$20(8) IN REG $s4
-#	NODE tmp$22(7) IN REG $s0
+#	NODE tmp$20(8) IN REG $s3
 #	NODE tmp$23(6) IN REG $s2
-#	NODE tmp$19(5) IN REG $s4
-#	NODE tmp$17(4) IN REG $s1
-#	NODE b(3) IN REG $s3
+#	NODE tmp$19(5) IN REG $s3
 #	NODE tmp$16(2) IN REG $s2
 #	NODE sum(1) IN REG $s1
 #	NODE i(0) IN REG $s0
@@ -338,7 +327,7 @@ Lbl3:
     # block (5)
     # livenow=11110000000
     # add b, tmp$18, tmp$17
-    move $t0, $s3	# b
+    move $t0, $s4	# b
     lw $t1, -52($fp)	# tmp$18
     add $t2, $t0, $t1
     move $s1, $t2	# tmp$17
@@ -348,12 +337,12 @@ Lbl3:
     # move deref(tmp$17), tmp$19
     lw $t0, -48($fp)	# tmp$17
     lb $t0, 0($t0)	# deref(tmp$17)
-    move $s4, $t0 	# tmp$19
+    move $s3, $t0 	# tmp$19
 
     # block (5)
     # livenow=11010100000
     # if_le tmp$19, 0, label 5
-    move $t0, $s4	# tmp$19
+    move $t0, $s3	# tmp$19
     li $t1, 0
     ble $t0, $t1, Lbl5
 
@@ -376,7 +365,7 @@ Lbl4:
     # block (6)
     # livenow=11010010000
     # add b, tmp$23, tmp$22
-    move $t0, $s3	# b
+    move $t0, $s4	# b
     move $t1, $s2	# tmp$23
     add $t2, $t0, $t1
     move $s0, $t2	# tmp$22

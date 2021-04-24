@@ -1,29 +1,28 @@
-/* more complex recursion */
+/* functions with multiple local char variables and function calls */
 
-int g(int n);
+extern void println(int x);
 
-int f(int n)
-{
-  if (n <= 1) 
-    return 1;
-  else
-    return g(n-1) + f(n-2);
+void f(char x) {
+    char u;
+    char v;
+    char w;
+
+    u = 23;
+    v = 34;
+
+    println(x);
+    w = 45;
+
+    println(u);
+    x = 67;
+
+    println(v);
+
+    println(w);
+
+    println(x);
 }
 
-int g(int n)
-{
-  if (n <= 1) 
-    return 1;
-  else
-    return f(n-1) + g(n-2);
-}
-
-extern void println (int n);
-
-void main(void)
-{
-  int x;
-
-  x = f(5);
-  println(x);
+void main(void) {
+    f(12);
 }

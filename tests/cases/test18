@@ -1,21 +1,14 @@
-/*
- * File: globalopt-05
- * Tests: dead code elimination involving multiple IF statements
- *
- * All the assignments to y are dead
- *
- */
+/* argument passing: local int variable to argument of type int */
 
 extern void println(int x);
 
-void main(void) {
-    int x, y;
-
-    x = 12;
-    y = 21;
-    
-    if (x > 0) {y = x + 2*y; x = x + 1; } else { y = 3*x - 2; }
-    if (x > 0) {y = x + 2*y; x = x + 1; } else { y = 3*x - 2; }
-
+void f(int x) {
     println(x);
+}
+
+void main(void) {
+    int x;
+
+    x = 12345;
+    f(x);
 }

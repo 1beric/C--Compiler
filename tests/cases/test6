@@ -1,13 +1,10 @@
-/* assignment to a single local array */
+/* assignment to a local + call to println() */
 
-extern void println (int n);
+extern void println(int x);
 
-void main(void)
-{
-  int x[10];
-  int y;
-
-  x[5] = 4321;
-  y = x[5];
-  println(y);
+void main(void) {
+    int x;
+    
+    x = 12345;
+    println(x);
 }

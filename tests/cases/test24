@@ -1,32 +1,14 @@
-/* mixed while loops and conditionals */
+/* argument passing: local char variable to argument of type char */
 
-extern void println (int n);
+extern void println(int x);
 
-void main(void)
-{
-  int i, j, k, a, b;
-  int res;
+void f(char x) {
+    println(x);
+}
 
-  i = 0;
-  res = 123;
-  while (i < 5) {
-    j = 0;
-    while (j < 5) {
-      k = (i+j)/2;
-      if (k > i) {
-	a = 0;
-	while (a < 5) {
-	  b = (a+k)/2;
-	  if (b > j) 
-	    res = res + b;
-	  else
-	    res = res + k;
-	  a = a+1;
-	}
-      }
-      j = j+1;
-    }
-    i = i+1;
-  }
-  println(res);
+void main(void) {
+    char x;
+
+    x = '\n';
+    f(x);
 }

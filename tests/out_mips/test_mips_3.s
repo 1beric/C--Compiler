@@ -1,89 +1,43 @@
-#	NODE tmp$1(0) COST - 1.000000, DEGREES - 0
-#	NODE x(1) COST - 0.000000, DEGREES - 0
-#	NODE tmp$0(2) COST - 1.000000, DEGREES - 0
-#	NODE tmp$5(3) COST - 1.000000, DEGREES - 0
-#	NODE tmp$3(4) COST - 1.000000, DEGREES - 0
-#	NODE tmp$3(4) IN REG $s0
-#	NODE tmp$5(3) IN REG $s0
-#	NODE tmp$0(2) IN REG $s0
-#	NODE x(1) IN REG $s0
-#	NODE tmp$1(0) IN REG $s0
 .text
-# function main
+# function h
 # formals: 
-# locals: y (loc: -4); tmp$0 (loc: -8); tmp$1 (loc: -12); tmp$2 (loc: -16); tmp$3 (loc: -20); tmp$4 (loc: -24); tmp$5 (loc: -28); tmp$6 (loc: -32); 
-# space for locals: 32 bytes
+# locals: tmp$0 (loc: -4); 
+# space for locals: 4 bytes
 #
-_main:
+_h:
 # block 0 
-# def = 10111;
-# use = 01000;
-# in  = 01000;
-# out = 00000;
+# def = ;
+# use = ;
+# in  = ;
+# out = ;
     # -LEADER- block (0)
-    # livenow=00000
-    # enter main
+    # livenow=
+    # enter h
     la $sp, -8($sp)    # allocate space for old $fp and $ra
     sw $fp, 4($sp)     # save old $fp
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
-    la $sp, -32($sp)   # allocate stack frame
+    la $sp, -4($sp)   # allocate stack frame
 
     # block (0)
-    # livenow=00000
-    # move 28, tmp$1
-    li $t0, 28
-    move $s0, $t0 	# tmp$1
-
-    # block (0)
-    # livenow=10000
-    # add addr(x), tmp$1, tmp$0
-    la $t0, _x
-    move $t1, $s0	# tmp$1
-    add $t2, $t0, $t1
-    move $s0, $t2	# tmp$0
-
-    # block (0)
-    # livenow=00000
-    # move 3142, deref(tmp$0)
-    li $t0, 3142
-    move $t1, $s0	# tmp$0
-    sw $t0, 0($t1)	# deref(tmp$0)
-
-    # block (0)
-    # livenow=00000
-    # move 28, tmp$5
-    li $t0, 28
-    move $s0, $t0 	# tmp$5
-
-    # block (0)
-    # livenow=00010
-    # add addr(x), tmp$5, tmp$4
-    la $t0, _x
-    move $t1, $s0	# tmp$5
-    add $t2, $t0, $t1
-    sw $t2, -24($fp)	# tmp$4, -1
-
-    # block (0)
-    # livenow=00000
-    # param deref(tmp$4)
-    lw $t0, -24($fp)	# tmp$4
-    lw $t0, 0($t0)	# deref(tmp$4)
+    # livenow=
+    # param 12345
+    li $t0, 12345
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
     # block (0)
-    # livenow=00000
+    # livenow=
     # call println, 1
     jal _println
     la $sp, 4($sp)
 
     # block (0)
-    # livenow=00000
-    # leave main
+    # livenow=
+    # leave h
 
     # block (0)
-    # livenow=00000
+    # livenow=
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -92,11 +46,176 @@ _main:
     jr $ra
 
     # block (0)
-    # livenow=00000
-    # leave main
+    # livenow=
+    # leave h
 
     # block (0)
-    # livenow=00000
+    # livenow=
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+# end function h
+
+.text
+# function g
+# formals: 
+# locals: 
+# space for locals: 0 bytes
+#
+_g:
+# block 1 
+# def = ;
+# use = ;
+# in  = ;
+# out = ;
+    # -LEADER- block (1)
+    # livenow=
+    # enter g
+    la $sp, -8($sp)    # allocate space for old $fp and $ra
+    sw $fp, 4($sp)     # save old $fp
+    sw $ra, 0($sp)     # save old $ra
+    la $fp, 0($sp)     # $fp := $sp
+    la $sp, -0($sp)   # allocate stack frame
+
+    # block (1)
+    # livenow=
+    # call h, 0
+    jal _h
+    la $sp, 0($sp)
+
+    # block (1)
+    # livenow=
+    # leave g
+
+    # block (1)
+    # livenow=
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+    # block (1)
+    # livenow=
+    # leave g
+
+    # block (1)
+    # livenow=
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+# end function g
+
+.text
+# function f
+# formals: 
+# locals: 
+# space for locals: 0 bytes
+#
+_f:
+# block 2 
+# def = ;
+# use = ;
+# in  = ;
+# out = ;
+    # -LEADER- block (2)
+    # livenow=
+    # enter f
+    la $sp, -8($sp)    # allocate space for old $fp and $ra
+    sw $fp, 4($sp)     # save old $fp
+    sw $ra, 0($sp)     # save old $ra
+    la $fp, 0($sp)     # $fp := $sp
+    la $sp, -0($sp)   # allocate stack frame
+
+    # block (2)
+    # livenow=
+    # call g, 0
+    jal _g
+    la $sp, 0($sp)
+
+    # block (2)
+    # livenow=
+    # leave f
+
+    # block (2)
+    # livenow=
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+    # block (2)
+    # livenow=
+    # leave f
+
+    # block (2)
+    # livenow=
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+# end function f
+
+.text
+# function main
+# formals: 
+# locals: 
+# space for locals: 0 bytes
+#
+_main:
+# block 3 
+# def = ;
+# use = ;
+# in  = ;
+# out = ;
+    # -LEADER- block (3)
+    # livenow=
+    # enter main
+    la $sp, -8($sp)    # allocate space for old $fp and $ra
+    sw $fp, 4($sp)     # save old $fp
+    sw $ra, 0($sp)     # save old $ra
+    la $fp, 0($sp)     # $fp := $sp
+    la $sp, -0($sp)   # allocate stack frame
+
+    # block (3)
+    # livenow=
+    # call f, 0
+    jal _f
+    la $sp, 0($sp)
+
+    # block (3)
+    # livenow=
+    # leave main
+
+    # block (3)
+    # livenow=
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+    # block (3)
+    # livenow=
+    # leave main
+
+    # block (3)
+    # livenow=
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -109,8 +228,6 @@ _main:
 
 .data
 .align 2
-.align 2
-_x:  .space 40
 
 .align 2
 .data

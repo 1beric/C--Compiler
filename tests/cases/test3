@@ -1,14 +1,19 @@
-/* assignment to a single global array */
+/* a chain of function calls + call to println() */
 
-int x[10];
+extern void println(int x);
 
-extern void println (int n);
+void h(void) {
+    println(12345);
+}
 
-void main(void)
-{
-  int y;
+void g(void) {
+    h();
+}
 
-  x[7] = 3142;
-  y = x[7];
-  println(y);
+void f(void) {
+    g();
+}
+
+void main(void) {
+    f();
 }

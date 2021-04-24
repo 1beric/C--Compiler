@@ -1,25 +1,23 @@
-#	NODE i0(0) COST - 3.000000, DEGREES - 0
-#	NODE i1(1) COST - 3.000000, DEGREES - 0
-#	NODE c0(2) COST - 3.000000, DEGREES - 0
-#	NODE c1(3) COST - 2.000000, DEGREES - 0
-#	NODE c1(3) IN REG $s0
-#	NODE c0(2) IN REG $s0
-#	NODE i1(1) IN REG $s0
-#	NODE i0(0) IN REG $s0
+#	NODE tmp$0(0) COST - 1.000000, DEGREES - 0
+#	NODE x(1) COST - 4.000000, DEGREES - 0
+#	NODE tmp$1(2) COST - 1.000000, DEGREES - 0
+#	NODE tmp$1(2) IN REG $s0
+#	NODE x(1) IN REG $s0
+#	NODE tmp$0(0) IN REG $s0
 .text
 # function main
 # formals: 
-# locals: c2 (loc: -4); i2 (loc: -8); tmp$0 (loc: -12); 
+# locals: x (loc: -1); tmp$0 (loc: -8); tmp$1 (loc: -12); 
 # space for locals: 12 bytes
 #
 _main:
 # block 0 
-# def = 1111;
-# use = 0000;
-# in  = 0000;
-# out = 0000;
+# def = 111;
+# use = 000;
+# in  = 000;
+# out = 000;
     # -LEADER- block (0)
-    # livenow=0000
+    # livenow=000
     # enter main
     la $sp, -8($sp)    # allocate space for old $fp and $ra
     sw $fp, 4($sp)     # save old $fp
@@ -28,113 +26,61 @@ _main:
     la $sp, -12($sp)   # allocate stack frame
 
     # block (0)
-    # livenow=0000
-    # move 255, i0
-    li $t0, 255
-    sw $t0, _i0
+    # livenow=000
+    # move 1, tmp$0
+    li $t0, 1
+    move $s0, $t0 	# tmp$0
 
     # block (0)
-    # livenow=0000
-    # move 255, i1
-    li $t0, 255
-    sw $t0, _i1
+    # livenow=100
+    # move tmp$0, x
+    move $t0, $s0	# tmp$0
+    move $s0, $t0 	# x
 
     # block (0)
-    # livenow=0000
-    # move 255, c0
-    li $t0, 255
-    sw $t0, _c0
-
-    # block (0)
-    # livenow=0000
-    # move 255, c1
-    li $t0, 255
-    sw $t0, _c1
-
-    # block (0)
-    # livenow=0000
-    # param 255
-    li $t0, 255
+    # livenow=010
+    # param x
+    move $t0, $s0	# x
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
     # block (0)
-    # livenow=0000
+    # livenow=000
     # call println, 1
     jal _println
     la $sp, 4($sp)
 
     # block (0)
-    # livenow=0000
-    # param i1
-    lw $t0, _i1
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=0000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=0000
-    # param 255
+    # livenow=000
+    # move 255, tmp$1
     li $t0, 255
+    move $s0, $t0 	# tmp$1
+
+    # block (0)
+    # livenow=001
+    # move tmp$1, x
+    move $t0, $s0	# tmp$1
+    move $s0, $t0 	# x
+
+    # block (0)
+    # livenow=010
+    # param x
+    move $t0, $s0	# x
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
     # block (0)
-    # livenow=0000
+    # livenow=000
     # call println, 1
     jal _println
     la $sp, 4($sp)
 
     # block (0)
-    # livenow=0000
-    # param c0
-    lw $t0, _c0
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=0000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=0000
-    # param c1
-    lw $t0, _c1
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=0000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=0000
-    # param 255
-    li $t0, 255
-    la $sp, -4($sp)
-    sw $t0, 0($sp)
-
-    # block (0)
-    # livenow=0000
-    # call println, 1
-    jal _println
-    la $sp, 4($sp)
-
-    # block (0)
-    # livenow=0000
+    # livenow=000
     # leave main
 
     # block (0)
-    # livenow=0000
+    # livenow=000
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -143,11 +89,11 @@ _main:
     jr $ra
 
     # block (0)
-    # livenow=0000
+    # livenow=000
     # leave main
 
     # block (0)
-    # livenow=0000
+    # livenow=000
     # ret 
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
@@ -160,14 +106,6 @@ _main:
 
 .data
 .align 2
-.align 2
-_c0:  .space 4
-.align 2
-_c1:  .space 4
-.align 2
-_i0:  .space 4
-.align 2
-_i1:  .space 4
 
 .align 2
 .data

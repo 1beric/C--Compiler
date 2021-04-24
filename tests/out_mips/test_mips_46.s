@@ -4,7 +4,6 @@
 #	NODE tmp$1(2) COST - 0.500000, DEGREES - 0
 #	NODE tmp$1(2) IN REG $s1
 #	NODE tmp$2(1) IN REG $s0
-#	NODE u(0) IN REG $s0
 .text
 # function f
 # formals: u (loc: 8); 
@@ -166,13 +165,8 @@ Lbl2:
 #	NODE x(0) COST - 2.000000, DEGREES - 0
 #	NODE u(1) COST - 3.000000, DEGREES - 0
 #	NODE tmp$5(2) COST - 1.000000, DEGREES - 0
-#	NODE tmp$5(2) IN REG $s1
-#	NODE u(1) IN REG $s0
-#	NODE x(0) IN REG $s0
-#	NODE tmp$5(2) IN REG $s1
-#	NODE u(1) IN REG $s0
-#	NODE x(0) IN REG $s0
-#	NODE x(0) IN REG $s0
+#	NODE tmp$5(2) IN REG $s0
+#	NODE tmp$5(2) IN REG $s0
 .text
 # function incr
 # formals: x (loc: 8); 
@@ -200,12 +194,12 @@ _incr:
     move $t0, $s0	# x
     lw $t1, _u
     add $t2, $t0, $t1
-    move $s1, $t2	# tmp$5
+    move $s0, $t2	# tmp$5
 
     # block (4)
     # livenow=001
     # move tmp$5, u
-    move $t0, $s1	# tmp$5
+    move $t0, $s0	# tmp$5
     sw $t0, _u
 
     # block (4)
@@ -241,19 +235,14 @@ _incr:
 #	NODE tmp$7(1) COST - 1.000000, DEGREES - 0
 #	NODE tmp$8(2) COST - 1.000000, DEGREES - 0
 #	NODE x(3) COST - 5.000000, DEGREES - 0
-#	NODE tmp$8(2) IN REG $s1
-#	NODE tmp$7(1) IN REG $s0
-#	NODE u(0) IN REG $s0
-#	NODE tmp$8(2) IN REG $s1
-#	NODE tmp$7(1) IN REG $s0
-#	NODE u(0) IN REG $s0
-#	NODE u(0) IN REG $s0
+#	NODE tmp$8(2) IN REG $s0
+#	NODE tmp$7(1) IN REG $s1
+#	NODE tmp$8(2) IN REG $s0
+#	NODE tmp$7(1) IN REG $s1
 #	NODE x(3) IN REG $s0
-#	NODE tmp$8(2) IN REG $s1
-#	NODE tmp$7(1) IN REG $s0
-#	NODE u(0) IN REG $s0
-#	NODE u(0) IN REG $s0
-#	NODE u(0) IN REG $s0
+#	NODE tmp$8(2) IN REG $s0
+#	NODE tmp$7(1) IN REG $s1
+#	NODE tmp$8(2) IN REG $s0
 .text
 # function main
 # formals: 
@@ -285,7 +274,7 @@ _main:
     # livenow=0010
     # move 6, tmp$7
     li $t0, 6
-    move $s0, $t0 	# tmp$7
+    move $s1, $t0 	# tmp$7
 
     # block (5)
     # livenow=0010
@@ -303,13 +292,13 @@ _main:
     # block (5)
     # livenow=0010
     # retrieve tmp$8
-    move $s1, $v0	# tmp$8
+    move $s0, $v0	# tmp$8
 
     # block (5)
     # livenow=0010
     # add u, tmp$8, tmp$9
     lw $t0, _u
-    move $t1, $s1	# tmp$8
+    move $t1, $s0	# tmp$8
     add $t2, $t0, $t1
     sw $t2, -20($fp)	# tmp$9, -1
 

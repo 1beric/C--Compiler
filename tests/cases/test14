@@ -1,24 +1,23 @@
-/* nested array assignents: global arrays */
+/* assignments to a mix of global+local int+char variables */
 
-int x[10];
+extern void println(int x);
 
-extern void println (int n);
+int u;
+char x;
 
-void main(void)
-{
-  int u;
+void main(void) {
+    int v;
+    char y;
 
-  x[0] = 1;
-  x[1] = 2;
-  x[2] = 3;
-  x[3] = 4;
-  x[4] = 5;
-  x[5] = 6;
-  x[6] = 7;
-  x[7] = 8;
-  x[8] = 9;
-  x[9] = 10;
+    x = 17;
+    u = x;
+    y = u;
+    v = y;
+    println(v);
 
-  u = x[x[x[x[x[x[x[x[x[x[0]]]]]]]]]];
-  println(u);
+    v = 255;
+    x = v;
+    u = x;
+    y = u;
+    println(y);
 }

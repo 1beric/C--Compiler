@@ -1,5 +1,4 @@
 #	NODE x(0) COST - 1.000000, DEGREES - 0
-#	NODE x(0) IN REG $s0
 .text
 # function id
 # formals: x (loc: 8); 
@@ -270,14 +269,12 @@ _id:
 #	NODE tmp$52(54) COST - 1.000000, DEGREES - 0
 #	NODE tmp$51(55) COST - 1.000000, DEGREES - 0
 # NEED TO SPILL THIS NODE 47, 0.142857!!!
-# NEED TO SPILL THIS NODE 52, 0.200000!!!
-# NEED TO SPILL THIS NODE 37, 0.200000!!!
+# NEED TO SPILL THIS NODE 52, 0.181818!!!
+# NEED TO SPILL THIS NODE 37, 0.181818!!!
 #	NODE i(0) IN REG $s1
-#	NODE tmp$51(55) IN REG $s0
 #	NODE tmp$52(54) IN REG $s0
 #	NODE tmp$53(53) IN REG $s0
 #	NODE tmp$54(51) IN REG $s0
-#	NODE tmp$55(50) IN REG $s0
 #	NODE tmp$56(49) IN REG $s0
 #	NODE tmp$57(48) IN REG $s0
 #	NODE tmp$58(46) IN REG $s0
@@ -285,47 +282,35 @@ _id:
 #	NODE tmp$60(44) IN REG $s0
 #	NODE tmp$61(43) IN REG $s0
 #	NODE tmp$62(41) IN REG $s1
-#	NODE tmp$63(40) IN REG $s0
 #	NODE tmp$44(39) IN REG $s1
 #	NODE tmp$65(38) IN REG $s1
 #	NODE tmp$41(36) IN REG $s1
-#	NODE tmp$19(35) IN REG $s0
 #	NODE tmp$20(34) IN REG $s1
 #	NODE tmp$21(33) IN REG $s1
 #	NODE tmp$40(31) IN REG $s1
-#	NODE tmp$23(30) IN REG $s0
 #	NODE tmp$24(29) IN REG $s1
 #	NODE tmp$25(28) IN REG $s1
 #	NODE tmp$26(26) IN REG $s1
-#	NODE tmp$27(25) IN REG $s0
 #	NODE tmp$28(24) IN REG $s1
 #	NODE tmp$36(23) IN REG $s1
 #	NODE res(21) IN REG $s1
-#	NODE tmp$31(20) IN REG $s0
 #	NODE tmp$32(19) IN REG $s1
 #	NODE tmp$33(18) IN REG $s1
 #	NODE tmp$35(17) IN REG $s0
-#	NODE tmp$6(16) IN REG $s0
 #	NODE tmp$7(15) IN REG $s1
 #	NODE tmp$18(14) IN REG $s0
-#	NODE tmp$8(13) IN REG $s0
 #	NODE tmp$9(12) IN REG $s1
 #	NODE tmp$17(11) IN REG $s0
-#	NODE tmp$10(10) IN REG $s0
 #	NODE tmp$11(9) IN REG $s1
 #	NODE tmp$14(8) IN REG $s0
-#	NODE tmp$12(7) IN REG $s0
 #	NODE tmp$3(6) IN REG $s1
 #	NODE tmp$15(5) IN REG $s0
-#	NODE tmp$4(3) IN REG $s0
-#	NODE x(2) IN REG $s0
 #	NODE tmp$47(32) IN REG $s0
 #	NODE tmp$34(22) IN REG $s0
 #	NODE tmp$2(4) IN REG $s1
 #	NODE tmp$5(1) IN REG $s2
 #	NODE i(0) IN REG $s1
 #	NODE tmp$71(42) IN REG $s0
-#	NODE i(0) IN REG $s1
 #	NODE tmp$43(27) IN REG $s0
 .text
 # function main

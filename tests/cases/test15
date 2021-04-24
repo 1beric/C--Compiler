@@ -1,24 +1,11 @@
-/* nested array assignents: local arrays */
+/* argument passing: integer constant to argument of type int */
 
-extern void println (int n);
+extern void println(int x);
 
-void main(void)
-{
-  int x[10];
+void f(int x) {
+    println(x);
+}
 
-  int u;
-
-  x[0] = 1;
-  x[1] = 2;
-  x[2] = 3;
-  x[3] = 4;
-  x[4] = 5;
-  x[5] = 6;
-  x[6] = 7;
-  x[7] = 8;
-  x[8] = 9;
-  x[9] = 10;
-
-  u = x[x[x[x[x[x[x[x[x[x[0]]]]]]]]]];
-  println(u);
+void main(void) {
+    f(12345);
 }

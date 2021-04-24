@@ -2,8 +2,6 @@
 #	NODE tmp$0(0) COST - 1.000000, DEGREES - 0
 #	NODE flag(1) COST - 1.000000, DEGREES - 0
 #	NODE x(2) COST - 1.000000, DEGREES - 0
-#	NODE x(2) IN REG $s1
-#	NODE flag(1) IN REG $s0
 #	NODE tmp$0(0) IN REG $s0
 .text
 # function side_effect
@@ -109,8 +107,6 @@ _side_effect:
 #	NODE tmp$6(7) IN REG $s3
 #	NODE tmp$5(6) IN REG $s0
 #	NODE tmp$7(5) IN REG $s3
-#	NODE val(4) IN REG $s3
-#	NODE flag(3) IN REG $s3
 #	NODE z(2) IN REG $s2
 #	NODE y(1) IN REG $s1
 #	NODE x(0) IN REG $s0

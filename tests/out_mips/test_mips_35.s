@@ -3,7 +3,6 @@
 #	NODE tmp$2(2) COST - 1.000000, DEGREES - 0
 #	NODE tmp$2(2) IN REG $s0
 #	NODE tmp$0(1) IN REG $s0
-#	NODE x(0) IN REG $s0
 .text
 # function f
 # formals: x (loc: 8); 
@@ -81,16 +80,12 @@ _f:
 #	NODE tmp$8(6) COST - 1.000000, DEGREES - 1
 #	NODE tmp$7(7) COST - 1.000000, DEGREES - 0
 #	NODE tmp$4(2) IN REG $s1
-#	NODE y(1) IN REG $s0
 #	NODE tmp$3(0) IN REG $s0
 #	NODE tmp$7(7) IN REG $s0
 #	NODE tmp$8(6) IN REG $s1
 #	NODE tmp$5(5) IN REG $s0
 #	NODE tmp$6(4) IN REG $s1
-#	NODE x(3) IN REG $s0
 #	NODE tmp$4(2) IN REG $s1
-#	NODE y(1) IN REG $s0
-#	NODE tmp$3(0) IN REG $s0
 #	NODE tmp$3(0) IN REG $s0
 .text
 # function main
