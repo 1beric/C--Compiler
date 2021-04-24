@@ -19,6 +19,8 @@ extern int olocal_flag;
 extern int oglobal_flag;
 extern int oregalloc_flag;
 
+static int NUM_REGS = 8;
+
 /* 
  * curr_fn_symtbl -- a pointer to the global symbol table entry of the current
  * function being processed.
@@ -64,7 +66,7 @@ static CFGILink *new_cfgi(Quad *qptr, int num);
 static void cfgi_add_ins(CFGILink *link, Quad *qptr);
 static CFGBLink *new_cfgb(BasicBlock *block);
 static void cfgb_add_block(CFGBLink *link, BasicBlock *block);
-static void print_cfg();
+static void print_cfg(BasicBlock *block);
 
 static int is_def(Op op);
 
@@ -200,7 +202,7 @@ static void gen_optimizations(Quad *qptr)
 {
     if (olocal_flag)
         control_flow_optimizations(qptr);
-    if (olocal_flag || oglobal_flag)
+    if (olocal_flag || oglobal_flag || oregalloc_flag)
         gen_cfg(qptr);
     if (olocal_flag)
         copy_propagation(qptr);
@@ -231,6 +233,8 @@ void gen_code_global()
  *                         THREE-ADDRESS CODE GENERATION                       *
  *                                                                             *
  *******************************************************************************/
+
+float global_freq = 1;
 
 /*
  * gen_3addr_code(ast) -- given a pointer ast to an AST node, traverse the AST
@@ -392,6 +396,7 @@ static void gen_3addr_code_funcall(tnode *ast)
     else
     {
         retval = new_temp(t_Int);
+        retval->cost = global_freq;
         retrieve_instr = new_instr(RETRIEVE, mk_stptr_op(retval), NULL, NULL);
         ast->place = retval;
     }
@@ -434,7 +439,9 @@ static void gen_3addr_code_if(tnode *ast)
 
     if (Child1(ast))
     {
+        global_freq *= 0.5;
         gen_3addr_code(Child1(ast));
+        global_freq /= 0.5;
         lbl_then->next = Child1(ast)->code_hd;
         Child1(ast)->code_tl->next = jmp_over;
     }
@@ -471,8 +478,10 @@ static void gen_3addr_code_while(tnode *ast)
 
     br_back = new_instr(GOTO, NULL, NULL, mk_insptr_op(lbl_top));
 
+    global_freq *= 10;
     gen_3addr_code_boolexp(Child0(ast), lbl_body, lbl_after);
     gen_3addr_code(Child1(ast));
+    global_freq /= 10;
 
     ast->code_hd = lbl_top;
     lbl_top->next = Child0(ast)->code_hd;
@@ -525,7 +534,9 @@ static void gen_3addr_code_for(tnode *ast)
 
     if (for_test != NULL)
     {
+        global_freq *= 10;
         gen_3addr_code_boolexp(for_test, lbl_body, lbl_after);
+        global_freq /= 10;
         ch1hd = for_test->code_hd;
         ch1tl = for_test->code_tl;
     }
@@ -537,7 +548,9 @@ static void gen_3addr_code_for(tnode *ast)
 
     if (for_upd != NULL)
     {
+        global_freq *= 10;
         gen_3addr_code(for_upd);
+        global_freq /= 10;
         ch2hd = for_upd->code_hd;
         ch2tl = for_upd->code_tl;
     }
@@ -549,7 +562,9 @@ static void gen_3addr_code_for(tnode *ast)
 
     if (for_body != NULL)
     {
+        global_freq *= 10;
         gen_3addr_code(for_body);
+        global_freq /= 10;
         ch3hd = for_body->code_hd;
         ch3tl = for_body->code_tl;
     }
@@ -620,6 +635,7 @@ static void gen_3addr_code_return(tnode *ast)
         if (curr_fn_symtbl->ret_type != Child0(ast)->place->type)
         {
             ret_val = new_temp(curr_fn_symtbl->ret_type);
+            ret_val->cost = global_freq;
             cvt_type = new_instr(MOVE,
                                  mk_stptr_op(Child0(ast)->place), /* src1 */
                                  NULL,                            /* src2 */
@@ -687,6 +703,7 @@ static void gen_3addr_code_id(tnode *ast)
 
     ast->code_hd = ast->code_tl = new_instr(NOP, NULL, NULL, NULL);
     ast->place = stVar(ast);
+    ast->place->cost += global_freq;
 }
 
 static void gen_3addr_code_intconst(tnode *ast)
@@ -694,6 +711,7 @@ static void gen_3addr_code_intconst(tnode *ast)
     assert(ast != NULL && (ast->ntype == Intcon || ast->ntype == Charcon));
 
     symtabnode *lhs = new_temp(t_Int);
+    lhs->cost = global_freq;
     Quad *qptr = new_instr(MOVE,
                            mk_intcon_op(ConstVal(ast)), /* src1 */
                            NULL,                        /* src2 */
@@ -726,6 +744,7 @@ static void gen_3addr_code_stringcon(tnode *ast)
    */
     sptr = SymTabInsert(strptr + 1, Global);
     sptr->type = t_Array;
+    sptr->cost = global_freq;
     sptr->elt_type = t_Char;
     sptr->num_elts = strlen(1 + str_tmp->str_lbl); /* add 1 for the trailing NUL */
     sptr->skip_print = 1;
@@ -749,8 +768,10 @@ static void gen_3addr_code_arraysub(tnode *ast)
 
     addr_loc = new_temp(t_Addr);
     addr_loc->elt_type = sptr->elt_type;
+    addr_loc->cost = global_freq;
 
     disp_loc = new_temp(t_Int);
+    disp_loc->cost = global_freq;
 
     gen_3addr_code(idx);
     if (idx->ntype == ArraySubscript)
@@ -801,6 +822,7 @@ static void gen_3addr_code_arithop(tnode *ast)
     Operand *src1, *src2;
 
     ast->place = new_temp(t_Int);
+    ast->place->cost = global_freq;
     gen_3addr_code(Child0(ast));
     if (Child0(ast)->ntype == ArraySubscript)
     {
@@ -808,7 +830,7 @@ static void gen_3addr_code_arithop(tnode *ast)
     }
 
     src1 = mk_stptr_op(Child0(ast)->place);
-
+    Child0(ast)->place->cost += global_freq;
     if (ast->ntype == UnaryMinus)
     {
         op = UMINUS_OP;
@@ -824,6 +846,7 @@ static void gen_3addr_code_arithop(tnode *ast)
         }
 
         src2 = mk_stptr_op(Child1(ast)->place);
+        Child1(ast)->place->cost += global_freq;
     }
 
     arith_inst = new_instr(op, src1, src2, mk_stptr_op(ast->place));
@@ -876,6 +899,8 @@ static void gen_3addr_code_boolexp(tnode *ast, Quad *true_lbl, Quad *false_lbl)
                                mk_stptr_op(Child1(ast)->place), /* src1 */
                                mk_insptr_op(true_lbl)           /* dst */
         );
+        Child0(ast)->place->cost += global_freq;
+        Child1(ast)->place->cost += global_freq;
         Quad *ins2 = new_instr(GOTO, NULL, NULL, mk_insptr_op(false_lbl));
 
         if (Child0(ast)->code_hd != NULL)
@@ -1390,13 +1415,154 @@ static void arithmetic_optimizations(Quad *fn_head)
 
 extern symtabnode **global_st();
 
-static IGNode *new_ignode(int var_pos)
+IGEdge *igedge_hd = NULL;
+IGEdge *igedge_saved_hd = NULL;
+IGNLink *node_stack_saved = NULL;
+IGNLink *node_stack_processing = NULL;
+
+static IGNLink *new_ignlink(int var)
 {
-    IGNode *node = zalloc(sizeof(IGNode));
-    node->var = var_pos;
-    node->edges = NULL;
-    node->next = NULL;
-    return node;
+    IGNLink *link = zalloc(sizeof(IGNLink));
+    link->var = var;
+    link->next = NULL;
+    return link;
+}
+
+static void ign_add_processing(int var)
+{
+    if (node_stack_processing == NULL)
+        node_stack_processing = new_ignlink(var);
+    else
+    {
+        IGNLink *tmp = new_ignlink(var);
+        tmp->next = node_stack_processing;
+        node_stack_processing = tmp;
+    }
+}
+
+static void ign_processing_to_saved(int var)
+{
+    if (node_stack_processing == NULL)
+        return;
+    IGNLink *link = node_stack_processing;
+    while (link->next != NULL)
+    {
+        if (link->var == var)
+            link->next = link->next->next;
+        link = link->next;
+    }
+
+    if (node_stack_saved == NULL)
+        node_stack_saved = new_ignlink(var);
+    else
+    {
+        IGNLink *tmp = new_ignlink(var);
+        tmp->next = node_stack_saved;
+        node_stack_saved = tmp;
+    }
+}
+
+static IGEdge *new_igedge(int var_a, int var_b)
+{
+    IGEdge *edge = zalloc(sizeof(IGEdge));
+    edge->var_a = var_a;
+    edge->var_b = var_b;
+    edge->next = NULL;
+    return edge;
+}
+
+static void ign_add_edge(int var_a, int var_b)
+{
+    if (var_a == var_b)
+        return;
+    if (igedge_hd == NULL)
+        igedge_hd = new_igedge(var_a, var_b);
+    else
+    {
+        IGEdge *edge = igedge_hd;
+        while (edge->next != NULL)
+        {
+            if (edge->var_a == var_a && edge->var_b == var_b || edge->var_a == var_b && edge->var_b == var_a)
+                return;
+            edge = edge->next;
+        }
+        edge->next = new_igedge(var_a, var_b);
+    }
+}
+
+static void ign_add_saved_edge(int var_a, int var_b)
+{
+    if (var_a == var_b)
+        return;
+    if (igedge_saved_hd == NULL)
+        igedge_saved_hd = new_igedge(var_a, var_b);
+    else
+    {
+        IGEdge *edge = igedge_saved_hd;
+        while (edge->next != NULL)
+        {
+            if (edge->var_a == var_a && edge->var_b == var_b || edge->var_a == var_b && edge->var_b == var_a)
+                return;
+            edge = edge->next;
+        }
+        edge->next = new_igedge(var_a, var_b);
+    }
+}
+
+static void ign_remove_spilled_edges(int var)
+{
+    if (igedge_hd == NULL)
+        return;
+    IGEdge *edge = igedge_hd;
+    IGEdge *prev = NULL;
+    while (edge->next != NULL)
+    {
+        if (edge->var_a == var || edge->var_b == var)
+        {
+            if (prev != NULL)
+                prev->next = edge->next;
+            else
+                igedge_hd = edge->next;
+        }
+        prev = edge;
+        edge = edge->next;
+    }
+}
+
+static void ign_remove_saved_edges(int var)
+{
+    if (igedge_hd == NULL)
+        return;
+    IGEdge *edge = igedge_hd;
+    IGEdge *prev = NULL;
+    while (edge->next != NULL)
+    {
+        if (edge->var_a == var || edge->var_b == var)
+        {
+            ign_add_saved_edge(edge->var_a, edge->var_b);
+            if (prev != NULL)
+                prev->next = edge->next;
+            else
+                igedge_hd = edge->next;
+        }
+        prev = edge;
+        edge = edge->next;
+    }
+}
+
+static int ign_numedges(int var)
+{
+    if (igedge_hd == NULL)
+        return 0;
+    int degrees = 0;
+    IGEdge *edge = igedge_hd;
+    while (edge->next != NULL)
+    {
+        if (edge->var_a == var || edge->var_b == var)
+            degrees++;
+        edge = edge->next;
+    }
+    return degrees;
 }
 
 static void register_allocation(Quad *fn_head)
@@ -1405,33 +1571,77 @@ static void register_allocation(Quad *fn_head)
     int numvars = set_variable_positions(fn_head, 0);
     compute_liveness(numvars);
 
-    // create graph node for each live range (aka each variable)
-    IGNode *ig_hd = NULL;
-    IGNode *curr_ign = NULL;
-    int i;
-    for (i = 0; i < numvars; i++)
-    {
-        if (ig_hd == NULL)
-        {
-            ig_hd = new_ignode(i);
-            curr_ign = ig_hd;
-        }
-        else
-        {
-            curr_ign->next = new_ignode(i);
-            curr_ign = curr_ign->next;
-        }
-    }
-
+    // construct the interference graph
+    //   (each variable is its own liverange pointer and such its own vertex)
     // for each basic block B, traverse backwards
     BBList *bblist = bblist_hd;
     while (bblist != NULL)
     {
-        register_allocation_rec(
-            bblist->block->ilinks,
-            bv_copy(bblist->block->out));
+        register_allocation_rec(bblist->block->ilinks, bv_copy(bblist->block->out));
         bblist = bblist->next;
     }
+
+    // print out edges of graph (debug purposes):
+    IGEdge *curr_edge = igedge_hd;
+    while (curr_edge != NULL)
+    {
+        symtabnode *a = SymTabLookupFP(curr_edge->var_a);
+        symtabnode *b = SymTabLookupFP(curr_edge->var_b);
+        if (a == NULL)
+            printf("#\tLIVERANGE -- ERR VAL(%d) WAS NULL a\n", curr_edge->var_a);
+        if (b == NULL)
+            printf("#\tLIVERANGE -- ERR VAL(%d) WAS NULL b\n", curr_edge->var_b);
+        if (a != NULL && b != NULL)
+            printf("#\tLIVERANGE: EDGE %s(%d) -> %s(%d)\n",
+                   a->name, a->func_pos,
+                   b->name, b->func_pos);
+        curr_edge = curr_edge->next;
+    }
+    int i;
+    for (i = 0; i < numvars; i++)
+    {
+        symtabnode *var = SymTabLookupFP(i);
+        if (var == NULL)
+            printf("#\tLIVERANGE -- ERR VAL(%d) WAS NULL a\n", i);
+        else
+        {
+            ign_add_processing(i);
+            int degree = ign_numedges(i);
+            if (degree != 0)
+                printf("#\tNODE %s(%d) COST - %f, COST/DEG - %f\n",
+                       var->name, var->func_pos,
+                       var->cost, var->cost / degree);
+        }
+    }
+
+    // have the spill costs & interference graph, now simplify it if needed
+    // while (1)
+    // {
+    //     int chg = 1;
+    //     while (chg)
+    //     {
+    //         chg = 0;
+    //         IGNLink *curr_link = node_stack_processing;
+    //         while (curr_link != NULL)
+    //         {
+    //             int degrees = ign_numedges(i);
+    //             if (degrees < NUM_REGS)
+    //             {
+    //                 printf("%d\n", i);
+    //                 ign_processing_to_saved(i);
+    //                 ign_remove_saved_edges(i);
+    //                 chg = 1;
+    //             }
+    //             curr_link = curr_link->next;
+    //         }
+    //     }
+
+    //     break;
+    // }
+
+    // HOORAY! time to color the IG
+
+    // now alter code to use registers intead of memory reads
 }
 
 static void register_allocation_rec(CFGILink *link, BitVec *LiveNow)
@@ -1476,7 +1686,7 @@ static void register_allocation_rec(CFGILink *link, BitVec *LiveNow)
         break;
     case PARAM:
     case RET:
-        if (ins->src1->optype != INTEGER &&
+        if (ins->src1 != NULL && ins->src1->optype != INTEGER &&
             (ins->src1->val.stptr->type == t_Int || ins->src1->val.stptr->type == t_Char))
             y = ins->src1->val.stptr;
         break;
@@ -1497,7 +1707,8 @@ static void register_allocation_rec(CFGILink *link, BitVec *LiveNow)
     int i;
     for (i = 0; i < LiveNow->size; i++)
     {
-        // add IGEdge(x, i) to ig_node
+        if (x != NULL && x->scope != Global && LiveNow->bits[i])
+            ign_add_edge(x->func_pos, i);
     }
 
     if (x != NULL && x->scope != Global)
@@ -1506,6 +1717,8 @@ static void register_allocation_rec(CFGILink *link, BitVec *LiveNow)
         bv_set(LiveNow, y->func_pos, 1);
     if (z != NULL && z->scope != Global)
         bv_set(LiveNow, z->func_pos, 1);
+
+    ins->livenow = bv_copy(LiveNow);
 }
 
 static void dead_code_elimination(Quad *fn_head)
@@ -1926,14 +2139,21 @@ static void gen_mips_code(tnode *ast)
 
     for (qptr = ast->code_hd; qptr != NULL; qptr = qptr->next)
     {
-        if (olocal_flag || oglobal_flag)
+        if (olocal_flag || oglobal_flag || oregalloc_flag)
         {
+            if (!qptr->live || qptr->op == NOP)
+                continue; //printf("    # !! DEAD !! \n");
             if (qptr->leader)
+            {
+                print_cfg(qptr->block);
                 printf("    # -LEADER- block (%d)\n", qptr->block->num);
+            }
             else
                 printf("    # block (%d)\n", qptr->block->num);
-            if (!qptr->live)
-                printf("    # !! DEAD !! \n");
+
+            printf("    # livenow=");
+            printb(qptr->livenow);
+            printf("\n");
         }
         printf("    # ");
         print_3addr_ins(qptr);
@@ -2229,8 +2449,8 @@ static void gen_mips_load(Operand *src, char *reg_prefix, int dstreg)
             if (type == t_Array && sptr->formal)
             {
                 /*
-	 * arrays are passed by reference, so the value passed is the address
-	 */
+                 * arrays are passed by reference, so the value passed is the address
+                 */
                 type = t_Addr;
             }
 
@@ -2251,8 +2471,8 @@ static void gen_mips_load(Operand *src, char *reg_prefix, int dstreg)
             if (sptr->formal)
             {
                 /*
-	 * arrays are passed by reference, so the value passed is the address
-	 */
+                 * arrays are passed by reference, so the value passed is the address
+                 */
                 printf("    lw $%s%d, %d($fp)\t# addr(%s)\n",
                        reg_prefix,
                        dstreg,
@@ -2513,31 +2733,17 @@ void printb(BitVec *bv)
         printf("%d", bv->bits[i] || 0);
 }
 
-static void print_cfg()
+static void print_cfg(BasicBlock *block)
 {
-    BBList *curr = bblist_hd;
-
-    while (curr != NULL)
-    {
-        BasicBlock *block = curr->block;
-        printf("# block %d (def=", block->num);
-        printb(block->def);
-        printf(", use=");
-        printb(block->use);
-        printf(", in=");
-        printb(block->in);
-        printf(", out=");
-        printb(block->out);
-        printf(") -> ");
-        CFGBLink *child = block->blinks;
-        while (child != NULL)
-        {
-            printf("%d ", child->block->num);
-            child = child->next;
-        }
-        printf("\n");
-        curr = curr->next;
-    }
+    printf("# block %d \n# def = ", block->num);
+    printb(block->def);
+    printf(";\n# use = ");
+    printb(block->use);
+    printf(";\n# in  = ");
+    printb(block->in);
+    printf(";\n# out = ");
+    printb(block->out);
+    printf(";\n");
 }
 
 static void print_3addr_op(Operand *operand)

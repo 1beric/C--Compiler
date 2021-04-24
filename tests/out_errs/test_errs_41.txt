@@ -1,0 +1,3 @@
+ERROR [line 6]: number of arguments in function call does not match function definition [callee: init]
+ERROR [line 6]: number of arguments in function call does not match function definition [callee: count]
+Unrecognized/unhandled AST node type: 0

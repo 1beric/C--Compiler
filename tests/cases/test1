@@ -1,3 +1,10 @@
 /* the empty function */
 
-void main(void) {}
+extern void println(int x);
+
+void main(void) {
+	int x, y;
+	x = 10 + 1;
+	y = 2;
+	println(y + x);
+}

@@ -74,6 +74,39 @@ symtabnode *SymTabLookup(char *str, int sc)
 }
 
 /*
+ * SymTabLookup(func_pos)
+ *
+ * Look up the int func_pos in the symbol table.  If found,
+ * return a pointer to the corresponding symbol table node, otherwise
+ * return NULL.
+ */
+symtabnode *SymTabLookupFP(int func_pos)
+{
+  int hval;
+  symtabnode *stptr;
+  int i;
+  for (i = 0; i < HASHTBLSZ; i++)
+  {
+    for (stptr = SymTab[1][i]; stptr != NULL; stptr = stptr->next)
+    {
+      if (func_pos == stptr->func_pos)
+      {
+        return stptr;
+      }
+    }
+    for (stptr = SymTab[0][i]; stptr != NULL; stptr = stptr->next)
+    {
+      if (func_pos == stptr->func_pos)
+      {
+        return stptr;
+      }
+    }
+  }
+
+  return NULL;
+}
+
+/*
  * SymTabLookupAll(str)
  *
  * Look up the string str in the symbol table, starting with the
@@ -123,6 +156,8 @@ symtabnode *SymTabInsert(char *str, int sc)
   sptr->name = str;
   sptr->scope = sc;
   sptr->func_pos = -1;
+  sptr->reg_num = -1;
+  sptr->cost = 0;
 
   sptr->next = SymTab[sc][hval];
   SymTab[sc][hval] = sptr;

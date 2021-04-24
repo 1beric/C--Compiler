@@ -68,6 +68,7 @@ typedef struct quad
   bool leader;
   bool live;
   struct block *block;
+  struct bitvec *livenow;
   struct quad *next;
 } Quad;
 
@@ -99,7 +100,7 @@ typedef struct block
 
 typedef struct ignlink
 {
-  struct ignode *node;
+  int var;
   struct ignlink *next;
 } IGNLink;
 
@@ -109,13 +110,6 @@ typedef struct igedge
   int var_b;
   struct igedge *next;
 } IGEdge;
-
-typedef struct ignode
-{
-  int var;
-  struct igedge *edges;
-  struct ignode *next;
-} IGNode;
 
 typedef struct blocklist
 {

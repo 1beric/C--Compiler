@@ -34,6 +34,9 @@ typedef struct stblnode
                               globals corresponding to string constant labels
                               have this value set to 1 since the string constant
                               is printed out of the string table. */
+  float cost;               /* the cost of usiung a reg for this ignode */
+  int reg_num;              /* the num of the register ($s_) */
+  int is_spilled;           /* if the node is spilled from the graph */
   int func_pos;             /* the position in the function in correspondance 
                               to the other variables. */
   struct stblnode *next;
@@ -47,6 +50,7 @@ typedef struct stblnode
 
 void SymTabInit(int sc);                     // initialize the symbol table at scope sc to empty
 symtabnode *SymTabLookup(char *str, int sc); // lookup scope sc
+symtabnode *SymTabLookupFP(int func_pos);
 symtabnode *SymTabLookupAll(char *str);      // lookup local first, then global
 symtabnode *SymTabInsert(char *str, int sc); // add ident to symbol table
 symtabnode *SymTabRecordFunInfo(bool isProto);
