@@ -2489,11 +2489,20 @@ static void gen_mips_enter(Quad *qptr)
     printf("    sw $ra, 0($sp)     # save old $ra\n");
     printf("    la $fp, 0($sp)     # $fp := $sp\n");
     printf("    la $sp, -%d($sp)   # allocate stack frame\n", sptr->offset);
+
+    printf("    move $t4, $s0\n");
+    printf("    move $t5, $s1\n");
+    printf("    move $t6, $s2\n");
+    printf("    move $t7, $s3\n");
 }
 
 static void gen_mips_leave(Quad *qptr)
 {
     /* restore callee-saved registers -- ignore for CSC 453 */
+    printf("    move $s0, $t4 \n");
+    printf("    move $s1, $t5 \n");
+    printf("    move $s2, $t6 \n");
+    printf("    move $s3, $t7 \n");
 }
 
 static void gen_mips_param(Quad *qptr)

@@ -1,7 +1,0 @@
-ERROR [line 4]: number of arguments in function call does not match function definition [callee: add]
-ERROR [line 4]: number of arguments in function call does not match function definition [callee: add]
-ERROR [line 4]: number of arguments in function call does not match function definition [callee: add]
-ERROR [line 4]: number of arguments in function call does not match function definition [callee: add]
-ERROR [line 4]: number of arguments in function call does not match function definition [callee: add]
-ERROR [line 4]: number of arguments in function call does not match function definition [callee: add]
-Unrecognized/unhandled AST node type: 0

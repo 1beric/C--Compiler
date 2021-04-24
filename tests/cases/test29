@@ -20,6 +20,7 @@ void main(void)
     d = add(c, -5);
     e = add(d, 1);
     f = f*add(e, 1);
+    /* println(f); */
   }
-  println(f);
+    println(f);
 }

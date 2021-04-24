@@ -68,6 +68,10 @@ _main:
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
     la $sp, -88($sp)   # allocate stack frame
+    move $t4, $s0
+    move $t5, $s1
+    move $t6, $s2
+    move $t7, $s3
 
     # block (0)
     # livenow=00000000000
@@ -315,6 +319,10 @@ Lbl2:
     # block (9)
     # livenow=00000000000
     # leave main
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (9)
     # livenow=00000000000
@@ -328,6 +336,10 @@ Lbl2:
     # block (9)
     # livenow=00000000000
     # leave main
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (9)
     # livenow=00000000000

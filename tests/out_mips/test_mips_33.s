@@ -37,6 +37,10 @@ _f:
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
     la $sp, -16($sp)   # allocate stack frame
+    move $t4, $s0
+    move $t5, $s1
+    move $t6, $s2
+    move $t7, $s3
 
     # block (0)
     # livenow=110101010
@@ -73,6 +77,10 @@ _f:
     # block (0)
     # livenow=000000001
     # leave f
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (0)
     # livenow=000000001
@@ -87,6 +95,10 @@ _f:
     # block (0)
     # livenow=000000000
     # leave f
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (0)
     # livenow=000000000
@@ -98,4 +110,206 @@ _f:
     jr $ra
 
 # end function f
+
+#	NODE tmp$4(0) COST - 1.000000, DEGREES - 0
+#	NODE tmp$5(1) COST - 1.000000, DEGREES - 0
+#	NODE x(6) IN REG $s0
+#	NODE tmp$8(4) IN REG $s0
+#	NODE tmp$7(3) IN REG $s1
+#	NODE tmp$6(2) IN REG $s0
+#	NODE tmp$5(1) IN REG $s0
+#	NODE tmp$4(0) IN REG $s0
+#	NODE tmp$5(1) IN REG $s0
+#	NODE tmp$4(0) IN REG $s0
+#	NODE x(6) IN REG $s0
+#	NODE tmp$8(4) IN REG $s0
+#	NODE tmp$6(2) IN REG $s0
+.text
+# function main
+# formals: 
+# locals: x (loc: -4); tmp$4 (loc: -8); tmp$5 (loc: -12); tmp$6 (loc: -16); tmp$7 (loc: -20); tmp$8 (loc: -24); tmp$9 (loc: -28); tmp$10 (loc: -32); 
+# space for locals: 32 bytes
+#
+_main:
+# block 1 
+# def = 00;
+# use = 11;
+# in  = 11;
+# out = 00;
+    # -LEADER- block (1)
+    # livenow=11
+    # enter main
+    la $sp, -8($sp)    # allocate space for old $fp and $ra
+    sw $fp, 4($sp)     # save old $fp
+    sw $ra, 0($sp)     # save old $ra
+    la $fp, 0($sp)     # $fp := $sp
+    la $sp, -32($sp)   # allocate stack frame
+    move $t4, $s0
+    move $t5, $s1
+    move $t6, $s2
+    move $t7, $s3
+
+    # block (1)
+    # livenow=11
+    # param 5
+    li $t0, 5
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param 4
+    li $t0, 4
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param 3
+    li $t0, 3
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param 2
+    li $t0, 2
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param 1
+    li $t0, 1
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # call f, 5
+    jal _f
+    la $sp, 20($sp)
+
+    # block (1)
+    # livenow=11
+    # retrieve tmp$9
+    sw $v0, -28($fp)	# tmp$9, -1
+
+    # block (1)
+    # livenow=11
+    # param tmp$9
+    lw $t0, -28($fp)	# tmp$9
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param tmp$9
+    lw $t0, -28($fp)	# tmp$9
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param tmp$9
+    lw $t0, -28($fp)	# tmp$9
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param tmp$9
+    lw $t0, -28($fp)	# tmp$9
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=11
+    # param tmp$9
+    lw $t0, -28($fp)	# tmp$9
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=01
+    # call f, 5
+    jal _f
+    la $sp, 20($sp)
+
+    # block (1)
+    # livenow=01
+    # retrieve tmp$10
+    sw $v0, -32($fp)	# tmp$10, -1
+
+    # block (1)
+    # livenow=01
+    # param tmp$10
+    lw $t0, -32($fp)	# tmp$10
+    la $sp, -4($sp)
+    sw $t0, 0($sp)
+
+    # block (1)
+    # livenow=00
+    # call println, 1
+    jal _println
+    la $sp, 4($sp)
+
+    # block (1)
+    # livenow=00
+    # leave main
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
+
+    # block (1)
+    # livenow=00
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+    # block (1)
+    # livenow=00
+    # leave main
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
+
+    # block (1)
+    # livenow=00
+    # ret 
+    la $sp, 0($fp)     # deallocate locals
+    lw $ra, 0($sp)     # restore return address
+    lw $fp, 4($sp)     # restore frame pointer
+    la $sp, 8($sp)     # restore stack pointer
+    jr $ra
+
+# end function main
+
+
+.data
+.align 2
+
+.align 2
+.data
+__nl: .asciiz "\n"
+.align 2
+.text
+# println: print out an integer followed by a newline
+ _println:
+    li $v0, 1
+    lw $a0, 0($sp)
+    syscall
+    li $v0, 4
+    la $a0, __nl
+    syscall
+    jr $ra
+
+# jump to _main, where user code starts, at start of execution
+main:
+    j _main
 

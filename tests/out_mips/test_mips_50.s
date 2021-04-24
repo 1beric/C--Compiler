@@ -23,6 +23,10 @@ _side_effect:
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
     la $sp, -8($sp)   # allocate stack frame
+    move $t4, $s0
+    move $t5, $s1
+    move $t6, $s2
+    move $t7, $s3
 
     # block (0)
     # livenow=001
@@ -40,6 +44,10 @@ _side_effect:
     # block (0)
     # livenow=001
     # leave side_effect
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (0)
     # livenow=001
@@ -54,6 +62,10 @@ _side_effect:
     # block (0)
     # livenow=000
     # leave side_effect
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (0)
     # livenow=000
@@ -131,6 +143,10 @@ _main:
     sw $ra, 0($sp)     # save old $ra
     la $fp, 0($sp)     # $fp := $sp
     la $sp, -76($sp)   # allocate stack frame
+    move $t4, $s0
+    move $t5, $s1
+    move $t6, $s2
+    move $t7, $s3
 
     # block (1)
     # livenow=0001110100
@@ -524,6 +540,10 @@ Lbl15:
     # block (19)
     # livenow=0000000000
     # leave main
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (19)
     # livenow=0000000000
@@ -537,6 +557,10 @@ Lbl15:
     # block (19)
     # livenow=0000000000
     # leave main
+    move $s0, $t4 
+    move $s1, $t5 
+    move $s2, $t6 
+    move $s3, $t7 
 
     # block (19)
     # livenow=0000000000

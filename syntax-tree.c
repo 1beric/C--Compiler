@@ -531,9 +531,9 @@ bool ActualsMatchFormals(symtabnode *fn, tnode *actuals)
 
   if (!(formals == NULL && actuals == NULL))
   {
-    err_occurred = true;
-    errmsg("number of arguments in function call does not match function definition [callee: %s]",
-           fn->name);
+    // err_occurred = true;
+    // errmsg("number of arguments in function call does not match function definition [callee: %s]",
+    //        fn->name);
   }
 
   return !err_occurred;
