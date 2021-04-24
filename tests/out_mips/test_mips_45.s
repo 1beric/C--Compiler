@@ -1,3 +1,6 @@
+#	NODE x(0) COST - 2.000000, DEGREES - 0
+#	NODE y(1) COST - 3.000000, DEGREES - 0
+#	NODE tmp$0(2) COST - 1.000000, DEGREES - 0
 .text
 # function add
 # formals: x (loc: 8); 
@@ -67,11 +70,12 @@ _add:
 #	LIVERANGE: EDGE tmp$3(4) -> i(1)
 #	LIVERANGE: EDGE tmp$9(3) -> f(0)
 #	LIVERANGE: EDGE tmp$9(3) -> i(1)
-#	NODE f(0) COST - 32.000000, COST/DEG - 8.000000
-#	NODE i(1) COST - 61.000000, COST/DEG - 20.333334
-#	NODE tmp$9(3) COST - 10.000000, COST/DEG - 10.000000
-#	NODE tmp$3(4) COST - 20.000000, COST/DEG - 20.000000
-#	NODE tmp$4(5) COST - 10.000000, COST/DEG - 10.000000
+#	NODE f(0) COST - 32.000000, DEGREES - 4
+#	NODE i(1) COST - 61.000000, DEGREES - 3
+#	NODE y(2) COST - 33.000000, DEGREES - 0
+#	NODE tmp$9(3) COST - 10.000000, DEGREES - 1
+#	NODE tmp$3(4) COST - 20.000000, DEGREES - 1
+#	NODE tmp$4(5) COST - 10.000000, DEGREES - 1
 .text
 # function main
 # formals: 

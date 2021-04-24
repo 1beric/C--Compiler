@@ -1,3 +1,6 @@
+#	NODE x(0) COST - 2.000000, DEGREES - 0
+#	NODE tmp$0(1) COST - 1.000000, DEGREES - 0
+#	NODE tmp$2(2) COST - 1.000000, DEGREES - 0
 .text
 # function f
 # formals: x (loc: 8); 
@@ -62,6 +65,10 @@ _f:
 
 # end function f
 
+#	NODE x(0) COST - 8.000000, DEGREES - 0
+#	NODE tmp$4(1) COST - 1.000000, DEGREES - 0
+#	NODE tmp$6(2) COST - 2.000000, DEGREES - 0
+#	NODE tmp$5(3) COST - 1.000000, DEGREES - 0
 .text
 # function main
 # formals: 

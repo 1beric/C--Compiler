@@ -6,11 +6,12 @@
 #	LIVERANGE: EDGE tmp$4(2) -> i(0)
 #	LIVERANGE: EDGE tmp$4(2) -> n(1)
 #	LIVERANGE: EDGE tmp$4(2) -> x(3)
-#	NODE i(0) COST - 71.000000, COST/DEG - 17.750000
-#	NODE n(1) COST - 21.000000, COST/DEG - 7.000000
-#	NODE tmp$4(2) COST - 10.000000, COST/DEG - 5.000000
-#	NODE x(3) COST - 0.000000, COST/DEG - 0.000000
-#	NODE tmp$1(5) COST - 10.000000, COST/DEG - 5.000000
+#	NODE i(0) COST - 71.000000, DEGREES - 4
+#	NODE n(1) COST - 21.000000, DEGREES - 3
+#	NODE tmp$4(2) COST - 10.000000, DEGREES - 2
+#	NODE x(3) COST - 0.000000, DEGREES - 3
+#	NODE tmp$3(4) COST - 10.000000, DEGREES - 0
+#	NODE tmp$1(5) COST - 10.000000, DEGREES - 2
 .text
 # function init
 # formals: x (loc: 8); n (loc: 12); 
@@ -146,31 +147,26 @@ Lbl2:
 
 # end function init
 
-#	LIVERANGE: EDGE c(0) -> n(1)
-#	LIVERANGE: EDGE c(0) -> tmp$11(3)
-#	LIVERANGE: EDGE c(0) -> tmp$11(3)
-#	LIVERANGE: EDGE tmp$8(5) -> n(1)
-#	LIVERANGE: EDGE tmp$8(5) -> tmp$11(3)
-#	LIVERANGE: EDGE tmp$6(2) -> c(0)
-#	LIVERANGE: EDGE tmp$6(2) -> n(1)
-#	LIVERANGE: EDGE tmp$6(2) -> tmp$11(3)
+#	LIVERANGE: EDGE n(1) -> c(0)
 #	LIVERANGE: EDGE n(1) -> x(4)
+#	LIVERANGE: EDGE tmp$6(2) -> c(0)
 #	LIVERANGE: EDGE tmp$6(2) -> x(4)
 #	LIVERANGE: EDGE c(0) -> x(4)
 #	LIVERANGE: EDGE tmp$13(7) -> c(0)
 #	LIVERANGE: EDGE tmp$13(7) -> x(4)
 #	LIVERANGE: EDGE tmp$9(6) -> n(1)
 #	LIVERANGE: EDGE tmp$9(6) -> x(4)
+#	LIVERANGE: EDGE tmp$11(3) -> c(0)
 #	LIVERANGE: EDGE tmp$11(3) -> n(1)
 #	LIVERANGE: EDGE tmp$11(3) -> x(4)
-#	NODE c(0) COST - 32.000000, COST/DEG - 5.333333
-#	NODE n(1) COST - 63.000000, COST/DEG - 10.500000
-#	NODE tmp$6(2) COST - 1.000000, COST/DEG - 0.250000
-#	NODE tmp$11(3) COST - 10.000000, COST/DEG - 2.000000
-#	NODE x(4) COST - 0.000000, COST/DEG - 0.000000
-#	NODE tmp$8(5) COST - 20.000000, COST/DEG - 10.000000
-#	NODE tmp$9(6) COST - 10.000000, COST/DEG - 5.000000
-#	NODE tmp$13(7) COST - 10.000000, COST/DEG - 5.000000
+#	NODE c(0) COST - 32.000000, DEGREES - 5
+#	NODE n(1) COST - 63.000000, DEGREES - 4
+#	NODE tmp$6(2) COST - 1.000000, DEGREES - 2
+#	NODE tmp$11(3) COST - 10.000000, DEGREES - 2
+#	NODE x(4) COST - 0.000000, DEGREES - 5
+#	NODE tmp$8(5) COST - 20.000000, DEGREES - 0
+#	NODE tmp$9(6) COST - 10.000000, DEGREES - 2
+#	NODE tmp$13(7) COST - 10.000000, DEGREES - 2
 .text
 # function count
 # formals: x (loc: 8); n (loc: 12); 

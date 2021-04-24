@@ -1,3 +1,8 @@
+#	NODE tmp$1(0) COST - 1.000000, DEGREES - 0
+#	NODE x(1) COST - 0.000000, DEGREES - 0
+#	NODE tmp$0(2) COST - 1.000000, DEGREES - 0
+#	NODE tmp$5(3) COST - 1.000000, DEGREES - 0
+#	NODE tmp$3(4) COST - 1.000000, DEGREES - 0
 .text
 # function main
 # formals: 

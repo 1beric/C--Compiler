@@ -1,7 +1,9 @@
 #	LIVERANGE: EDGE tmp$3(1) -> n(0)
 #	LIVERANGE: EDGE tmp$3(1) -> tmp$1(2)
-#	NODE n(0) COST - 6.000000, COST/DEG - 6.000000
-#	NODE tmp$3(1) COST - 1.000000, COST/DEG - 1.000000
+#	NODE n(0) COST - 6.000000, DEGREES - 1
+#	NODE tmp$3(1) COST - 1.000000, DEGREES - 1
+#	NODE tmp$1(2) COST - 0.500000, DEGREES - 0
+#	NODE tmp$2(3) COST - 1.000000, DEGREES - 0
 .text
 # function fact
 # formals: n (loc: 8); 
@@ -155,9 +157,7 @@ Lbl2:
 
 # end function fact
 
-#	LIVERANGE -- ERR VAL(1) WAS NULL a
-#	LIVERANGE -- ERR VAL(1) WAS NULL a
-#	NODE tmp$6(0) COST - 1.000000, COST/DEG - 1.000000
+#	NODE tmp$6(0) COST - 1.000000, DEGREES - 0
 .text
 # function main
 # formals: 

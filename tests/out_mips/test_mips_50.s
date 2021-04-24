@@ -1,4 +1,7 @@
 #	LIVERANGE: EDGE tmp$0(0) -> x(2)
+#	NODE tmp$0(0) COST - 1.000000, DEGREES - 0
+#	NODE flag(1) COST - 1.000000, DEGREES - 0
+#	NODE x(2) COST - 1.000000, DEGREES - 0
 .text
 # function side_effect
 # formals: x (loc: 8); 
@@ -62,7 +65,6 @@ _side_effect:
 
 # end function side_effect
 
-#	LIVERANGE: EDGE x(0) -> z(2)
 #	LIVERANGE: EDGE z(2) -> x(0)
 #	LIVERANGE: EDGE z(2) -> y(1)
 #	LIVERANGE: EDGE z(2) -> flag(3)
@@ -86,15 +88,16 @@ _side_effect:
 #	LIVERANGE: EDGE tmp$5(6) -> tmp$6(7)
 #	LIVERANGE: EDGE tmp$13(8) -> flag(3)
 #	LIVERANGE: EDGE tmp$13(8) -> val(4)
-#	NODE x(0) COST - 12.000000, COST/DEG - 1.500000
-#	NODE y(1) COST - 9.000000, COST/DEG - 1.285714
-#	NODE z(2) COST - 9.000000, COST/DEG - 1.125000
-#	NODE flag(3) COST - 6.000000, COST/DEG - 1.200000
-#	NODE val(4) COST - 6.000000, COST/DEG - 1.500000
-#	NODE tmp$7(5) COST - 2.000000, COST/DEG - 0.666667
-#	NODE tmp$5(6) COST - 1.000000, COST/DEG - 0.200000
-#	NODE tmp$6(7) COST - 1.000000, COST/DEG - 0.200000
-#	NODE tmp$13(8) COST - 0.500000, COST/DEG - 0.500000
+#	NODE x(0) COST - 12.000000, DEGREES - 7
+#	NODE y(1) COST - 9.000000, DEGREES - 7
+#	NODE z(2) COST - 9.000000, DEGREES - 7
+#	NODE flag(3) COST - 6.000000, DEGREES - 5
+#	NODE val(4) COST - 6.000000, DEGREES - 4
+#	NODE tmp$7(5) COST - 2.000000, DEGREES - 3
+#	NODE tmp$5(6) COST - 1.000000, DEGREES - 5
+#	NODE tmp$6(7) COST - 1.000000, DEGREES - 5
+#	NODE tmp$13(8) COST - 0.500000, DEGREES - 1
+#	NODE tmp$17(9) COST - 1.000000, DEGREES - 0
 .text
 # function main
 # formals: 

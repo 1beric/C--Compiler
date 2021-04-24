@@ -1,3 +1,6 @@
+#	NODE x(0) COST - 2.000000, DEGREES - 0
+#	NODE y(1) COST - 2.000000, DEGREES - 0
+#	NODE tmp$0(2) COST - 1.000000, DEGREES - 0
 .text
 # function add
 # formals: x (loc: 8); y (loc: 12); 

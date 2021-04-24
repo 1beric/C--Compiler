@@ -1,4 +1,9 @@
 #	LIVERANGE: EDGE tmp$1(2) -> z(3)
+#	NODE x(0) COST - 2.000000, DEGREES - 0
+#	NODE y(1) COST - 2.000000, DEGREES - 0
+#	NODE tmp$1(2) COST - 2.000000, DEGREES - 0
+#	NODE z(3) COST - 2.000000, DEGREES - 0
+#	NODE tmp$0(4) COST - 1.000000, DEGREES - 0
 .text
 # function f
 # formals: x (loc: 8); y (loc: 12); z (loc: 16); 

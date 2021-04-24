@@ -1,4 +1,7 @@
 #	LIVERANGE: EDGE tmp$2(1) -> tmp$1(2)
+#	NODE u(0) COST - 5.000000, DEGREES - 0
+#	NODE tmp$2(1) COST - 1.000000, DEGREES - 0
+#	NODE tmp$1(2) COST - 0.500000, DEGREES - 0
 .text
 # function f
 # formals: u (loc: 8); 
@@ -157,7 +160,9 @@ Lbl2:
 
 # end function f
 
-#	LIVERANGE: EDGE u(1) -> tmp$5(2)
+#	NODE x(0) COST - 2.000000, DEGREES - 0
+#	NODE u(1) COST - 3.000000, DEGREES - 0
+#	NODE tmp$5(2) COST - 1.000000, DEGREES - 0
 .text
 # function incr
 # formals: x (loc: 8); 
@@ -222,9 +227,10 @@ _incr:
 # end function incr
 
 #	LIVERANGE: EDGE tmp$7(1) -> tmp$8(2)
-#	LIVERANGE: EDGE tmp$7(1) -> tmp$8(2)
-#	NODE tmp$7(1) COST - 1.000000, COST/DEG - 1.000000
-#	NODE tmp$8(2) COST - 1.000000, COST/DEG - 1.000000
+#	NODE u(0) COST - 6.000000, DEGREES - 0
+#	NODE tmp$7(1) COST - 1.000000, DEGREES - 0
+#	NODE tmp$8(2) COST - 1.000000, DEGREES - 0
+#	NODE x(3) COST - 5.000000, DEGREES - 0
 .text
 # function main
 # formals: 

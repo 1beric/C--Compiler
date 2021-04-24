@@ -1,3 +1,6 @@
+#	NODE y(0) COST - 3.000000, DEGREES - 0
+#	NODE x(1) COST - 2.000000, DEGREES - 0
+#	NODE tmp$0(2) COST - 1.000000, DEGREES - 0
 .text
 # function acc
 # formals: x (loc: 8); 
@@ -64,9 +67,10 @@ _acc:
 #	LIVERANGE: EDGE n(2) -> y(1)
 #	LIVERANGE: EDGE tmp$1(0) -> y(1)
 #	LIVERANGE: EDGE tmp$3(3) -> y(1)
-#	NODE tmp$1(0) COST - 1.000000, COST/DEG - 1.000000
-#	NODE y(1) COST - 5.000000, COST/DEG - 2.500000
-#	NODE n(2) COST - 61.000000, COST/DEG - 61.000000
+#	NODE tmp$1(0) COST - 1.000000, DEGREES - 1
+#	NODE y(1) COST - 5.000000, DEGREES - 2
+#	NODE n(2) COST - 61.000000, DEGREES - 1
+#	NODE tmp$3(3) COST - 20.000000, DEGREES - 0
 .text
 # function main
 # formals: 

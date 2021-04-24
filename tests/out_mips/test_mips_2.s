@@ -1,3 +1,6 @@
+#	NODE x(0) COST - 2.000000, DEGREES - 0
+#	NODE y(1) COST - 2.000000, DEGREES - 0
+#	NODE z(2) COST - 2.000000, DEGREES - 0
 .text
 # function main
 # formals: 

@@ -1440,17 +1440,29 @@ static void ign_add_processing(int var)
     }
 }
 
-static void ign_processing_to_saved(int var)
+static void ign_remove_processing(int var)
 {
     if (node_stack_processing == NULL)
         return;
     IGNLink *link = node_stack_processing;
-    while (link->next != NULL)
+    IGNLink *prev = NULL;
+    while (link != NULL)
     {
         if (link->var == var)
-            link->next = link->next->next;
+        {
+            if (prev != NULL)
+                prev->next = link->next;
+            else
+                node_stack_processing = link->next;
+        }
+        prev = link;
         link = link->next;
     }
+}
+
+static void ign_processing_to_saved(int var)
+{
+    ign_remove_processing(var);
 
     if (node_stack_saved == NULL)
         node_stack_saved = new_ignlink(var);
@@ -1515,7 +1527,7 @@ static void ign_remove_spilled_edges(int var)
         return;
     IGEdge *edge = igedge_hd;
     IGEdge *prev = NULL;
-    while (edge->next != NULL)
+    while (edge != NULL)
     {
         if (edge->var_a == var || edge->var_b == var)
         {
@@ -1535,7 +1547,7 @@ static void ign_remove_saved_edges(int var)
         return;
     IGEdge *edge = igedge_hd;
     IGEdge *prev = NULL;
-    while (edge->next != NULL)
+    while (edge != NULL)
     {
         if (edge->var_a == var || edge->var_b == var)
         {
@@ -1563,6 +1575,32 @@ static int ign_numedges(int var)
         edge = edge->next;
     }
     return degrees;
+}
+
+static void spill_node()
+{
+    IGNLink *link = node_stack_processing;
+    int var = link->var;
+    symtabnode *var_st = SymTabLookupFP(var);
+    float lowest = 0;
+    int degrees = ign_numedges(var);
+    if (degrees != 0)
+        lowest = var_st->cost / degrees;
+    link = link->next;
+    while (link != NULL)
+    {
+        var_st = SymTabLookupFP(link->var);
+        int d = ign_numedges(link->var);
+        if (d != 0 && var_st->cost / d < lowest)
+        {
+            var = link->var;
+            lowest = var_st->cost / d;
+        }
+        link = link->next;
+    }
+    printf("# NEED TO SPILL THIS NODE %d, %f!!!\n", var, lowest);
+    ign_remove_spilled_edges(var);
+    ign_remove_processing(var);
 }
 
 static void register_allocation(Quad *fn_head)
@@ -1607,39 +1645,47 @@ static void register_allocation(Quad *fn_head)
         {
             ign_add_processing(i);
             int degree = ign_numedges(i);
-            if (degree != 0)
-                printf("#\tNODE %s(%d) COST - %f, COST/DEG - %f\n",
+                printf("#\tNODE %s(%d) COST - %f, DEGREES - %d\n",
                        var->name, var->func_pos,
-                       var->cost, var->cost / degree);
+                       var->cost, degree);
         }
     }
 
     // have the spill costs & interference graph, now simplify it if needed
-    // while (1)
-    // {
-    //     int chg = 1;
-    //     while (chg)
-    //     {
-    //         chg = 0;
-    //         IGNLink *curr_link = node_stack_processing;
-    //         while (curr_link != NULL)
-    //         {
-    //             int degrees = ign_numedges(i);
-    //             if (degrees < NUM_REGS)
-    //             {
-    //                 printf("%d\n", i);
-    //                 ign_processing_to_saved(i);
-    //                 ign_remove_saved_edges(i);
-    //                 chg = 1;
-    //             }
-    //             curr_link = curr_link->next;
-    //         }
-    //     }
+    int count = 0;
+    while (1)
+    {
+        int chg = 1;
+        while (chg)
+        {
+            chg = 0;
+            IGNLink *curr_link = node_stack_processing;
+            while (curr_link != NULL)
+            {
+                int degrees = ign_numedges(curr_link->var);
+                if (degrees < NUM_REGS)
+                {
+                    ign_processing_to_saved(curr_link->var);
+                    ign_remove_saved_edges(curr_link->var);
+                    chg = 1;
+                }
+                curr_link = curr_link->next;
+            }
+            if (count++ > 500) break; // just to save infinite loops
+        }
 
-    //     break;
-    // }
+        if (node_stack_processing == NULL) break;
+        spill_node();
+        if (count++ > 1000) 
+        {
+            printf("# had to break loop using count\n");
+            break; // just to save infinite loops
+        }
+    }
 
     // HOORAY! time to color the IG
+    IGNLink *curr_link = node_stack_saved;
+
 
     // now alter code to use registers intead of memory reads
 }
