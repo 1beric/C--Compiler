@@ -47,7 +47,7 @@ _main:
     # livenow=00000
     # move 4321, deref(tmp$0)
     li $t0, 4321
-    lw $t1, -48($fp)	# tmp$0
+    move $t1, $s0	# tmp$0
     sw $t0, 0($t1)	# deref(tmp$0)
 
     # block (0)

@@ -401,7 +401,7 @@ Lbl1:
     # livenow=10100100100100100100001000010000100001000010000100001000
     # move i, deref(tmp$4)
     move $t0, $s1	# i
-    lw $t1, -68($fp)	# tmp$4
+    move $t1, $s0	# tmp$4
     sw $t0, 0($t1)	# deref(tmp$4)
 
     # block (3)
@@ -780,7 +780,7 @@ Lbl2:
     # livenow=00000000000000000000000000000000000011000010000100001000
     # move tmp$49, deref(tmp$19)
     lw $t0, -348($fp)	# tmp$49
-    lw $t1, -288($fp)	# tmp$19
+    move $t1, $s0	# tmp$19
     sw $t0, 0($t1)	# deref(tmp$19)
 
     # block (4)

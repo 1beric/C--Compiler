@@ -199,7 +199,7 @@ Lbl2:
     # livenow=1000000000000
     # move 0, deref(tmp$12)
     li $t0, 0
-    lw $t1, -56($fp)	# tmp$12
+    move $t1, $s0	# tmp$12
     sb $t0, 0($t1)	# deref(tmp$12)
 
     # block (3)

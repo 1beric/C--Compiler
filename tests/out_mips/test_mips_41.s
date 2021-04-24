@@ -92,7 +92,7 @@ Lbl1:
     # livenow=110100
     # move i, deref(tmp$3)
     move $t0, $s0	# i
-    lw $t1, -20($fp)	# tmp$3
+    move $t1, $s0	# tmp$3
     sw $t0, 0($t1)	# deref(tmp$3)
 
     # block (2)

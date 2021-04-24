@@ -136,7 +136,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 0, deref(tmp$0)
     li $t0, 0
-    lw $t1, -28($fp)	# tmp$0
+    move $t1, $s0	# tmp$0
     sw $t0, 0($t1)	# deref(tmp$0)
 
     # block (0)
@@ -157,7 +157,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 1, deref(tmp$4)
     li $t0, 1
-    lw $t1, -44($fp)	# tmp$4
+    move $t1, $s0	# tmp$4
     sb $t0, 0($t1)	# deref(tmp$4)
 
     # block (0)
@@ -178,7 +178,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 1, deref(tmp$8)
     li $t0, 1
-    lw $t1, -60($fp)	# tmp$8
+    move $t1, $s0	# tmp$8
     sw $t0, 0($t1)	# deref(tmp$8)
 
     # block (0)
@@ -220,7 +220,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 2, deref(tmp$16)
     li $t0, 2
-    lw $t1, -176($fp)	# tmp$16
+    move $t1, $s0	# tmp$16
     sw $t0, 0($t1)	# deref(tmp$16)
 
     # block (0)
@@ -241,7 +241,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 3, deref(tmp$20)
     li $t0, 3
-    lw $t1, -72($fp)	# tmp$20
+    move $t1, $s0	# tmp$20
     sb $t0, 0($t1)	# deref(tmp$20)
 
     # block (0)
@@ -262,7 +262,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 3, deref(tmp$24)
     li $t0, 3
-    lw $t1, -144($fp)	# tmp$24
+    move $t1, $s0	# tmp$24
     sw $t0, 0($t1)	# deref(tmp$24)
 
     # block (0)
@@ -304,7 +304,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 4, deref(tmp$32)
     li $t0, 4
-    lw $t1, -116($fp)	# tmp$32
+    move $t1, $s0	# tmp$32
     sw $t0, 0($t1)	# deref(tmp$32)
 
     # block (0)
@@ -325,7 +325,7 @@ _main:
     # livenow=000000000000000000000000000000000000000000000
     # move 55, deref(tmp$36)
     li $t0, 55
-    lw $t1, -224($fp)	# tmp$36
+    move $t1, $s0	# tmp$36
     sb $t0, 0($t1)	# deref(tmp$36)
 
     # block (0)

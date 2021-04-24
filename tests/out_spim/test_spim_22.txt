@@ -15,4 +15,8 @@ Loaded: /usr/lib/spim/exceptions.s
   Exception 7  [Bad data address]  occurred and ignored
   Exception 7  [Bad data address]  occurred and ignored
   Exception 7  [Bad data address]  occurred and ignored
-123
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+14760

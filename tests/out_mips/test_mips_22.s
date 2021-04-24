@@ -218,7 +218,7 @@ Lbl1:
     # livenow=10100000000000000000000000000000000000
     # move i, deref(tmp$2)
     lw $t0, _i
-    lw $t1, -12($fp)	# tmp$2
+    move $t1, $s0	# tmp$2
     sw $t0, 0($t1)	# deref(tmp$2)
 
     # block (2)

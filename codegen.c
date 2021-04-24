@@ -2360,7 +2360,10 @@ static void gen_mips_move(Quad *qptr)
         switch (stptr->scope)
         {
         case Local:
-            printf("    lw $t1, %d($fp)\t# %s\n", stptr->offset, stptr->name);
+            if (stptr->reg_num == -1)
+                printf("    lw $t1, %d($fp)\t# %s\n", stptr->offset, stptr->name);
+            else
+                printf("    move $t1, $s%d\t# %s\n", stptr->reg_num, stptr->name);
             printf("    %s $t0, 0($t1)\t# deref(%s)\n", StoreIns[stptr->elt_type], stptr->name);
             break;
 

@@ -4,10 +4,6 @@ All Rights Reserved.
 See the file README for a full copyright notice.
 Loaded: /usr/lib/spim/exceptions.s
   Exception 7  [Bad data address]  occurred and ignored
-  Exception 7  [Bad data address]  occurred and ignored
-  Exception 7  [Bad data address]  occurred and ignored
-  Exception 7  [Bad data address]  occurred and ignored
-  Exception 7  [Bad data address]  occurred and ignored
 0
 222222
   Exception 7  [Bad data address]  occurred and ignored
@@ -16,4 +12,4 @@ Loaded: /usr/lib/spim/exceptions.s
 0
   Exception 7  [Bad data address]  occurred and ignored
 0
-0
+666666
