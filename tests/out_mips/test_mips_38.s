@@ -28,16 +28,16 @@ _f:
     # block (0)
     # livenow=100
     # add x, 12345, tmp$0
-    lw $t0, 8($fp)	# x
+    move $t0, $s0	# x
     li $t1, 12345
     add $t2, $t0, $t1
-    sw $t2, -4($fp)	# tmp$0
+    move $s0, $t2	# tmp$0
 
     # block (0)
     # livenow=010
     # move tmp$0, tmp$2
-    lw $t0, -4($fp)	# tmp$0
-    sb $t0, -9($fp)	# tmp$2
+    move $t0, $s0	# tmp$0
+    move $s0, $t0 	# tmp$2
 
     # block (0)
     # livenow=001
@@ -46,7 +46,7 @@ _f:
     # block (0)
     # livenow=001
     # ret tmp$2
-    lb $v0, -9($fp)	# tmp$2
+    move $v0, $s0	# tmp$2
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer
@@ -123,18 +123,18 @@ _main:
     # block (1)
     # livenow=0110
     # retrieve tmp$4
-    sw $v0, -8($fp)	# tmp$4
+    move $s0, $v0	# tmp$4
 
     # block (1)
     # livenow=0110
     # move tmp$4, x
-    lw $t0, -8($fp)	# tmp$4
+    move $t0, $s0	# tmp$4
     sw $t0, _x
 
     # block (1)
     # livenow=0110
     # param tmp$4
-    lw $t0, -8($fp)	# tmp$4
+    move $t0, $s0	# tmp$4
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
@@ -147,26 +147,26 @@ _main:
     # block (1)
     # livenow=0010
     # retrieve tmp$6
-    sw $v0, -16($fp)	# tmp$6
+    move $s0, $v0	# tmp$6
 
     # block (1)
     # livenow=0010
     # add x, tmp$6, tmp$5
     lw $t0, _x
-    lw $t1, -16($fp)	# tmp$6
+    move $t1, $s0	# tmp$6
     add $t2, $t0, $t1
-    sw $t2, -12($fp)	# tmp$5
+    move $s0, $t2	# tmp$5
 
     # block (1)
     # livenow=0001
     # move tmp$5, x
-    lw $t0, -12($fp)	# tmp$5
+    move $t0, $s0	# tmp$5
     sw $t0, _x
 
     # block (1)
     # livenow=0001
     # param tmp$5
-    lw $t0, -12($fp)	# tmp$5
+    move $t0, $s0	# tmp$5
     la $sp, -4($sp)
     sw $t0, 0($sp)
 

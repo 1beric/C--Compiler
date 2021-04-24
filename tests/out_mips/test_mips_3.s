@@ -33,15 +33,15 @@ _main:
     # livenow=00000
     # move 28, tmp$1
     li $t0, 28
-    sw $t0, -12($fp)	# tmp$1
+    move $s0, $t0 	# tmp$1
 
     # block (0)
     # livenow=10000
     # add addr(x), tmp$1, tmp$0
     la $t0, _x
-    lw $t1, -12($fp)	# tmp$1
+    move $t1, $s0	# tmp$1
     add $t2, $t0, $t1
-    sw $t2, -8($fp)	# tmp$0
+    move $s0, $t2	# tmp$0
 
     # block (0)
     # livenow=00000
@@ -54,15 +54,15 @@ _main:
     # livenow=00000
     # move 28, tmp$5
     li $t0, 28
-    sw $t0, -28($fp)	# tmp$5
+    move $s0, $t0 	# tmp$5
 
     # block (0)
     # livenow=00010
     # add addr(x), tmp$5, tmp$4
     la $t0, _x
-    lw $t1, -28($fp)	# tmp$5
+    move $t1, $s0	# tmp$5
     add $t2, $t0, $t1
-    sw $t2, -24($fp)	# tmp$4
+    sw $t2, -24($fp)	# tmp$4, -1
 
     # block (0)
     # livenow=00000

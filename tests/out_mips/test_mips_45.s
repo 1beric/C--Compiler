@@ -28,15 +28,15 @@ _add:
     # block (0)
     # livenow=100
     # add x, y, tmp$0
-    lw $t0, 8($fp)	# x
+    move $t0, $s0	# x
     lw $t1, _y
     add $t2, $t0, $t1
-    sw $t2, -4($fp)	# tmp$0
+    move $s0, $t2	# tmp$0
 
     # block (0)
     # livenow=001
     # move tmp$0, y
-    lw $t0, -4($fp)	# tmp$0
+    move $t0, $s0	# tmp$0
     sw $t0, _y
 
     # block (0)
@@ -114,13 +114,13 @@ _main:
     # livenow=000000
     # move 1, f
     li $t0, 1
-    sw $t0, -4($fp)	# f
+    move $s0, $t0 	# f
 
     # block (1)
     # livenow=100000
     # move 7, i
     li $t0, 7
-    sw $t0, -8($fp)	# i
+    move $s1, $t0 	# i
 
 # block 2 
 # def = 000000;
@@ -135,7 +135,7 @@ Lbl0:
     # block (2)
     # livenow=110000
     # if_le i, 0, label 2
-    lw $t0, -8($fp)	# i
+    move $t0, $s1	# i
     li $t1, 0
     ble $t0, $t1, Lbl2
 
@@ -152,7 +152,7 @@ Lbl1:
     # block (3)
     # livenow=110000
     # move i, y
-    lw $t0, -8($fp)	# i
+    move $t0, $s1	# i
     sw $t0, _y
 
     # block (3)
@@ -199,12 +199,12 @@ Lbl1:
     # uminus 5, tmp$9
     li $t0, 5
     neg $t2, $t0
-    sw $t2, -44($fp)	# tmp$9
+    move $s2, $t2	# tmp$9
 
     # block (3)
     # livenow=110100
     # param tmp$9
-    lw $t0, -44($fp)	# tmp$9
+    move $t0, $s2	# tmp$9
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
@@ -230,30 +230,30 @@ Lbl1:
     # block (3)
     # livenow=110000
     # mul f, y, tmp$12
-    lw $t0, -4($fp)	# f
+    move $t0, $s0	# f
     lw $t1, _y
     mul $t2, $t0, $t1
-    sw $t2, -56($fp)	# tmp$12
+    sw $t2, -56($fp)	# tmp$12, -1
 
     # block (3)
     # livenow=010010
     # move tmp$12, f
     lw $t0, -56($fp)	# tmp$12
-    sw $t0, -4($fp)	# f
+    move $s0, $t0 	# f
 
     # block (3)
     # livenow=110000
     # sub i, 1, tmp$4
-    lw $t0, -8($fp)	# i
+    move $t0, $s1	# i
     li $t1, 1
     sub $t2, $t0, $t1
-    sw $t2, -24($fp)	# tmp$4
+    move $s1, $t2	# tmp$4
 
     # block (3)
     # livenow=100001
     # move tmp$4, i
-    lw $t0, -24($fp)	# tmp$4
-    sw $t0, -8($fp)	# i
+    move $t0, $s1	# tmp$4
+    move $s1, $t0 	# i
 
     # block (3)
     # livenow=110000
@@ -273,7 +273,7 @@ Lbl2:
     # block (4)
     # livenow=100000
     # param f
-    lw $t0, -4($fp)	# f
+    move $t0, $s0	# f
     la $sp, -4($sp)
     sw $t0, 0($sp)
 

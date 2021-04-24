@@ -1,4 +1,6 @@
-Loaded: /home/cs553/spring21/spim-stats/share/exceptions.s
+SPIM Version 8.0 of January 8, 2010
+Copyright 1990-2010, James R. Larus.
+All Rights Reserved.
+See the file README for a full copyright notice.
+Loaded: /usr/lib/spim/exceptions.s
 178
-Stats -- #instructions : 1831
-         #reads : 617  #writes 361  #branches 253  #other 600

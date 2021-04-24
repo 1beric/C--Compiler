@@ -260,12 +260,12 @@ Lbl13:
     lw $t0, _res
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -32($fp)	# tmp$7
+    move $s1, $t2	# tmp$7
 
     # block (10)
     # livenow=1111111100000
     # move tmp$7, res
-    lw $t0, -32($fp)	# tmp$7
+    move $t0, $s1	# tmp$7
     sw $t0, _res
 
     # block (10)
@@ -274,7 +274,7 @@ Lbl13:
     lw $t0, _e
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -40($fp)	# tmp$9
+    sw $t2, -40($fp)	# tmp$9, -1
 
     # block (10)
     # livenow=1111111010000
@@ -303,12 +303,12 @@ Lbl14:
     lw $t0, _d
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -48($fp)	# tmp$11
+    move $s1, $t2	# tmp$11
 
     # block (11)
     # livenow=1111110001000
     # move tmp$11, d
-    lw $t0, -48($fp)	# tmp$11
+    move $t0, $s1	# tmp$11
     sw $t0, _d
 
     # block (11)
@@ -332,7 +332,7 @@ Lbl11:
     lw $t0, _c
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -56($fp)	# tmp$13
+    sw $t2, -56($fp)	# tmp$13, -1
 
     # block (12)
     # livenow=1111100000100
@@ -361,12 +361,12 @@ Lbl8:
     lw $t0, _b
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -64($fp)	# tmp$15
+    move $s1, $t2	# tmp$15
 
     # block (13)
     # livenow=1111000000010
     # move tmp$15, b
-    lw $t0, -64($fp)	# tmp$15
+    move $t0, $s1	# tmp$15
     sw $t0, _b
 
     # block (13)
@@ -390,7 +390,7 @@ Lbl5:
     lw $t0, _a
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -72($fp)	# tmp$17
+    sw $t2, -72($fp)	# tmp$17, -1
 
     # block (14)
     # livenow=1110000000001

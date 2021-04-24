@@ -66,7 +66,7 @@ _copy:
     # livenow=0010001000000
     # move 0, i
     li $t0, 0
-    sw $t0, -4($fp)	# i
+    move $s0, $t0 	# i
 
 # block 1 
 # def = 0101100000000;
@@ -81,28 +81,28 @@ Lbl0:
     # block (1)
     # livenow=1010001000000
     # move i, tmp$3
-    lw $t0, -4($fp)	# i
-    sw $t0, -20($fp)	# tmp$3
+    move $t0, $s0	# i
+    move $s1, $t0 	# tmp$3
 
     # block (1)
     # livenow=1110001000000
     # add a, tmp$3, tmp$2
-    lw $t0, 8($fp)	# a
-    lw $t1, -20($fp)	# tmp$3
+    move $t0, $s2	# a
+    move $t1, $s1	# tmp$3
     add $t2, $t0, $t1
-    sw $t2, -16($fp)	# tmp$2
+    move $s0, $t2	# tmp$2
 
     # block (1)
     # livenow=1010001000000
     # move deref(tmp$2), tmp$4
     lw $t0, -16($fp)	# tmp$2
     lb $t0, 0($t0)	# deref(tmp$2)
-    sb $t0, -21($fp)	# tmp$4
+    move $s1, $t0 	# tmp$4
 
     # block (1)
     # livenow=1010101000000
     # if_le tmp$4, 0, label 2
-    lb $t0, -21($fp)	# tmp$4
+    move $t0, $s1	# tmp$4
     li $t1, 0
     ble $t0, $t1, Lbl2
 
@@ -119,30 +119,30 @@ Lbl1:
     # block (2)
     # livenow=1010001000000
     # move i, tmp$9
-    lw $t0, -4($fp)	# i
-    sw $t0, -44($fp)	# tmp$9
+    move $t0, $s0	# i
+    move $s1, $t0 	# tmp$9
 
     # block (2)
     # livenow=1010011000000
     # add b, tmp$9, tmp$8
-    lw $t0, 12($fp)	# b
-    lw $t1, -44($fp)	# tmp$9
+    move $t0, $s2	# b
+    move $t1, $s1	# tmp$9
     add $t2, $t0, $t1
-    sw $t2, -40($fp)	# tmp$8
+    sw $t2, -40($fp)	# tmp$8, -1
 
     # block (2)
     # livenow=1010001000000
     # move i, tmp$11
-    lw $t0, -4($fp)	# i
-    sw $t0, -52($fp)	# tmp$11
+    move $t0, $s0	# i
+    move $s1, $t0 	# tmp$11
 
     # block (2)
     # livenow=1010001010000
     # add a, tmp$11, tmp$10
-    lw $t0, 8($fp)	# a
-    lw $t1, -52($fp)	# tmp$11
+    move $t0, $s2	# a
+    move $t1, $s1	# tmp$11
     add $t2, $t0, $t1
-    sw $t2, -48($fp)	# tmp$10
+    move $s0, $t2	# tmp$10
 
     # block (2)
     # livenow=1010001000000
@@ -155,16 +155,16 @@ Lbl1:
     # block (2)
     # livenow=1010001000000
     # add i, 1, tmp$6
-    lw $t0, -4($fp)	# i
+    move $t0, $s0	# i
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -32($fp)	# tmp$6
+    move $s0, $t2	# tmp$6
 
     # block (2)
     # livenow=0010001000100
     # move tmp$6, i
-    lw $t0, -32($fp)	# tmp$6
-    sw $t0, -4($fp)	# i
+    move $t0, $s0	# tmp$6
+    move $s0, $t0 	# i
 
     # block (2)
     # livenow=1010001000000
@@ -184,16 +184,16 @@ Lbl2:
     # block (3)
     # livenow=1000000000000
     # move i, tmp$13
-    lw $t0, -4($fp)	# i
-    sw $t0, -60($fp)	# tmp$13
+    move $t0, $s0	# i
+    move $s1, $t0 	# tmp$13
 
     # block (3)
     # livenow=1000000000010
     # add b, tmp$13, tmp$12
-    lw $t0, 12($fp)	# b
-    lw $t1, -60($fp)	# tmp$13
+    move $t0, $s2	# b
+    move $t1, $s1	# tmp$13
     add $t2, $t0, $t1
-    sw $t2, -56($fp)	# tmp$12
+    move $s0, $t2	# tmp$12
 
     # block (3)
     # livenow=1000000000000
@@ -209,7 +209,7 @@ Lbl2:
     # block (3)
     # livenow=1000000000000
     # ret i
-    lw $v0, -4($fp)	# i
+    move $v0, $s0	# i
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer
@@ -311,13 +311,13 @@ _sum:
     # livenow=00010000000
     # move 0, i
     li $t0, 0
-    sw $t0, -8($fp)	# i
+    move $s0, $t0 	# i
 
     # block (4)
     # livenow=10010000000
     # move 0, sum
     li $t0, 0
-    sw $t0, -4($fp)	# sum
+    move $s1, $t0 	# sum
 
 # block 5 
 # def = 00101100000;
@@ -332,28 +332,28 @@ Lbl3:
     # block (5)
     # livenow=11010000000
     # move i, tmp$18
-    lw $t0, -8($fp)	# i
+    move $t0, $s0	# i
     sw $t0, -52($fp)	# tmp$18
 
     # block (5)
     # livenow=11110000000
     # add b, tmp$18, tmp$17
-    lw $t0, 8($fp)	# b
+    move $t0, $s3	# b
     lw $t1, -52($fp)	# tmp$18
     add $t2, $t0, $t1
-    sw $t2, -48($fp)	# tmp$17
+    move $s1, $t2	# tmp$17
 
     # block (5)
     # livenow=11010000000
     # move deref(tmp$17), tmp$19
     lw $t0, -48($fp)	# tmp$17
     lb $t0, 0($t0)	# deref(tmp$17)
-    sb $t0, -53($fp)	# tmp$19
+    move $s4, $t0 	# tmp$19
 
     # block (5)
     # livenow=11010100000
     # if_le tmp$19, 0, label 5
-    lb $t0, -53($fp)	# tmp$19
+    move $t0, $s4	# tmp$19
     li $t1, 0
     ble $t0, $t1, Lbl5
 
@@ -370,16 +370,16 @@ Lbl4:
     # block (6)
     # livenow=11010000000
     # move i, tmp$23
-    lw $t0, -8($fp)	# i
-    sw $t0, -24($fp)	# tmp$23
+    move $t0, $s0	# i
+    move $s2, $t0 	# tmp$23
 
     # block (6)
     # livenow=11010010000
     # add b, tmp$23, tmp$22
-    lw $t0, 8($fp)	# b
-    lw $t1, -24($fp)	# tmp$23
+    move $t0, $s3	# b
+    move $t1, $s2	# tmp$23
     add $t2, $t0, $t1
-    sw $t2, -20($fp)	# tmp$22
+    move $s0, $t2	# tmp$22
 
     # block (6)
     # livenow=11010000000
@@ -391,30 +391,30 @@ Lbl4:
     # block (6)
     # livenow=11010000100
     # add sum, tmp$24, tmp$21
-    lw $t0, -4($fp)	# sum
+    move $t0, $s1	# sum
     lb $t1, -25($fp)	# tmp$24
     add $t2, $t0, $t1
-    sw $t2, -16($fp)	# tmp$21
+    move $s1, $t2	# tmp$21
 
     # block (6)
     # livenow=10010000010
     # move tmp$21, sum
-    lw $t0, -16($fp)	# tmp$21
-    sw $t0, -4($fp)	# sum
+    move $t0, $s1	# tmp$21
+    move $s1, $t0 	# sum
 
     # block (6)
     # livenow=11010000000
     # add i, 1, tmp$25
-    lw $t0, -8($fp)	# i
+    move $t0, $s0	# i
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -36($fp)	# tmp$25
+    move $s0, $t2	# tmp$25
 
     # block (6)
     # livenow=01010000001
     # move tmp$25, i
-    lw $t0, -36($fp)	# tmp$25
-    sw $t0, -8($fp)	# i
+    move $t0, $s0	# tmp$25
+    move $s0, $t0 	# i
 
     # block (6)
     # livenow=11010000000
@@ -438,7 +438,7 @@ Lbl5:
     # block (7)
     # livenow=01000000000
     # ret sum
-    lw $v0, -4($fp)	# sum
+    move $v0, $s1	# sum
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer

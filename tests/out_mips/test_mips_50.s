@@ -31,12 +31,12 @@ _side_effect:
     # uminus 1, tmp$0
     li $t0, 1
     neg $t2, $t0
-    sw $t2, -4($fp)	# tmp$0
+    move $s0, $t2	# tmp$0
 
     # block (0)
     # livenow=101
     # move tmp$0, flag
-    lw $t0, -4($fp)	# tmp$0
+    move $t0, $s0	# tmp$0
     sw $t0, _flag
 
     # block (0)
@@ -46,7 +46,7 @@ _side_effect:
     # block (0)
     # livenow=001
     # ret x
-    lw $v0, 8($fp)	# x
+    move $v0, $s1	# x
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer
@@ -140,19 +140,19 @@ _main:
     # livenow=0001110100
     # move 3, x
     li $t0, 3
-    sw $t0, -4($fp)	# x
+    move $s0, $t0 	# x
 
     # block (1)
     # livenow=1001110100
     # move 4, y
     li $t0, 4
-    sw $t0, -8($fp)	# y
+    move $s1, $t0 	# y
 
     # block (1)
     # livenow=1101110100
     # move 5, z
     li $t0, 5
-    sw $t0, -12($fp)	# z
+    move $s2, $t0 	# z
 
     # block (1)
     # livenow=1111110100
@@ -186,8 +186,8 @@ Lbl4:
     # block (2)
     # livenow=1111110100
     # if_le y, z, label 1
-    lw $t0, -8($fp)	# y
-    lw $t1, -12($fp)	# z
+    move $t0, $s1	# y
+    move $t1, $s2	# z
     ble $t0, $t1, Lbl1
 
 # block 3 
@@ -203,7 +203,7 @@ Lbl3:
     # block (3)
     # livenow=1111110100
     # param x
-    lw $t0, -4($fp)	# x
+    move $t0, $s0	# x
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
@@ -216,13 +216,13 @@ Lbl3:
     # block (3)
     # livenow=1111110100
     # retrieve tmp$7
-    sw $v0, -36($fp)	# tmp$7
+    move $s3, $v0	# tmp$7
 
     # block (3)
     # livenow=1111110100
     # if_ge tmp$7, z, label 1
-    lw $t0, -36($fp)	# tmp$7
-    lw $t1, -12($fp)	# z
+    move $t0, $s3	# tmp$7
+    move $t1, $s2	# z
     bge $t0, $t1, Lbl1
 
 # block 4 
@@ -238,16 +238,16 @@ Lbl0:
     # block (4)
     # livenow=1111100100
     # sub x, 1, tmp$8
-    lw $t0, -4($fp)	# x
+    move $t0, $s0	# x
     li $t1, 1
     sub $t2, $t0, $t1
-    sw $t2, -40($fp)	# tmp$8
+    sw $t2, -40($fp)	# tmp$8, -1
 
     # block (4)
     # livenow=0111101100
     # move tmp$8, x
     lw $t0, -40($fp)	# tmp$8
-    sw $t0, -4($fp)	# x
+    move $s0, $t0 	# x
 
     # block (4)
     # livenow=1111100100
@@ -325,8 +325,8 @@ Lbl7:
     # block (9)
     # livenow=1111100100
     # if_lt x, y, label 8
-    lw $t0, -4($fp)	# x
-    lw $t1, -8($fp)	# y
+    move $t0, $s0	# x
+    move $t1, $s1	# y
     blt $t0, $t1, Lbl8
 
 # block 10 
@@ -352,8 +352,8 @@ Lbl12:
     # block (11)
     # livenow=1111100100
     # if_gt y, z, label 8
-    lw $t0, -8($fp)	# y
-    lw $t1, -12($fp)	# z
+    move $t0, $s1	# y
+    move $t1, $s2	# z
     bgt $t0, $t1, Lbl8
 
 # block 12 
@@ -379,7 +379,7 @@ Lbl11:
     # block (13)
     # livenow=1011100100
     # param x
-    lw $t0, -4($fp)	# x
+    move $t0, $s0	# x
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
@@ -392,13 +392,13 @@ Lbl11:
     # block (13)
     # livenow=1011100100
     # retrieve tmp$12
-    sw $v0, -56($fp)	# tmp$12
+    sw $v0, -56($fp)	# tmp$12, -1
 
     # block (13)
     # livenow=1011100100
     # if_ge tmp$12, z, label 9
     lw $t0, -56($fp)	# tmp$12
-    lw $t1, -12($fp)	# z
+    move $t1, $s2	# z
     bge $t0, $t1, Lbl9
 
 # block 14 
@@ -414,16 +414,16 @@ Lbl8:
     # block (14)
     # livenow=1001100000
     # sub x, 1, tmp$13
-    lw $t0, -4($fp)	# x
+    move $t0, $s0	# x
     li $t1, 1
     sub $t2, $t0, $t1
-    sw $t2, -60($fp)	# tmp$13
+    move $s0, $t2	# tmp$13
 
     # block (14)
     # livenow=0001100010
     # move tmp$13, x
-    lw $t0, -60($fp)	# tmp$13
-    sw $t0, -4($fp)	# x
+    move $t0, $s0	# tmp$13
+    move $s0, $t0 	# x
 
     # block (14)
     # livenow=1001100000
@@ -501,21 +501,21 @@ Lbl15:
     # block (19)
     # livenow=1000000000
     # mul x, val, tmp$17
-    lw $t0, -4($fp)	# x
+    move $t0, $s0	# x
     lw $t1, _val
     mul $t2, $t0, $t1
-    sw $t2, -76($fp)	# tmp$17
+    move $s0, $t2	# tmp$17
 
     # block (19)
     # livenow=0000000001
     # move tmp$17, val
-    lw $t0, -76($fp)	# tmp$17
+    move $t0, $s0	# tmp$17
     sw $t0, _val
 
     # block (19)
     # livenow=0000000001
     # param tmp$17
-    lw $t0, -76($fp)	# tmp$17
+    move $t0, $s0	# tmp$17
     la $sp, -4($sp)
     sw $t0, 0($sp)
 

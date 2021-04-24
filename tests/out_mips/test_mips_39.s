@@ -33,18 +33,18 @@ _f:
     # block (0)
     # livenow=11010
     # add x, y, tmp$1
-    lb $t0, 8($fp)	# x
-    lb $t1, 12($fp)	# y
+    move $t0, $s0	# x
+    move $t1, $s0	# y
     add $t2, $t0, $t1
-    sw $t2, -8($fp)	# tmp$1
+    move $s0, $t2	# tmp$1
 
     # block (0)
     # livenow=00110
     # add tmp$1, z, tmp$0
-    lw $t0, -8($fp)	# tmp$1
-    lb $t1, 16($fp)	# z
+    move $t0, $s0	# tmp$1
+    move $t1, $s1	# z
     add $t2, $t0, $t1
-    sw $t2, -4($fp)	# tmp$0
+    move $s0, $t2	# tmp$0
 
     # block (0)
     # livenow=00001
@@ -53,7 +53,7 @@ _f:
     # block (0)
     # livenow=00001
     # ret tmp$0
-    lw $v0, -4($fp)	# tmp$0
+    move $v0, $s0	# tmp$0
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer

@@ -29,14 +29,14 @@ _acc:
     # livenow=010
     # mul y, x, tmp$0
     lw $t0, _y
-    lw $t1, 8($fp)	# x
+    move $t1, $s0	# x
     mul $t2, $t0, $t1
-    sw $t2, -4($fp)	# tmp$0
+    move $s0, $t2	# tmp$0
 
     # block (0)
     # livenow=001
     # move tmp$0, y
-    lw $t0, -4($fp)	# tmp$0
+    move $t0, $s0	# tmp$0
     sw $t0, _y
 
     # block (0)
@@ -107,7 +107,7 @@ _main:
     # livenow=0100
     # move 1, tmp$1
     li $t0, 1
-    sw $t0, -12($fp)	# tmp$1
+    move $s0, $t0 	# tmp$1
 
     # block (1)
     # livenow=0100
@@ -119,7 +119,7 @@ _main:
     # livenow=0100
     # move 7, n
     li $t0, 7
-    sw $t0, -8($fp)	# n
+    move $s0, $t0 	# n
 
 # block 2 
 # def = 0000;
@@ -134,7 +134,7 @@ Lbl0:
     # block (2)
     # livenow=0110
     # if_le n, 0, label 2
-    lw $t0, -8($fp)	# n
+    move $t0, $s0	# n
     li $t1, 0
     ble $t0, $t1, Lbl2
 
@@ -151,7 +151,7 @@ Lbl1:
     # block (3)
     # livenow=0110
     # param n
-    lw $t0, -8($fp)	# n
+    move $t0, $s0	# n
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
@@ -164,16 +164,16 @@ Lbl1:
     # block (3)
     # livenow=0110
     # sub n, 1, tmp$4
-    lw $t0, -8($fp)	# n
+    move $t0, $s0	# n
     li $t1, 1
     sub $t2, $t0, $t1
-    sw $t2, -24($fp)	# tmp$4
+    sw $t2, -24($fp)	# tmp$4, -1
 
     # block (3)
     # livenow=0101
     # move tmp$4, n
     lw $t0, -24($fp)	# tmp$4
-    sw $t0, -8($fp)	# n
+    move $s0, $t0 	# n
 
     # block (3)
     # livenow=0110

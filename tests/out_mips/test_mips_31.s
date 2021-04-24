@@ -32,7 +32,7 @@ _fact:
     # block (0)
     # livenow=1010
     # if_ne n, 0, label 1
-    lw $t0, 8($fp)	# n
+    move $t0, $s0	# n
     li $t1, 0
     bne $t0, $t1, Lbl1
 
@@ -78,15 +78,15 @@ Lbl1:
     # block (2)
     # livenow=1010
     # sub n, 1, tmp$3
-    lw $t0, 8($fp)	# n
+    move $t0, $s0	# n
     li $t1, 1
     sub $t2, $t0, $t1
-    sw $t2, -16($fp)	# tmp$3
+    move $s1, $t2	# tmp$3
 
     # block (2)
     # livenow=1110
     # param tmp$3
-    lw $t0, -16($fp)	# tmp$3
+    move $t0, $s1	# tmp$3
     la $sp, -4($sp)
     sw $t0, 0($sp)
 
@@ -99,15 +99,15 @@ Lbl1:
     # block (2)
     # livenow=1010
     # retrieve tmp$5
-    sw $v0, -24($fp)	# tmp$5
+    sw $v0, -24($fp)	# tmp$5, -1
 
     # block (2)
     # livenow=1010
     # mul n, tmp$5, tmp$2
-    lw $t0, 8($fp)	# n
+    move $t0, $s0	# n
     lw $t1, -24($fp)	# tmp$5
     mul $t2, $t0, $t1
-    sw $t2, -12($fp)	# tmp$2
+    move $s0, $t2	# tmp$2
 
     # block (2)
     # livenow=0001
@@ -116,7 +116,7 @@ Lbl1:
     # block (2)
     # livenow=0001
     # ret tmp$2
-    lw $v0, -12($fp)	# tmp$2
+    move $v0, $s0	# tmp$2
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer
@@ -203,7 +203,7 @@ _main:
     # block (4)
     # livenow=1
     # retrieve tmp$7
-    sw $v0, -12($fp)	# tmp$7
+    sw $v0, -12($fp)	# tmp$7, -1
 
     # block (4)
     # livenow=1

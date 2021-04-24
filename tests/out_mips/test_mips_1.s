@@ -27,15 +27,15 @@ _main:
     # livenow=00
     # move 11, tmp$0
     li $t0, 11
-    sw $t0, -12($fp)	# tmp$0
+    move $s0, $t0 	# tmp$0
 
     # block (0)
     # livenow=10
     # add 2, tmp$0, tmp$4
     li $t0, 2
-    lw $t1, -12($fp)	# tmp$0
+    move $t1, $s0	# tmp$0
     add $t2, $t0, $t1
-    sw $t2, -28($fp)	# tmp$4
+    sw $t2, -28($fp)	# tmp$4, -1
 
     # block (0)
     # livenow=01

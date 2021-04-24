@@ -43,7 +43,7 @@ _init:
     # livenow=010100
     # move 0, i
     li $t0, 0
-    sw $t0, -4($fp)	# i
+    move $s0, $t0 	# i
 
 # block 1 
 # def = 000000;
@@ -58,8 +58,8 @@ Lbl0:
     # block (1)
     # livenow=110100
     # if_ge i, n, label 2
-    lw $t0, -4($fp)	# i
-    lw $t1, 12($fp)	# n
+    move $t0, $s0	# i
+    move $t1, $s1	# n
     bge $t0, $t1, Lbl2
 
 # block 2 
@@ -75,39 +75,39 @@ Lbl1:
     # block (2)
     # livenow=110100
     # mul i, 4, tmp$4
-    lw $t0, -4($fp)	# i
+    move $t0, $s0	# i
     li $t1, 4
     mul $t2, $t0, $t1
-    sw $t2, -24($fp)	# tmp$4
+    move $s2, $t2	# tmp$4
 
     # block (2)
     # livenow=111100
     # add x, tmp$4, tmp$3
-    lw $t0, 8($fp)	# x
-    lw $t1, -24($fp)	# tmp$4
+    move $t0, $s1	# x
+    move $t1, $s2	# tmp$4
     add $t2, $t0, $t1
-    sw $t2, -20($fp)	# tmp$3
+    move $s0, $t2	# tmp$3
 
     # block (2)
     # livenow=110100
     # move i, deref(tmp$3)
-    lw $t0, -4($fp)	# i
+    move $t0, $s0	# i
     lw $t1, -20($fp)	# tmp$3
     sw $t0, 0($t1)	# deref(tmp$3)
 
     # block (2)
     # livenow=110100
     # add i, 1, tmp$1
-    lw $t0, -4($fp)	# i
+    move $t0, $s0	# i
     li $t1, 1
     add $t2, $t0, $t1
-    sw $t2, -12($fp)	# tmp$1
+    move $s0, $t2	# tmp$1
 
     # block (2)
     # livenow=010101
     # move tmp$1, i
-    lw $t0, -12($fp)	# tmp$1
-    sw $t0, -4($fp)	# i
+    move $t0, $s0	# tmp$1
+    move $s0, $t0 	# i
 
     # block (2)
     # livenow=110100
@@ -131,7 +131,7 @@ Lbl2:
     # block (3)
     # livenow=010000
     # ret n
-    lw $v0, 12($fp)	# n
+    move $v0, $s1	# n
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer
@@ -213,21 +213,21 @@ _count:
     # livenow=01001000
     # move 0, c
     li $t0, 0
-    sw $t0, -4($fp)	# c
+    move $s0, $t0 	# c
 
     # block (4)
     # livenow=11001000
     # sub n, 1, tmp$6
-    lw $t0, 12($fp)	# n
+    move $t0, $s1	# n
     li $t1, 1
     sub $t2, $t0, $t1
-    sw $t2, -12($fp)	# tmp$6
+    move $s2, $t2	# tmp$6
 
     # block (4)
     # livenow=10101000
     # move tmp$6, n
-    lw $t0, -12($fp)	# tmp$6
-    sw $t0, 12($fp)	# n
+    move $t0, $s2	# tmp$6
+    move $s1, $t0 	# n
 
 # block 5 
 # def = 00000000;
@@ -242,7 +242,7 @@ Lbl3:
     # block (5)
     # livenow=11001000
     # if_lt n, 0, label 5
-    lw $t0, 12($fp)	# n
+    move $t0, $s1	# n
     li $t1, 0
     blt $t0, $t1, Lbl5
 
@@ -259,47 +259,47 @@ Lbl4:
     # block (6)
     # livenow=11001000
     # mul n, 4, tmp$11
-    lw $t0, 12($fp)	# n
+    move $t0, $s1	# n
     li $t1, 4
     mul $t2, $t0, $t1
-    sw $t2, -32($fp)	# tmp$11
+    move $s3, $t2	# tmp$11
 
     # block (6)
     # livenow=11011000
     # add x, tmp$11, tmp$10
-    lw $t0, 8($fp)	# x
-    lw $t1, -32($fp)	# tmp$11
+    move $t0, $s4	# x
+    move $t1, $s3	# tmp$11
     add $t2, $t0, $t1
-    sw $t2, -28($fp)	# tmp$10
+    sw $t2, -28($fp)	# tmp$10, -1
 
     # block (6)
     # livenow=11001000
     # add c, deref(tmp$10), tmp$9
-    lw $t0, -4($fp)	# c
+    move $t0, $s0	# c
     lw $t1, -28($fp)	# tmp$10
     lw $t1, 0($t1)	# deref(tmp$10)
     add $t2, $t0, $t1
-    sw $t2, -24($fp)	# tmp$9
+    move $s0, $t2	# tmp$9
 
     # block (6)
     # livenow=01001010
     # move tmp$9, c
-    lw $t0, -24($fp)	# tmp$9
-    sw $t0, -4($fp)	# c
+    move $t0, $s0	# tmp$9
+    move $s0, $t0 	# c
 
     # block (6)
     # livenow=11001000
     # sub n, 1, tmp$13
-    lw $t0, 12($fp)	# n
+    move $t0, $s1	# n
     li $t1, 1
     sub $t2, $t0, $t1
-    sw $t2, -40($fp)	# tmp$13
+    move $s1, $t2	# tmp$13
 
     # block (6)
     # livenow=10001001
     # move tmp$13, n
-    lw $t0, -40($fp)	# tmp$13
-    sw $t0, 12($fp)	# n
+    move $t0, $s1	# tmp$13
+    move $s1, $t0 	# n
 
     # block (6)
     # livenow=11001000
@@ -323,7 +323,7 @@ Lbl5:
     # block (7)
     # livenow=10000000
     # ret c
-    lw $v0, -4($fp)	# c
+    move $v0, $s0	# c
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer

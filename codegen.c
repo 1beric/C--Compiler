@@ -2337,7 +2337,11 @@ static void gen_mips_move(Quad *qptr)
         switch (stptr->scope)
         {
         case Local:
-            printf("    %s $t0, %d($fp)\t# %s\n", StoreIns[stptr->type], stptr->offset, stptr->name);
+            if (stptr->reg_num == -1)
+                printf("    %s $t0, %d($fp)\t# %s\n", StoreIns[stptr->type], stptr->offset, stptr->name);
+            else
+                printf("    move $s%d, $t0 \t# %s\n",
+                       stptr->reg_num, stptr->name);
             break;
 
         case Global:
@@ -2551,9 +2555,12 @@ static void gen_mips_load(Operand *src, char *reg_prefix, int dstreg)
                  */
                 type = t_Addr;
             }
-
-            printf("    %s $%s%d, %d($fp)\t# %s\n",
-                   LoadIns[type], reg_prefix, dstreg, sptr->offset, sptr->name);
+            if (sptr->reg_num == -1)
+                printf("    %s $%s%d, %d($fp)\t# %s\n",
+                       LoadIns[type], reg_prefix, dstreg, sptr->offset, sptr->name);
+            else
+                printf("    move $%s%d, $s%d\t# %s\n",
+                       reg_prefix, dstreg, sptr->reg_num, sptr->name);
         }
         break;
 
@@ -2629,8 +2636,12 @@ static void gen_mips_store(Operand *dst, char *reg_prefix, int srcreg)
         else
         {
             assert(sptr->scope == Local);
-            printf("    %s $%s%d, %d($fp)\t# %s\n",
-                   StoreIns[sptr->type], reg_prefix, srcreg, sptr->offset, sptr->name);
+            if (sptr->reg_num == -1)
+                printf("    %s $%s%d, %d($fp)\t# %s, %d\n",
+                       StoreIns[sptr->type], reg_prefix, srcreg, sptr->offset, sptr->name, sptr->reg_num);
+            else
+                printf("    move $s%d, $%s%d\t# %s\n",
+                       sptr->reg_num, reg_prefix, srcreg, sptr->name);
         }
         break;
 

@@ -1,4 +1,10 @@
-Loaded: /home/cs553/spring21/spim-stats/share/exceptions.s
-5040
-Stats -- #instructions : 1013
-         #reads : 237  #writes 222  #branches 90  #other 464
+SPIM Version 8.0 of January 8, 2010
+Copyright 1990-2010, James R. Larus.
+All Rights Reserved.
+See the file README for a full copyright notice.
+Loaded: /usr/lib/spim/exceptions.s
+  Exception 12  [Arithmetic overflow]  occurred and ignored
+  Exception 12  [Arithmetic overflow]  occurred and ignored
+  Exception 12  [Arithmetic overflow]  occurred and ignored
+  Exception 12  [Arithmetic overflow]  occurred and ignored
+100

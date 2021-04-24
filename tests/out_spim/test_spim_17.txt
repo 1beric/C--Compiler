@@ -1,9 +1,24 @@
-Loaded: /home/cs553/spring21/spim-stats/share/exceptions.s
+SPIM Version 8.0 of January 8, 2010
+Copyright 1990-2010, James R. Larus.
+All Rights Reserved.
+See the file README for a full copyright notice.
+Loaded: /usr/lib/spim/exceptions.s
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 7  [Bad data address]  occurred and ignored
 -1
-1
-2
-9
-4
-55
-Stats -- #instructions : 282
-         #reads : 66  #writes 63  #branches 16  #other 137
+  Exception 7  [Bad data address]  occurred and ignored
+0
+0
+  Exception 7  [Bad data address]  occurred and ignored
+0
+  Exception 7  [Bad data address]  occurred and ignored
+  Exception 9  [Breakpoint]  occurred and ignored
+0
+  Exception 7  [Bad data address]  occurred and ignored
+2147480976

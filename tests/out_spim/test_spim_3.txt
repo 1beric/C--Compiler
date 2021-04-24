@@ -1,4 +1,7 @@
-Loaded: /home/cs553/spring21/spim-stats/share/exceptions.s
-3142
-Stats -- #instructions : 50
-         #reads : 9  #writes 8  #branches 5  #other 28
+SPIM Version 8.0 of January 8, 2010
+Copyright 1990-2010, James R. Larus.
+All Rights Reserved.
+See the file README for a full copyright notice.
+Loaded: /usr/lib/spim/exceptions.s
+  Exception 7  [Bad data address]  occurred and ignored
+0

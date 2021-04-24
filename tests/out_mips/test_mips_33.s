@@ -46,34 +46,34 @@ _f:
     # block (0)
     # livenow=110101010
     # mul d, e, tmp$3
-    lw $t0, 20($fp)	# d
-    lw $t1, 24($fp)	# e
+    move $t0, $s0	# d
+    move $t1, $s0	# e
     mul $t2, $t0, $t1
-    sw $t2, -16($fp)	# tmp$3
+    move $s0, $t2	# tmp$3
 
     # block (0)
     # livenow=001101010
     # add c, tmp$3, tmp$2
-    lw $t0, 16($fp)	# c
-    lw $t1, -16($fp)	# tmp$3
+    move $t0, $s1	# c
+    move $t1, $s0	# tmp$3
     add $t2, $t0, $t1
-    sw $t2, -12($fp)	# tmp$2
+    move $s0, $t2	# tmp$2
 
     # block (0)
     # livenow=000011010
     # mul b, tmp$2, tmp$1
-    lw $t0, 12($fp)	# b
-    lw $t1, -12($fp)	# tmp$2
+    move $t0, $s1	# b
+    move $t1, $s0	# tmp$2
     mul $t2, $t0, $t1
-    sw $t2, -8($fp)	# tmp$1
+    move $s0, $t2	# tmp$1
 
     # block (0)
     # livenow=000000110
     # add a, tmp$1, tmp$0
-    lw $t0, 8($fp)	# a
-    lw $t1, -8($fp)	# tmp$1
+    move $t0, $s1	# a
+    move $t1, $s0	# tmp$1
     add $t2, $t0, $t1
-    sw $t2, -4($fp)	# tmp$0
+    move $s0, $t2	# tmp$0
 
     # block (0)
     # livenow=000000001
@@ -82,7 +82,7 @@ _f:
     # block (0)
     # livenow=000000001
     # ret tmp$0
-    lw $v0, -4($fp)	# tmp$0
+    move $v0, $s0	# tmp$0
     la $sp, 0($fp)     # deallocate locals
     lw $ra, 0($sp)     # restore return address
     lw $fp, 4($sp)     # restore frame pointer
